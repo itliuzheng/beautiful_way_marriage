@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/match/index",
+    "pages/single/index",
+    "pages/message/index",
+    "pages/myself/myself",
+    "pages/myself/setting/setting",
+    "pages/myself/introduction/introduction",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "JM赛车",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#C7AF63",
+    "backgroundColor": "#000",
+    "color": "#c7c7c7",
+    "list": [
+      {
+        "selectedIconPath": "/images/tab/discovery-on.png",
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "/images/tab/discovery.png"
+      },
+      {
+        "selectedIconPath": "/images/tab/search-on.png",
+        "pagePath": "pages/message/index",
+        "text": "匹配",
+        "iconPath": "/images/tab/search.png"
+      },
+      {
+        "selectedIconPath": "/images/tab/search-on.png",
+        "pagePath": "pages/message/index",
+        "text": "单身圈",
+        "iconPath": "/images/tab/search.png"
+      },
+      {
+        "selectedIconPath": "/images/tab/search-on.png",
+        "pagePath": "pages/message/index",
+        "text": "消息",
+        "iconPath": "/images/tab/search.png"
+      },
+      {
+        "selectedIconPath": "/images/tab/user-on.png",
+        "pagePath": "pages/myself/myself",
+        "text": "我的",
+        "iconPath": "/images/tab/user.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

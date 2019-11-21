@@ -1,0 +1,28 @@
+/* pages/myself/introduction/introduction.wxss */
+.content-topic{
+  height: 424rpx;
+  width: 100%;
+  position: relative;
+}
+.modify_photo{
+  width: 200rpx;
+  height: 58rpx;
+  position: absolute;
+  right: 40rpx;
+  bottom: 20rpx;
+  border-radius: 10rpx;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 58rpx;
+  text-align: center;
+}
+.header_bj{
+  background: #ddd;
+  width: 100%;
+  height: 100%;
+}
+.header_bj image{
+  height: 100%;
+  width: 100%;
+}

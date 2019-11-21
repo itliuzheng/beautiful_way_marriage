@@ -1,0 +1,9 @@
+<!--pages/myself/introduction/introduction.wxml-->
+<view class="content-box">
+  <view class="content-topic">
+    <view class="header_bj">
+      <image src="{{myimg.imgSrc}}" mode="aspectFill"></image>
+    </view>
+    <view class="modify_photo" bindtap="upimg">修改形象照</view>
+  </view>
+</view>

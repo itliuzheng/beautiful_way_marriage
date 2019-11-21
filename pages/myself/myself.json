@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mp-cells": "../component/cells/cells",
+    "mp-cell": "../component/cell/cell"
+  },
+  "navigationBarTitleText": "我的"
+}
