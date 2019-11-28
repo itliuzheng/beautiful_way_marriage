@@ -8,12 +8,14 @@
     "pages/myself/setting/setting",
     "pages/myself/introduction/introduction",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/login/index",
+    "pages/login/register/register",
+    "pages/login/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "JM赛车",
+    "navigationBarTitleText": "美途婚恋",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

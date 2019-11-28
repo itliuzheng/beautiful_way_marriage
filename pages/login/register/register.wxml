@@ -1,0 +1,23 @@
+<!--pages/login/index.wxml-->
+
+<view class="logo-box">
+  <view class="english">MITU</view>
+  <view class="chinese">美途婚恋</view>
+</view>
+<view class="login-box">
+  <form>
+    <view class="input-cell">
+      <input placeholder="手机号"></input>
+    </view>
+    <view class="input-cell">
+      <input placeholder="密码"></input>
+    </view>
+    <view class="input-cell">
+      <input placeholder="短信验证码"></input>
+    </view>
+    <button class="phone-btn" size="default" >注册</button>
+  </form>
+  <view class="login_desc">点击一键登录/注册默认您已经同意</view>
+  <view class="login_link">《美途婚恋服务协议》</view>
+</view>
+

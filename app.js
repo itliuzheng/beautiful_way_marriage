@@ -34,6 +34,14 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userInfo: null,
+    uid: null,
+    _ishua: true,
+    shareInfo: {
+      title: '美途等您',
+      path: '/pages/index/index',
+      imageUrl: ''
+    }
   }
 })

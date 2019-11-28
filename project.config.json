@@ -58,6 +58,27 @@
 					"pathName": "pages/myself/introduction/introduction",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "登录/注册",
+					"pathName": "pages/login/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "注册",
+					"pathName": "pages/login/register/register",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
