@@ -79,6 +79,13 @@
 					"pathName": "pages/login/register/register",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "首页",
+					"pathName": "pages/home/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

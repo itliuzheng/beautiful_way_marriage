@@ -6,6 +6,9 @@ Page({
    */
   data: {
     background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+    news: [],
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**

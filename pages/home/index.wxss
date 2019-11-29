@@ -1,81 +1,137 @@
-/* pages/home/index.wxss */
+page{
+  background: #F7F7F7;
+}
 .home{
   /* background: #fff; */
-  min-height:1000rpx;
+  /* min-height:1000rpx; */
   height: 100%;
-  background-image: linear-gradient(180deg, #fff 20%,#f1f0f5 80%);
-  padding: 30rpx 28rpx;
+  /* background-image: linear-gradient(180deg, #fff 5%,#f1f0f5 95%); */
+  padding: 40rpx 40rpx;
 }
 
-.demo-text-1{
+.rc_swiper swiper{
+  height: 258rpx;
+}
+.swiper-item{
   width: 100%;
+  height: 258rpx;
+}
+.swiper-item image{
   height: 100%;
-  background: #000;
-}
-.rc_swiper{
-}
-
-.rc_reserve{
-  display: flex;
-  margin-top: 40rpx;
-}
-.rc_reserve .rc_reserve_section{
-  height:242rpx;
-  background: #fff;
-  flex:1;
-  margin-right: 11rpx;
-}
-.rc_reserve .rc_reserve_section:last-child{
-  margin-right: 0;
+  width: 100%;
+  display: block;
 }
 
+.rc_news{
+  padding: 0 10rpx;
+  width:100%;
+  height:406rpx;
+  background:rgba(255,255,255,1);
+  padding-top: 18rpx;
+}
 .rc_news .news-title{
-  margin: 40rpx 0;
-}
-.rc_news .news-title .title{
-  font-size: 18pt;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.rc_news .news-title .more{
-
+  font-size:32rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(194,167,83,1);
+  line-height:44rpx;
+  margin-bottom: 20rpx;
 }
 
-.rc_news .news-list-box .news-list{
-  min-height: 474rpx;
+
+.scroll-x{
+  height:306rpx;
+  white-space:nowrap;
+  display:flex;
+}
+/* 隐藏scrollbar */
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+.view-parent{
+    display:inline-block;
+    margin-right: 14rpx;
+}
+.stick-card-list{
+  width:208rpx;
+  height:306rpx;
   background: #fff;
-  margin-bottom: 26rpx;
-  padding: 38rpx 35rpx;
 }
-.news-list .new-banner{
+.stick-card-list .stick-img{
+  width: 208rpx;
+  height: 200rpx;
+  background: #000; 
+  display: block;
+}
+.stick-card-list .card-content{
+  padding:8rpx 10rpx;
+  border:2rpx solid rgba(247,247,247,1);
+}
+.card-content .name{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:40rpx;
+}
+.card-content .name_other {
+  font-size: 24rpx;
+  color: #888888;
+  margin-top: 12rpx;
+}
+.name_other text{
+  margin-right: 10rpx;
+}
+
+.title-box{
   width: 100%;
-  height: 270rpx;
-  background: #ccc;
-  margin-bottom: 30rpx;
-}
-.news-list .new-title{
-  display: block;
-  font-size: 14pt;
-  color: #000;
-  margin-bottom: 5rpx;
-}
-.news-list .new-desc{
-  display: block;
-  font-size: 11pt;
-  color: #929292;
-  line-height: 1.2;
-}
-
-
-/* .weui-search-bar.rc_search{
+  height: 94rpx;
   background: #fff;
+  padding: 30rpx 0 0 10rpx;
+  margin-top: 20rpx;
+}
+.title-box .title{
+  font-size:32rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(194,167,83,1);
+  line-height:44rpx;
 }
 
-.rc_search .weui-search-bar__form{
-  background: #f2f2f2;
+.recommend-list{
+  width: 100%;
 }
-
-.rc_search .weui-search-bar__label{
-  background: #f2f2f2;
-} */
+.recommend-list .list-bj{
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+}
+.list-bj image{
+  display: block;
+  width: 100%;
+  height: 400rpx;
+  background: red;
+}
+.list-bj .certification_tag{
+  padding: 0 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 20rpx;
+  color: #fff;
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  background:rgba(38,39,40,0.8);
+  border-radius: 20rpx;
+}
+.list-bj .exchange_wx{
+  left: auto;
+  top: auto;
+  right: 20rpx;
+  bottom: 20rpx;
+}
+.certification_tag text{
+  margin-left: 20rpx;
+}

@@ -1,13 +1,71 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view class="home_nav">
+  <view class="nav_dom active">邂逅</view>
+  <view class="nav_dom">匹配</view>
+</view>
+
+<view wx:if="{{delect_time==0}}">
+  <view wx:if="{{wrapContent}}">
+    <view class="section">
+      <movable-area class="area">
+        <movable-view wx:for="{{content}}" wx:key="index" x="{{x}}" y="{{y}}" direction="all" bindchange="onChange" out-of-bounds="true" data-index="{{index}}" data-id='{{item.user_id}}' catch:touchend="tap">
+          <view class="trm {{index==myindex&&action=='left'?'cssActiveL':index==myindex&&action=='right'?'cssActiveR':''}}">
+            <image class='move_log' src="{{item.more!=null&&item.more!=undefind?item.more:'/images/home/logo.png'}}" catchtap='lookmore' data-id='{{item.user_id}}'></image>
+            <view class='move_res'>
+              <view class='move_title'>苏菀菁
+                <text class='iconfont icon-nv'></text>
+                <view class='move_miniTitle'>期待两年内结婚</view>
+              </view>
+              <view class='move_other'>
+                <text>24岁</text>
+                <text>|</text>
+                <text>173cm</text>
+                <text>|</text>
+                <text>4w-20w</text>
+              </view>
+              <view class='move_zw'>
+                <view class="tag">vip认证</view>
+                <view class="tag">身份认证</view>
+                <view class="tag">学历认证</view>
+              </view>
+            </view> 
+          </view>
+        </movable-view>
+
+      </movable-area>
+    </view>
+    <view class='typeGroup'>
+      <image src='/images/home/x.png' bindtap='unlick'></image>
+       <image src='/images/home/love.png' bindtap='lick'></image>
+        
+      <!-- <text class="iconfont  {{lick==false?'active':''}}" bindtap='unlick'></text>
+      <text class="iconfont icon-cainixihuan {{lick==true?'active':''}}" bindtap='lick'></text> -->
+
+    </view>
+
+
+    <view class='mask' wx:if="{{mask}}">
+      <view class='toast_center'>
+        <view class='toat_main'>
+          {{otherdetail}}
+        </view>
+        <view class='toat_yes' bindtap='openlick'>
+          我知道了
+        </view>
+      </view>
+    </view>
+
+    <myToast noCode="{{noCode}}" step="{{step}}"></myToast>
   </view>
 </view>
+<!-- wx:if="{{noCode}}" -->
+<!-- <view class='maskCode' wx:if="{{noCode}}">
+  <view class='toast_centerCode'>
+    <text class='iconfont icon-quxiao1' bindtap='hideMask'></text>
+    <view class='toat_mainCode'>
+      {{otherdetail}}
+    </view>
+    <view class='toat_yes' bindtap='goloading'>
+      去登录
+    </view>
+  </view>
+</view> -->

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/home/index",
     "pages/match/index",
     "pages/single/index",
@@ -7,7 +8,6 @@
     "pages/myself/myself",
     "pages/myself/setting/setting",
     "pages/myself/introduction/introduction",
-    "pages/index/index",
     "pages/login/index",
     "pages/login/register/register",
     "pages/login/login/login"
@@ -31,7 +31,7 @@
       },
       {
         "selectedIconPath": "/images/tab/search-on.png",
-        "pagePath": "pages/message/index",
+        "pagePath": "pages/index/index",
         "text": "匹配",
         "iconPath": "/images/tab/search.png"
       },

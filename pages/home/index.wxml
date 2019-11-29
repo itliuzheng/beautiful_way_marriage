@@ -1,1 +1,53 @@
 <!--pages/home/index.wxml-->
+<view class="home">
+  <view class="page-body">
+    <view class="page-section rc_swiper">
+      <swiper style="height:258rpx;" indicator-dots="{{true}}" indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#fff" autoplay="{{true}}" interval="3000">
+        <block wx:for="{{background}}" wx:key="unique">
+          <swiper-item>
+            <view class="swiper-item">
+              <!-- <image src="../../images/home/JM-home_banner.png" mode="aspectFill"></image> -->
+              <image src="{{item.imgUrl}}" mode="aspectFill"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <view class="rc_news">
+    <view class="news-title">我要置顶</view>
+    <scroll-view scroll-x class="scroll-x">
+      <view wx:for="1234" wx:key="{{index}}" class="view-parent">
+        <view class="stick-card-list">
+          <image class="stick-img"></image>
+          <view class="card-content">
+            <view class="name">王杨桐</view>
+            <view class='name_other'>
+              <text>24岁</text>
+              <text>|</text>
+              <text>173cm</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="title-box">
+    <view class="title">每日推荐</view>
+  </view>
+
+  <view class="recommend-list">
+    <view class="list-bj">
+      <image></image>
+      <view class="certification_tag">
+        <text>已认证</text>
+        <text>身份-学历-房-车</text>
+      </view>
+      <view class="certification_tag exchange_wx">交换微信</view>
+    </view>
+  
+  </view>
+
+</view>
