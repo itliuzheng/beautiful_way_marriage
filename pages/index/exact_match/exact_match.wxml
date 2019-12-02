@@ -1,0 +1,67 @@
+
+<view class="info-list">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="list-cell"> 
+      <text>已通过实名认证</text>
+      <text class="fr_desc fr">{{index == -1?'请选择':array[index]}}</text>
+    </view>
+  </picker>
+  <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="list-cell"> 
+      <text>居住地</text>
+      <text class="fr_desc fr">{{index == -1?'请选择':'{{region[0],region[1],region[2]}}' }}</text>
+    </view>
+  </picker>
+  <view class="list-cell"> <text >年龄</text></view>
+  <view class="list-cell"> <text>身高</text></view>
+  <view class="list-cell"> <text>学历</text></view>
+  <view class="list-cell"> <text>月收入</text></view>
+  <view class="list-cell"> <text>户籍所在地</text></view>
+  <view class="list-cell"> <text>是否已购房</text></view>
+  <view class="list-cell"> <text>是否已购车</text></view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="list-cell"> 
+      <text>是否已购车</text>
+      <text class="fr_desc fr">{{index == -1?'请选择':array[index]}}</text>
+    </view>
+  </picker>
+</view>
+<view class="info-list">
+  <view class="from-cell-head">
+    <view class="fl cell_head">对方择偶意向</view>
+    <view class="fr cell_subhead"><text>收起</text></view>
+  </view>
+  <view class="list-cell list-cell-no_arrow">
+    <text class="fl">符合对方  居住地要求</text>
+    <switch class="fr fr_switch" checked="{{switch1Checked}}" color="#C4AB5B" bindchange="switch1Change"/>
+  </view>
+  <view class="list-cell list-cell-no_arrow"> 
+    <text class="fl">符合对方  年龄要求</text>
+    <switch class="fr fr_switch" checked="{{switch1Checked}}" color="#C4AB5B" bindchange="switch1Change"/>
+  </view>
+  <view class="list-cell list-cell-no_arrow"> 
+    <text>符合对方  身高要求</text>
+    <switch class="fr fr_switch" checked="{{switch1Checked}}" color="#C4AB5B" bindchange="switch1Change"/>
+  </view>
+  <view class="list-cell list-cell-no_arrow"> 
+    <text>符合对方  薪资要求</text>
+    <switch class="fr fr_switch" checked="{{switch1Checked}}" color="#C4AB5B" bindchange="switch1Change"/>
+  </view>
+  <view class="list-cell"> <text>符合对方  学历要求</text>
+    <text class="fr_desc fr">请先完善您的学历信息</text>
+  </view>
+  <view class="list-cell"> <text>符合对方  家乡要求</text>
+    <text class="fr_desc fr">请先完善您的学历信息</text>
+  </view>
+  <view class="list-cell"> <text>符合对方  房产要求</text>
+    <text class="fr_desc fr">请先完善您的学历信息</text>
+  </view>
+  <view class="list-cell"> <text>符合对方  车辆要求</text>
+    <text class="fr_desc fr">请先完善您的学历信息</text>
+  </view>
+</view>
+
+<view class="btn-form">
+  <view class="btn btn_white">重置</view>
+  <view class="btn btn_fill">搜索</view>
+</view>

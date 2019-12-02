@@ -1,8 +1,22 @@
 page{
-  background: #000000;
+  background: #000;
+}
+.page-bj{
+  display: block;
+  width: 750rpx;
+  height: 1160rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.page-view{
+  position: relative;
+  z-index: 2;
 }
 .logo-box{
   padding: 136rpx 80rpx 0;
+  position: relative;
 }
 .logo-box .english{
   font-size:96rpx;

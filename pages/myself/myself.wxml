@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="myself">
   <view class="userinfo">
-    <view class="my-bj"></view>
+    <image class="my-bj" src="/images/myself/banner.png" mode="aspectFill"></image>
   </view>
   <view class="my-info">
     <view class="list-cell">
@@ -20,7 +20,9 @@
   </view>
   <view class="my-detail-box">
     <view class="info-list">
-      <view class="list-cell"><text>我的认证</text> </view>
+      <navigator class="list-cell" url="/pages/myself/my_certification/my_certification" hover-class="none">
+        <text>我的认证</text>
+      </navigator>
       <view class="list-cell"> <text>会员服务</text></view>
       <view class="list-cell"> <text >我要置顶</text></view>
       <view class="list-cell"> <text>我的单身圈</text></view>

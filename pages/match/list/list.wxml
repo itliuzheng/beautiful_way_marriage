@@ -1,0 +1,34 @@
+<view class="result">
+  <view class="recommend-list" wx:for="123">
+    <view class="list-bj">
+      <image></image>
+      <view class="certification_tag">
+        <text class="icon_ver"></text>
+        <text>已认证</text>
+        <text>身份-学历-房-车</text>
+      </view>
+      <view class="certification_tag exchange_wx">
+        <text class="icon_wx"></text>
+        <text>交换微信</text>
+      </view>
+    </view>
+    <view class="card-content">
+      <view class='move_title'>苏菀菁
+        <text class="lz-icon {{index == 0?'icon-certified':'icon-not-certified'}}"></text>
+        <view class='move_miniTitle'>期待两年内结婚</view>
+      </view>
+      <view class='name_other'>
+        <text>26岁</text>
+        <text>|</text>
+        <text>180cm</text>
+        <text>|</text>
+        <text>老师</text>
+        <text>|</text>
+        <text>2000～3000</text>
+      </view>
+      <view class="name_introduct">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名气…</view>
+      <view class="go_more">全文</view>
+    </view>
+  
+  </view>
+</view>

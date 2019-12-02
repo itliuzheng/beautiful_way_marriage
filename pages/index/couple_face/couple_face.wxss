@@ -1,0 +1,126 @@
+
+.bj-header{
+  position: relative;
+  top: -1px;
+}
+.bj{
+  width: 750rpx;
+  height: 190rpx;
+  display: block;
+}
+.couple_face_head{
+  text-align: center;
+}
+.title{
+  margin-top: 40rpx;
+  font-size:36rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(43,43,43,1);
+  line-height:50rpx;
+}
+.title_desc{
+  font-size:32rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(136,136,136,1);
+  line-height:44rpx;
+}
+
+.couple_face_content{
+  margin-top: 60rpx;
+  padding: 0 40rpx;
+}
+.nav_head{
+  margin-bottom: 40rpx;
+}
+.nav_head text{
+  font-size:32rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(43,43,43,1);
+  line-height:44rpx;
+}
+.nav_head .fr{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(136,136,136,1);
+  line-height:40rpx;
+  margin-top: 4rpx;
+}
+.upload-box{
+  font-size: 0;
+}
+.upload-list{
+  margin-right: 10rpx;
+  width: 160rpx;
+  height: 160rpx;
+  position: relative;
+  display: inline-block;
+  background: #000;
+}
+.upload-list:nth-child(4n){
+  margin-right: 0;
+}
+
+.is_choose_not{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;    
+  height:30rpx;
+  background:rgba(153,153,153,1);
+  line-height: 30rpx;
+  font-size: 20rpx;
+  color: #fff;
+  text-align: center;
+}
+.is_choose{
+  background: #C4AB5B;
+}
+
+.upload-list-m-b{
+  margin-bottom: 20rpx;
+}
+
+.btn{
+  width:540rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  background:rgba(196,171,91,1);
+  border-radius:10rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  margin: 100rpx auto 0;
+  text-align: center;
+}
+
+.add{
+  width: 160rpx;
+  height: 160rpx;
+  display: inline-block;
+  background: #D8D8D8;
+  position: relative;
+}
+.add .horizontal{
+  position: absolute;
+  width: 64rpx;
+  height: 6rpx;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+}
+.add .vertical{
+  position: absolute;
+  width: 6rpx;
+  height: 64rpx;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+}
+

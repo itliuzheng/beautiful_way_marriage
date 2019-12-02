@@ -7,7 +7,11 @@
 .userinfo{
   width: 100%;
   height: 400rpx;
-  background: #ccc;
+}
+.my-bj{
+  display: block;
+  width: 100%;
+  height: 400rpx;
 }
 
 .list-cell{

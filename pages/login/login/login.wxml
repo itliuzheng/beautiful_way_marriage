@@ -1,20 +1,24 @@
 <!--pages/login/index.wxml-->
 
-<view class="logo-box">
-  <view class="english">MITU</view>
-  <view class="chinese">美途婚恋</view>
-</view>
-<view class="login-box">
-  <form>
-    <view class="input-cell">
-      <input placeholder="手机号"></input>
-    </view>
-    <view class="input-cell">
-      <input placeholder="密码"></input>
-    </view>
-    <button class="phone-btn" size="default" >登录</button>
-  </form>
-  <view class="desc"><navigator class="go_register" url="/pages/login/register/register">立即注册</navigator>    |  <text class="go_forget">找回密码</text> </view>
+<image class="page-bj" src="/images/login/bj.png"></image>
+<view class="page-view">
+  <view class="logo-box">
+    <view class="english">MITU</view>
+    <view class="chinese">美途婚恋</view>
+  </view>
+  <view class="login-box">
+    <form>
+      <view class="input-cell">
+        <text class="input-icon icon-phone"></text>
+        <input placeholder="手机号"></input>
+      </view>
+      <view class="input-cell">
+        <text class="input-icon icon-password"></text>
+        <input placeholder="密码"></input>
+      </view>
+      <button class="phone-btn" size="default" >登录</button>
+    </form>
+    <view class="desc"><navigator class="go_register" url="/pages/login/register/register">立即注册</navigator>    |  <text class="go_forget">找回密码</text> </view>
 
+  </view>
 </view>
-

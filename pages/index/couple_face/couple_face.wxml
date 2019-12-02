@@ -1,0 +1,23 @@
+<view class="bj-header">
+  <image class="bj" src="/images/match/couple_face/bj.png"></image>
+</view>
+<view class="couple_face_head">
+  <view class="title">请选择一张最满意的照片</view>
+  <view class="title_desc">需要脸部正面清晰可见</view>
+</view>
+<view class="couple_face_content">
+  <view class="nav_head clearfix">
+    <text class="fl">我的相册</text>
+    <text class="fr">{{upload_list.length}}/8</text>
+  </view>
+  <view class="upload-box">
+    <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">
+      <view data-index="{{index}}" class="is_choose_not {{item.choose?'is_choose':''}}" bindtap="choose">{{item.choose?'已选择':'选择'}}</view>
+    </view>
+    <view class="add upload-list-m-b" bindtap="add_upload">
+      <view class="horizontal"></view>
+      <view class="vertical"></view>
+    </view>
+  </view>
+  <view class="btn" bindtap="toMatch">开始匹配</view>
+</view>

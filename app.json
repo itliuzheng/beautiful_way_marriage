@@ -10,7 +10,12 @@
     "pages/myself/introduction/introduction",
     "pages/login/index",
     "pages/login/register/register",
-    "pages/login/login/login"
+    "pages/login/login/login",
+    "pages/index/couple_face/couple_face",
+    "pages/match/list/list",
+    "pages/index/exact_match/exact_match",
+    "pages/myself/my_certification/my_certification",
+    "pages/myself/my_certification/verified/verified"
   ],
   "window": {
     "backgroundTextStyle": "light",

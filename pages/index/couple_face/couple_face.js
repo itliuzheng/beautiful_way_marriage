@@ -1,13 +1,11 @@
-// pages/login/register/register.js
-const config = require('../../../utils/config.js');
-let app = getApp()
+// pages/index/couple_face/couple_face.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    upload_list:[]
   },
 
   /**
@@ -65,22 +63,39 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getPhoneNumber(e) {
-    // config.ajax('POST', {
-    //   openId: app.globalData.uid,
-    //   encriptedData: e.detail.encryptedData,
-    //   iv: e.detail.iv,
-    // }, config.getWXPhone, (res) => {
+  add_upload(){
+    let dom = {
+      img:1,
+      choose:false
+    };
+    let _this = this;
+    let arr = _this.data.upload_list;
 
-    //   console.log(res.data);
-    //   if (res.data.code == 1) {
-    //     this.setData({
-    //       phone: res.data.data
-    //     })
-    //   }
-    // }, (res) => {
-
-    // })
-
+    if(arr.length <= 7){
+      arr.push(dom);
+      this.setData({
+        upload_list: arr
+      })
+    }
   },
+  choose(e) {
+    let _index = e.currentTarget.dataset.index;
+    let arr = this.data.upload_list;
+    arr.forEach((value,index)=>{
+      if (index == _index ){
+        value.choose = true
+      }else{
+        value.choose = false
+      }
+    })
+
+    this.setData({
+      upload_list:arr
+    })
+  },
+  toMatch(){
+    wx.navigateTo({
+      url: '/pages/match/list/list',
+    })
+  }
 })

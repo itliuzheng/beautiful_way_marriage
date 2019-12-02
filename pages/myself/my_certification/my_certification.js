@@ -1,6 +1,4 @@
-// pages/login/register/register.js
-const config = require('../../../utils/config.js');
-let app = getApp()
+// pages/myself/my_certification/my_certification.js
 Page({
 
   /**
@@ -64,23 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  getPhoneNumber(e) {
-    // config.ajax('POST', {
-    //   openId: app.globalData.uid,
-    //   encriptedData: e.detail.encryptedData,
-    //   iv: e.detail.iv,
-    // }, config.getWXPhone, (res) => {
-
-    //   console.log(res.data);
-    //   if (res.data.code == 1) {
-    //     this.setData({
-    //       phone: res.data.data
-    //     })
-    //   }
-    // }, (res) => {
-
-    // })
-
-  },
+  }
 })

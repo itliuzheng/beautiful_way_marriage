@@ -7,7 +7,8 @@ Page({
   data: {
     myimg:{
       imgSrc:''
-    }
+    },
+    upload_list: []
   },
 
   upimg() {
@@ -109,5 +110,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  add_upload() {
+    let dom = {
+      img: 1,
+      choose: false
+    };
+    let _this = this;
+    let arr = _this.data.upload_list;
+
+    if (arr.length <= 7) {
+      arr.push(dom);
+      this.setData({
+        upload_list: arr
+      })
+    }
   },
 })

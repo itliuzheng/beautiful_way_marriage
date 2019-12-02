@@ -86,6 +86,48 @@
 					"pathName": "pages/home/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "匹配",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "夫妻脸匹配",
+					"pathName": "pages/index/couple_face/couple_face",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "匹配结果",
+					"pathName": "pages/match/list/list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "精准匹配",
+					"pathName": "pages/index/exact_match/exact_match",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的认证",
+					"pathName": "pages/myself/my_certification/my_certification",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "实名认证",
+					"pathName": "pages/myself/my_certification/verified/verified",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

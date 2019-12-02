@@ -15,7 +15,8 @@ Page({
     animationData: {},
     content: [],
     noCode: false,
-    wrapContent: false
+    wrapContent: false,
+    is_match:true  
   },
   onLoad: function () {
 
@@ -428,5 +429,17 @@ Page({
       测试end
     */
 
+  },
+  clickNav(e){
+    let type = e.currentTarget.dataset.type;
+    if(type == 'match'){
+      this.setData({
+        is_match:true
+      })
+    }else{
+      this.setData({
+        is_match: false
+      })
+    }
   }
 })

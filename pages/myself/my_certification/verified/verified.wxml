@@ -1,0 +1,58 @@
+
+<view class="input-form">
+  <view class="list-cell"> 
+    <text class="fl"><text class="red">*</text>姓名</text>
+    <input class="input fr" placeholder="请填写您的姓名"></input>
+  </view>
+  <view class="list-cell"> 
+    <text class="fl"><text class="red">*</text>身份证号码</text>
+    <input class="input fr" placeholder="请填写您的身份证号"></input>
+  </view>
+</view>
+<view class="line"></view>
+<view class="upload-box">
+  <view class="title"><text class="red">*</text>请上传手持身份证照、身份证头像页</view>
+
+  <view class="upload-form clearfix">
+    <view class="sample fl">
+      <image src="/images/myself/vertification/front.png"></image>
+      <view class="desc">示例照片</view>
+    </view>
+    <view class="upload fr">
+      <view class="upload-bj">
+        <!-- <image></image> -->
+        <view class="add">
+          <view class="horizontal"></view>
+          <view class="vertical"></view>
+        </view>
+      </view>
+      <view class="desc">手持身份证照</view>
+    </view>
+  </view>
+  <view class="upload-form clearfix">
+    <view class="sample fl">
+      <image src="/images/myself/vertification/back.png"></image>
+      <view class="desc">示例照片</view>
+    </view>
+    <view class="upload fr">
+      <view class="upload-bj">
+        <!-- <image></image> -->
+        <view class="add">
+          <view class="horizontal"></view>
+          <view class="vertical"></view>
+        </view>
+      </view>
+      <view class="desc">身份证头像页</view>
+    </view>
+  </view>
+
+  <view class="upload-desc">
+    <view class="desc_title">说明：</view>
+    <view class="desc_list">1.认证照片会进行加密处理，仅供审核使用，别人无法看到；</view>
+    <view class="desc_list">2.请保持认证照片中的<text>姓名</text>、<text>身份证号</text>、<text>身份证照片</text>等信息清晰可见；</view>
+    <view class="desc_list">3.示例照片中为保护个人隐私，隐藏了身份证信息；</view>
+  </view>
+
+  <view class="btn">提交认证</view>
+
+</view>

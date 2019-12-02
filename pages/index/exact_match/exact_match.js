@@ -1,13 +1,15 @@
-// pages/login/register/register.js
-const config = require('../../../utils/config.js');
-let app = getApp()
+// pages/index/exact_match/exact_match.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    switch1Checked:true,
+    array: ['是', '否'],
+    index:-1,
+    region: ['广东省', '广州市', '海珠区'],
+    customItem: '全部'
   },
 
   /**
@@ -65,22 +67,13 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getPhoneNumber(e) {
-    // config.ajax('POST', {
-    //   openId: app.globalData.uid,
-    //   encriptedData: e.detail.encryptedData,
-    //   iv: e.detail.iv,
-    // }, config.getWXPhone, (res) => {
+  switch1Change(){
 
-    //   console.log(res.data);
-    //   if (res.data.code == 1) {
-    //     this.setData({
-    //       phone: res.data.data
-    //     })
-    //   }
-    // }, (res) => {
-
-    // })
-
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
   },
 })

@@ -2,8 +2,80 @@
 <view class="content-box">
   <view class="content-topic">
     <view class="header_bj">
-      <image src="{{myimg.imgSrc}}" mode="aspectFill"></image>
+      <image src="/images/myself/banner.png" mode="aspectFill"></image>
     </view>
     <view class="modify_photo" bindtap="upimg">修改形象照</view>
+  </view>
+  <view class="section">
+    <view class="nav_head">
+      <text class="fl">个人相册</text>
+    </view>
+    <view class="upload-box">
+      <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}"></view>
+      <view class="add upload-list-m-b" bindtap="add_upload">
+        <view class="horizontal"></view>
+        <view class="vertical"></view>
+      </view>
+    </view>
+  </view>
+  <view class="section">
+    <view class="nav_head">
+      <text class="fl">个人资料</text>
+      <text class="fr">编辑></text>
+    </view>
+    <view class="list">
+      <text class="fl">居住地</text>
+      <text class="fr">北京-北京-海淀区</text>
+    </view>
+    <view class="list">
+      <text class="fl">家乡</text>
+      <text class="fr">河北省-邯郸市</text>
+    </view>
+    <view class="list">
+      <text class="fl">月收入</text>
+      <text class="fr">1万-1.5万</text>
+    </view>
+    <view class="list">
+      <text class="fl">情感状态</text>
+      <text class="fr">未婚</text>
+    </view>
+    <view class="list">
+      <text class="fl">房产状态</text>
+      <text class="fr">已购房</text>
+    </view>
+  </view>
+  <view class="section">
+    <view class="nav_head">
+      <text class="fl">择偶意向</text>
+      <text class="fr">编辑></text>
+    </view>
+    <!-- <view class="section-content">
+      <view class="absolute-center">
+        <view class="add_icon">添加择偶意向</view>
+        <view class="add_desc">请添加详细的择偶标准更方便你挑选中意的TA</view>
+      </view>
+    </view> -->
+    <view class="show-tag">
+      <view class="tag">18岁-30岁</view>
+      <view class="tag">158cm以上</view>
+      <view class="tag">学历：无要求</view>
+      <view class="tag">月收入：无要求</view>
+      <view class="tag">月收入：无要求</view>
+      <view class="tag">是否购房：无要求</view>
+    </view>
+  </view>
+  <view class="section">
+    <view class="nav_head">
+      <text class="fl">魅力展示</text>
+      <text class="fr">编辑></text>
+    </view>
+    <!-- <view class="section-content">
+      <view class="absolute-center">
+        <view class="add_icon">添加自我介绍</view>
+      </view>
+    </view> -->
+    <view class="section-show">
+      <view class="show-text">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名，在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必在2018年9月份之前，我是有点抗拒参加有陌生人。</view>
+    </view>
   </view>
 </view>
