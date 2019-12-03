@@ -1,0 +1,98 @@
+<view>
+  <view class="banner">
+    <image src="/images/myself/member/banner.png"></image>
+  </view>
+  <view class="content">
+    <view class="buy-box">
+      <view class="title">购买线上VIP会员</view>
+      <view class="buy-list {{type == 1?'active':''}}" data-type="1" data-time="365"
+       bindtap="goBuy">
+        <view class="fl">
+          <text class="name">钻卡</text>
+          <text class="day">365天</text>
+          <text class="day_amount">日均0.19元</text>
+        </view>
+        <view class="fr">
+          <text class="amount">¥69.9</text>
+          <text class="active_icon"></text>
+        </view>
+      </view>
+      <view class="buy-list {{type == 2?'active':''}}" data-type="2" data-time="180"
+       bindtap="goBuy">
+        <view class="fl">
+          <text class="name">金卡</text>
+          <text class="day">180天  </text>
+          <text class="day_amount">日均0.27元</text>
+        </view>
+        <view class="fr">
+          <text class="amount">¥49.9</text>
+          <text class="active_icon"></text>
+        </view>
+      </view>
+      <view class="buy-list {{type == 3?'active':''}}" data-type="3" data-time="90"
+      bindtap="goBuy">
+        <view class="fl">
+          <text class="name">银卡</text>
+          <text class="day">90天  </text>
+          <text class="day_amount">日均0.33元</text>
+        </view>
+        <view class="fr">
+          <text class="amount">¥29.9</text>
+          <text class="active_icon"></text>
+        </view>
+      </view>
+      <view class="buy-list">
+        <view class="fl">
+          <text class="name">有效期</text>
+        </view>
+        <view class="fr">
+          <text class="time_end">{{now_time}}至{{next_time}}</text>
+        </view>
+      </view>
+      <view class="btn">立即付款</view>
+    </view>
+
+    <view class="buy-box vip-box">
+      <view class="title">线上VIP尊享特权</view>
+      <view class="vip-box-list">
+        <image class="fl list_icon" src="/images/myself/member/icon_01.png"></image>
+        <view class="fl list-name">
+          <view class="name_title">查看相亲信息</view>
+          <view class="name_desc">免费查看会员相亲信息</view>
+        </view>
+      </view>
+      <view class="vip-box-list">
+        <image class="fl list_icon" src="/images/myself/member/icon_02.png"></image>
+        <view class="fl list-name">
+          <view class="name_title">会员身份标识</view>
+          <view class="name_desc">身份加V标识，吸引更多关注</view>
+        </view>
+      </view>
+      <view class="vip-box-list">
+        <image class="fl list_icon" src="/images/myself/member/icon_03.png"></image>
+        <view class="fl list-name">
+          <view class="name_title">专属红娘牵线服务</view>
+          <view class="name_desc">赠送专属红娘1对1牵线服务数次</view>
+        </view>
+      </view>
+    </view>
+    <view class="buy-box vip-box">
+      <view class="title">会员套餐详情</view>
+      <view class="desc">
+        一、开通月会员（298元/月）1个月：身份加V标识；可查看平台所有相亲用户的资料与联系方式；朋友圈上榜会员推荐2次。 
+      </view>
+      <view class="desc">
+        二、开通季会员（598元/季）3个月：身份加V标识；可查看平台所有相亲用户的资料与联系方式；红娘小主1对1牵线服务两次（价值200元）；优先推荐机会（3个月之内）。 
+      </view>
+      <view class="desc">
+        三、开通年会员（998元/年）一年：身份加V标识；可查看平台所有相亲用户的资料与联系方式；红娘小主1对1牵线服务8次（价值800元）；红娘小主1对1无限优先推荐机会, 优先为您精选筛选高质量伴侣服务（1年内）（注：1对1牵线服务仅限季会员和年会员）。
+      </view>
+    </view>
+    <view class="buy-box vip-box">
+      <view class="title">安全征婚提示</view>
+      <view class="desc">为了您的征婚安全，请您做到：</view>
+      <view class="desc">1.不借钱给任何会员，也不与对方发生任何形式的经济关系。</view>
+      <view class="desc">2.拒绝一夜情，自尊自爱，理性征婚，不轻易发生亲密关系。</view>
+    </view>
+  </view>
+</view>

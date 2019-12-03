@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/home/index",
-    "pages/match/index",
+    "pages/index/index",
+    "pages/home/search/search",
+    "pages/introduction/introduction",
     "pages/single/index",
     "pages/message/index",
     "pages/myself/myself",
@@ -12,10 +13,15 @@
     "pages/login/register/register",
     "pages/login/login/login",
     "pages/index/couple_face/couple_face",
-    "pages/match/list/list",
+    "pages/index/list/list",
     "pages/index/exact_match/exact_match",
     "pages/myself/my_certification/my_certification",
-    "pages/myself/my_certification/verified/verified"
+    "pages/myself/my_certification/verified/verified",
+    "pages/myself/my_certification/education/education",
+    "pages/myself/my_certification/house/house",
+    "pages/myself/my_certification/car/car",
+    "pages/single/release/release",
+    "pages/myself/member/member"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,34 +35,34 @@
     "color": "#c7c7c7",
     "list": [
       {
-        "selectedIconPath": "/images/tab/discovery-on.png",
+        "selectedIconPath": "/images/tab/footer_icon_01_active.png",
         "pagePath": "pages/home/index",
         "text": "首页",
-        "iconPath": "/images/tab/discovery.png"
+        "iconPath": "/images/tab/footer_icon_01.png"
       },
       {
-        "selectedIconPath": "/images/tab/search-on.png",
+        "selectedIconPath": "/images/tab/footer_icon_02_active.png",
         "pagePath": "pages/index/index",
         "text": "匹配",
-        "iconPath": "/images/tab/search.png"
+        "iconPath": "/images/tab/footer_icon_02.png"
       },
       {
-        "selectedIconPath": "/images/tab/search-on.png",
-        "pagePath": "pages/message/index",
+        "selectedIconPath": "/images/tab/footer_icon_03_active.png",
+        "pagePath": "pages/single/index",
         "text": "单身圈",
-        "iconPath": "/images/tab/search.png"
+        "iconPath": "/images/tab/footer_icon_03.png"
       },
       {
-        "selectedIconPath": "/images/tab/search-on.png",
+        "selectedIconPath": "/images/tab/footer_icon_04_active.png",
         "pagePath": "pages/message/index",
         "text": "消息",
-        "iconPath": "/images/tab/search.png"
+        "iconPath": "/images/tab/footer_icon_04.png"
       },
       {
-        "selectedIconPath": "/images/tab/user-on.png",
+        "selectedIconPath": "/images/tab/footer_icon_05_active.png",
         "pagePath": "pages/myself/myself",
         "text": "我的",
-        "iconPath": "/images/tab/user.png"
+        "iconPath": "/images/tab/footer_icon_05.png"
       }
     ]
   },

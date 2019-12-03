@@ -312,8 +312,7 @@ background:rgba(0,0,0,0);
 }
 .step image{
   width: 140rpx;
-  height: 124rpx;
-  background: #000;
+  height: 126rpx;
   display: block;
 }
 .step_desc{

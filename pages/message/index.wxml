@@ -1,13 +1,29 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+<view class="list-cell"> 
+  <image class="icon" src="/images/message/icon_01.png"></image>
+  <text>我看过谁</text>
+</view>
+<view class="list-cell"> 
+  <image class="icon" src="/images/message/icon_02.png"></image>
+  <text>谁看过我</text>
+</view>
+<view class="list-cell"> 
+  <image class="icon" src="/images/message/icon_03.png"></image>
+  <text>我心动的</text>
+</view>
+<view class="list-cell"> 
+  <image class="icon" src="/images/message/icon_04.png"></image>
+  <text>我喜欢的音频</text>
+</view>
+<view class="list-cell"> 
+  <image class="icon" src="/images/message/icon_05.png"></image>
+  <text>我关注的导师</text>
+</view>
+<view class="list-cell"> 
+  <image class="icon" src="/images/message/icon_06.png"></image>
+  <text>我收藏的文章</text>
+</view>
+<view class="list-cell"> 
+  <image class="icon" src="/images/message/icon_07.png"></image>
+  <text>系统消息</text>
 </view>

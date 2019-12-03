@@ -95,7 +95,7 @@ Page({
   },
   toMatch(){
     wx.navigateTo({
-      url: '/pages/match/list/list',
+      url: '/pages/index/list/list',
     })
   }
 })

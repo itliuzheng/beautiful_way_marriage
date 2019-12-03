@@ -13,7 +13,7 @@
 		"coverView": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.3",
+	"libVersion": "2.9.4",
 	"appid": "wx4da35c771f33c40d",
 	"projectname": "%E7%BE%8E%E9%80%94%E5%A9%9A%E6%81%8B",
 	"debugOptions": {
@@ -124,8 +124,43 @@
 				},
 				{
 					"id": -1,
-					"name": "实名认证",
-					"pathName": "pages/myself/my_certification/verified/verified",
+					"name": "自定义筛选",
+					"pathName": "pages/home/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "单身圈",
+					"pathName": "pages/single/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布",
+					"pathName": "pages/single/release/release",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "消息",
+					"pathName": "pages/message/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员服务",
+					"pathName": "pages/myself/member/member",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人介绍（他人）",
+					"pathName": "pages/introduction/introduction",
 					"query": "",
 					"scene": null
 				}
