@@ -27,7 +27,9 @@
         <text>会员服务</text>
       </navigator>
       <view class="list-cell"> <text >我要置顶</text></view>
-      <view class="list-cell"> <text>我的单身圈</text></view>
+      <navigator class="list-cell" url="/pages/single/my_single/my_single" hover-class="none">
+        <text>我的单身圈</text>
+      </navigator>
       <navigator class="list-cell" url="/pages/myself/setting/setting" hover-class="none">
         <text>设置</text>
       </navigator>

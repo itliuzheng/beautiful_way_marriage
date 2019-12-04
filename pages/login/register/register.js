@@ -8,6 +8,7 @@ Page({
    */
   data: {
 
+    phone: '点击右侧按钮'
   },
 
   /**
@@ -16,71 +17,58 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getPhoneNumber(e) {
-    // config.ajax('POST', {
-    //   openId: app.globalData.uid,
-    //   encriptedData: e.detail.encryptedData,
-    //   iv: e.detail.iv,
-    // }, config.getWXPhone, (res) => {
+    config.ajax('POST', {
+      openId: app.globalData.uid,
+      encriptedData: e.detail.encryptedData,
+      iv: e.detail.iv,
+    }, config.getWXPhone, (res) => {
 
-    //   console.log(res.data);
-    //   if (res.data.code == 1) {
-    //     this.setData({
-    //       phone: res.data.data
-    //     })
-    //   }
-    // }, (res) => {
+      console.log(res.data);
+      if (res.data.code == 1) {
+        this.setData({
+          phone: res.data.data
+        })
+      }
+    }, (res) => {
 
-    // })
-
+    })
   },
+  formSubmitRegister(e) {
+    let form = e.detail.value;
+    console.log(form);
+    if (this.data.phone == '' || this.data.phone == '点击右侧按钮') {
+      config.mytoast('手机号不能为空', (res) => { })
+      return false
+    }
+    if (form.password == '') {
+      config.mytoast('密码不能为空', (res) => { })
+      return false
+    }
+
+    config.ajax('POST', {
+      openId: app.globalData.uid,
+      phone: this.data.phone,
+      password: form.password,
+      sources: '微信小程序'
+    }, config.register, (res) => {
+
+      console.log(res.data);
+      if (res.data.code == 1) {
+
+        config.mytoast('注册成功，正在跳转', (res) => { })
+
+        setTimeout(function () {
+          wx.redirectTo({
+            url: '/pages/login/login/login'
+          })
+        }, 1000)
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+
+  }
 })

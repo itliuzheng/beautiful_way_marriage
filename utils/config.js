@@ -18,6 +18,7 @@ const getUid = '/wx/user/login',
   userlogin = '/user/login',
   //注册
   register = '/wx/user/register',
+
   //获取banner
   getBanner = '/allocation/banner-config/page',
   //获取 咨询管理

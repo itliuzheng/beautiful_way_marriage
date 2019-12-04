@@ -163,6 +163,13 @@
 					"pathName": "pages/introduction/introduction",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/myself/person_info/person_info",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

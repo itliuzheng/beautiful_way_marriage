@@ -1,17 +1,19 @@
 //app.js
+const config = require('/utils/config.js');
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    var token = wx.getStorageSync('token') || []
 
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    config.getuid((res) => {
+      console.log(res);
+      if (res.data.code == '1') {
+        this.globalData.uid = res.data.data
+      } else {
+        config.mytoast('服务器错误,请稍后再试', (res) => { })
       }
-    })
+    }, (res) => { })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -35,12 +37,11 @@ App({
   },
   globalData: {
     userInfo: null,
-    userInfo: null,
     uid: null,
     _ishua: true,
     shareInfo: {
       title: '美途等您',
-      path: '/pages/index/index',
+      path: '/pages/home/index',
       imageUrl: ''
     }
   }

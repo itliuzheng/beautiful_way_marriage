@@ -21,7 +21,7 @@
   <view class="section">
     <view class="nav_head">
       <text class="fl">个人资料</text>
-      <text class="fr">编辑></text>
+      <navigator class="fr" url="/pages/myself/person_info/person_info">编辑</navigator>
     </view>
     <view class="list">
       <text class="fl">居住地</text>

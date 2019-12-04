@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "mp-searchbar":"../component/searchbar/searchbar"
+    "myToast": "/component/myToast/myToast"
   },
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "首页"
 }

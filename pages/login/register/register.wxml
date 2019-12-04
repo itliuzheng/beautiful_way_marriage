@@ -6,23 +6,23 @@
     <view class="chinese">美途婚恋</view>
   </view>
   <view class="login-box">
-    <form>
+    <form bindsubmit="formSubmitRegister" >
       <view class="input-cell">
         <text class="input-icon icon-phone"></text>
         <!-- <input placeholder="手机号"></input> -->
-        <view class="input">123123123</view>
+        <view class="input">{{phone}}</view>
         <button class="code-btn" style="width:170rpx;height:58rpx;min-height:58rpx;"
          open-type="getPhoneNumber" 
          bindgetphonenumber="getPhoneNumber">获取手机号</button>
       </view>
       <view class="input-cell">
         <text class="input-icon icon-password"></text>
-        <input placeholder="密码"></input>
+        <input placeholder="密码" name="password" type="password"></input>
       </view>
       <!-- <view class="input-cell">
         <input placeholder="短信验证码"></input>
       </view> -->
-      <button class="phone-btn" size="default" >注册</button>
+      <button class="phone-btn" size="default" formType="submit">注册</button>
     </form>
     <view class="login_desc">点击一键登录/注册默认您已经同意</view>
     <view class="login_link">《美途婚恋服务协议》</view>

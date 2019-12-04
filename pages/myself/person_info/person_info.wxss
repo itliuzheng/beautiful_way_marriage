@@ -1,0 +1,52 @@
+/* pages/myself/setting/setting.wxss */
+.setting-view{
+  padding-top: 30rpx;
+}
+.list-cell{
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #fff;
+  border-bottom: 4rpx solid #F7F7F7;
+  padding: 0 35rpx 0 40rpx;
+  position: relative;
+}
+.list-cell::before{
+  content: "";
+  position: absolute;
+  right: 40rpx;
+  top: 0;
+  width: 11rpx;
+  height: 100%;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAATCAYAAACk9eypAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3xpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0ZjU4Y2RhNC1hNGQ0LTQ0YTctYTJhYi0zZGVkOTEzZjYyMTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODczMTdDRDAwQUFEMTFFQTlGRUNFRTBGRDkxQTZGQjQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODczMTdDQ0YwQUFEMTFFQTlGRUNFRTBGRDkxQTZGQjQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NDAwNzFCNUE0MEFFQTExQkJGNTlCREZGNUMyNTY1MiIgc3RSZWY6ZG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmQwOTQyY2ViLWIxNmEtMTM0OS05ZWU5LTI4MWYxZGY5MDM4MCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgoSPWQAAAEFSURBVHjahJO5CsJAEIbjenQ+gOAD2XghomCjgidY+Qq2YuOBYGFhYVAbC8XzVSzFFxDxAP+BCQzrJi58ZHcyX/bIrM+2bQstBnxga/1pCpQ5cQPGLHoKYTGugpGXpDhhL2I1MHSTSHiCtCbVwcAkKX7eWTqIdw2TpESfpBQ4alJfSkqbkaQkOIlYk0/PbxIcKaFJFdB1E+RMVxFrgaCbQGvugYiILcErYEimtU5AUcTOoGRaEiVPteQdiPMyLTkD9WcgJ2JUXxnw0I81BOZa8pp/5kP/cZS84C85bQWyXDY/pdHhc3caXZC8KdkRomJMeyiAt1t500bb4AYuXGwfrwv0FWAAytMzpWvf93IAAAAASUVORK5CYII=") no-repeat center;
+  background-size: 100% 19rpx;
+}
+.list-cell-none::before{
+  background: none;
+}
+.list-cell text{
+  font-size: 32rpx;
+  color: #2B2B2B;
+  font-weight: 400;
+}
+.list-cell .min_desc{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(136,136,136,1);
+}
+.fr{
+  margin-right: 38rpx;
+}
+.btn{
+  width:480rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  margin: 100rpx auto 0;
+  background:rgba(196,171,91,1);
+  border-radius:10rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
