@@ -6,7 +6,7 @@
       <switch color="#C4AB5B" checked="{{switchChecked}}" bindchange="switchChecked"/>
     </view>
   </view>
-  <view class="list-cell"> <text>注销资料</text></view>
+  <view class="list-cell" bindtap="unsubscribe"> <text>注销资料</text></view>
   <view class="list-cell"> <text>常见问题</text></view>
   <view class="list-cell"> <text>意见反馈</text></view>
   <view class="list-cell"> <text>联系我们</text></view>

@@ -69,15 +69,30 @@
   <view class="section">
     <view class="nav_head">
       <text class="fl">魅力展示</text>
-      <text class="fr">编辑></text>
+      <text class="fr" bindtap="edit">编辑></text>
     </view>
-    <!-- <view class="section-content">
+    <view class="section-content" bindtap="edit">
       <view class="absolute-center">
         <view class="add_icon">添加自我介绍</view>
       </view>
-    </view> -->
-    <view class="section-show">
-      <view class="show-text">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名，在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必在2018年9月份之前，我是有点抗拒参加有陌生人。</view>
     </view>
+    <!-- <view class="section-show">
+      <view class="show-text">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名，在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必在2018年9月份之前，我是有点抗拒参加有陌生人。</view>
+    </view> -->
   </view>
 </view>
+
+
+<view class='maskCode' wx:if="{{noCode}}">
+  <view class='toast_centerCode'>
+    <form bindsubmit="add">
+      <view class='toat_mainCode'>
+        <textarea placeholder="添加自我介绍"></textarea>
+      </view>
+      <button class='toat_yes' form-type="submit">添加</button>
+      <button class='toat_yes toat_no' bindtap="cancel">取消</button>
+    </form>
+
+  </view>
+</view>
+

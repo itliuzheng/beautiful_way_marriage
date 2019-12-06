@@ -14,7 +14,8 @@ Page({
       imgSrc:''
     },
     
-    upload_list: []
+    upload_list: [],
+    noCode:false
   },
 
   upimg() {
@@ -51,6 +52,16 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  edit(){
+    this.setData({
+      noCode:true
+    })
+  },
+  cancel() {
+    this.setData({
+      noCode: false
+    })
   },
   onShow: function () {
     this.getInit()
