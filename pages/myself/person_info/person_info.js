@@ -1,5 +1,6 @@
 // pages/index/exact_match/exact_match.js
 const config = require('../../../utils/config.js');
+let app = getApp()
 
 Page({
   data: {
@@ -8,8 +9,9 @@ Page({
     heightArray: [],
     educationArray: ['初中', '高中', '大专', '本科', '研究生', '博士', '博士后'],
     maritalStatusArray: ['未婚','已婚','离异'],
-    annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万','100万以上'],
-    constellationArray:['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'],
+    annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
+    // constellationArray: ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'],
+    constellationArray: ['白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座'],
     age: null,
     height: null,
     education:null,
@@ -46,10 +48,56 @@ Page({
       "ageArray": ageArray,
       "heightArray": heightArray,
     })
+    this.getInit();
   },
 
   switch1Change() {
 
+  },
+  getArrayIndex(arr, obj) {
+      var i = arr.length;
+      while(i--) {
+    if (arr[i] === obj) {
+      return i;
+    }
+  }
+  return -1;
+  },
+  getInit(){
+
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+
+    config.ajax('GET', {}, `/user/`, (res) => {
+      wx.hideLoading();
+      if (res.data.code == 1) {
+        let date = res.data.data
+        let _age = this.getArrayIndex(this.data.ageArray, date.age)
+        let _height = this.getArrayIndex(this.data.heightArray, Number(date.height))
+        let _constellation = this.getArrayIndex(this.data.constellationArray, date.constellation)
+        
+        this.setData({
+          info: date,
+          age: _age,
+          height: _height,
+          education: Number(date.education) - 1,
+          maritalStatus: date.maritalStatus,
+          nowResidence: date.nowResidence.split('-'),
+          annualIncome: date.annualIncome,
+          constellation: _constellation
+        })
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
   },
   bindPickerChangeSex: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -87,7 +135,7 @@ Page({
     })
   },
   bindPickerChangeAddress: function (e) {
-    let address = e.detail.value.join('/');
+    let address = e.detail.value.join('-');
     this.setData({
       "nowResidence": e.detail.value,
       "info.nowResidence": address
@@ -152,23 +200,20 @@ Page({
     })
 
 
-    wx.switchTab({
-      url: '/pages/home/index',
+    config.ajax('POST', info, `/user/user/update`, (res) => {
+      wx.hideLoading();
+
+      if (res.data.code == 1) {
+        config.mytoast('保存成功，正在跳转...', (res) => { })
+        wx.switchTab({
+          url: '/pages/home/index',
+        })
+
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
     })
-
-    // config.ajax('POST', info , `/user/user/update`, (res) => {
-    //   wx.hideLoading();
-
-    //   if (res.data.code == 1) {
-    //     wx.navigateTo({
-    //       url: '/pages/home/index',
-    //     })
-
-    //   } else {
-    //     config.mytoast(res.data.msg, (res) => { })
-    //   }
-    // }, (res) => {
-
-    // })
   }
 })

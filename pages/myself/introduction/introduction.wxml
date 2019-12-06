@@ -25,29 +25,31 @@
     </view>
     <view class="list">
       <text class="fl">居住地</text>
-      <text class="fr">北京-北京-海淀区</text>
+      <text class="fr">{{myself.nowResidence}}</text>
     </view>
     <view class="list">
       <text class="fl">家乡</text>
-      <text class="fr">河北省-邯郸市</text>
+      <text class="fr"></text>
     </view>
     <view class="list">
-      <text class="fl">月收入</text>
-      <text class="fr">1万-1.5万</text>
+      <text class="fl">年收入</text>
+      <text class="fr">{{annualIncomeArray[myself.annualIncome]}}</text>
     </view>
     <view class="list">
       <text class="fl">情感状态</text>
-      <text class="fr">未婚</text>
+      <text class="fr" wx:if="{{myself.maritalStatus == 0}}">未婚</text>
+      <text class="fr" wx:elif="{{myself.maritalStatus == 1}}">已婚</text>
+      <text class="fr" wx:else>离异</text>
     </view>
     <view class="list">
       <text class="fl">房产状态</text>
-      <text class="fr">已购房</text>
+      <text class="fr">{{myself.houseAuth?'已购房':'未购房'}}</text>
     </view>
   </view>
   <view class="section">
     <view class="nav_head">
       <text class="fl">择偶意向</text>
-      <text class="fr">编辑></text>
+      <navigator class="fr" url="/pages/myself/introduction/mate_choice/mate_choice">编辑</navigator>
     </view>
     <!-- <view class="section-content">
       <view class="absolute-center">

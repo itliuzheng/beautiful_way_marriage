@@ -6,11 +6,12 @@
   <view class="my-info">
     <view class="list-cell">
       <view class="my_detail fl">
-        <view class="my_name">吴亦凡</view>
+        <!-- <view class="my_name">{{myself.realName}}</view> -->
+        <view class="my_name">{{myself.nickName}}</view>
         <view class="my_desc">
-          <text>男</text>
-          <text>17岁</text>
-          <text>白羊座</text>
+          <text>{{myself.sex?'男':'女'}}</text>
+          <text>{{myself.age}}岁</text>
+          <text>{{myself.constellation}}</text>
         </view>
       </view>
       <navigator class="fr" url="/pages/myself/introduction/introduction" hover-class="none">

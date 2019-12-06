@@ -1,0 +1,13 @@
+<!--pages/myself/setting/setting.wxml-->
+<view class="setting-view">
+  <view wx:for="{{mate}}" wx:key="index">
+    <picker bindchange="bindPickerChange" data-value="{{item.name}}" range="{{item.properties}}" range-key="desc">
+      <view class="list-cell"> 
+        <text>{{item.value}}</text>
+        <text class="fr_desc fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>
+      </view>
+    </picker>
+  </view>
+
+</view>
+<view class="btn" bindtap="btn">确定</view>

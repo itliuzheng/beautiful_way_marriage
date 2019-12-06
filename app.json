@@ -23,7 +23,8 @@
     "pages/myself/my_certification/house/house",
     "pages/myself/my_certification/car/car",
     "pages/myself/member/member",
-    "pages/myself/person_info/person_info"
+    "pages/myself/person_info/person_info",
+    "pages/myself/introduction/mate_choice/mate_choice"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -67,6 +68,11 @@
         "iconPath": "/images/tab/footer_icon_05.png"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

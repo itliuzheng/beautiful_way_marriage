@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "单身圈"
+  "navigationBarTitleText": "单身圈",
+  "enablePullDownRefresh": true
 }

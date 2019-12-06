@@ -1,36 +1,39 @@
 
-<view class="upload-box">
-  <view class="title"><text class="red">*</text>请上传车相关照片</view>
+<form bindsubmit="bindFormSubmit">
 
-  <view class="upload-form clearfix">
-    <view class="upload fl">
-      <view class="upload-bj">
-        <!-- <image></image> -->
-        <view class="add">
-          <view class="horizontal"></view>
-          <view class="vertical"></view>
+  <view class="upload-box">
+    <view class="title"><text class="red">*</text>请上传车相关照片</view>
+
+    <view class="upload-form clearfix">
+      <view class="upload fl">
+        <view class="upload-bj"  bindtap="chooseImage">
+          <image src="{{img.imgSrc}}"></image>
+          <view class="add" wx:if="{{!img.imgSrc}}">
+            <view class="horizontal"></view>
+            <view class="vertical"></view>
+          </view>
         </view>
+        <view class="desc">车照片</view>
       </view>
-      <view class="desc">行驶证</view>
-    </view>
-    <view class="upload fr">
-      <view class="upload-bj">
-        <!-- <image></image> -->
-        <view class="add">
-          <view class="horizontal"></view>
-          <view class="vertical"></view>
+      <!-- <view class="upload fr">
+        <view class="upload-bj"  bindtap="chooseImageBack">
+          <image src="{{img.backImgSrc}}"></image>
+          <view class="add" wx:if="{{!img.backImgSrc}}">
+            <view class="horizontal"></view>
+            <view class="vertical"></view>
+          </view>
         </view>
-      </view>
-      <view class="desc">汽车侧面45度照</view>
+        <view class="desc">学历正页</view>
+      </view> -->
     </view>
+
+    <view class="upload-desc">
+      <view class="desc_title">说明：</view>
+      <view class="desc_list">1.认证照片会进行加密处理，仅供审核使用，别人无法看到；</view>
+      <view class="desc_list">2.请保持认证照片中的<text>姓名</text>、<text>身份证号</text>等信息清晰可见；</view>
+    </view>
+
+    <button class="btn" form-type="submit">提交认证</button>
+
   </view>
-
-  <view class="upload-desc">
-    <view class="desc_title">说明：</view>
-    <view class="desc_list">1.认证照片会进行加密处理，仅供审核使用，别人无法看到；</view>
-    <view class="desc_list">2.请保持认证照片中的<text>姓名</text>、<text>身份证号</text>等信息清晰可见；</view>
-  </view>
-
-  <view class="btn">提交认证</view>
-
-</view>
+</form>

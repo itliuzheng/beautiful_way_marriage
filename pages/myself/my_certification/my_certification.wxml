@@ -1,30 +1,53 @@
 <view class="list-box">
-  <navigator  url="/pages/myself/my_certification/verified/verified">
+  <navigator  url="/pages/myself/my_certification/verified/verified" wx:if="{{!info.userAuth}}">
     <view class="list-cell"> 
       <image class="icon fl" src="/images/myself/vertification/icon_01.png" ></image>
       <text class="fl">实名认证</text>
-      <text class="fr_desc fr">去认证</text>
+      <text class="fr_desc fr {{!info.userAuth?'cert_end':''}}">{{!info.userAuth?"去认证":"已认证"}}</text>
     </view>
   </navigator>
-  <navigator  url="/pages/myself/my_certification/education/education">
+  <view class="list-cell list-cell-no_arrow" wx:else> 
+    <image class="icon fl" src="/images/myself/vertification/icon_02.png" ></image>
+    <text class="fl">实名认证</text>
+    <text class="fr_desc fr {{!info.userAuth?'cert_end':''}}">{{!info.userAuth?"去认证":"已认证"}}</text>
+  </view>
+
+  <navigator  url="/pages/myself/my_certification/education/education" wx:if="{{!info.educationAuth}}">
     <view class="list-cell"> 
       <image class="icon fl" src="/images/myself/vertification/icon_02.png" ></image>
       <text class="fl">学历认证</text>
-      <text class="fr_desc fr">去认证</text>
+      <text class="fr_desc fr {{!info.educationAuth?'cert_end':''}}">{{!info.educationAuth?"去认证":"已认证"}}</text>
     </view>
   </navigator>
-  <navigator  url="/pages/myself/my_certification/house/house">
+  <view class="list-cell list-cell-no_arrow" wx:else> 
+    <image class="icon fl" src="/images/myself/vertification/icon_02.png" ></image>
+    <text class="fl">学历认证</text>
+    <text class="fr_desc fr {{!info.educationAuth?'cert_end':''}}">{{!info.educationAuth?"去认证":"已认证"}}</text>
+  </view>
+
+  <navigator  url="/pages/myself/my_certification/house/house" wx:if="{{!info.houseAuth}}">
     <view class="list-cell"> 
       <image class="icon fl" src="/images/myself/vertification/icon_03.png" ></image>
       <text class="fl">资产认证-房认证</text>
-      <text class="fr_desc fr cert_end">已认证</text>
+      <text class="fr_desc fr {{!info.houseAuth?'cert_end':''}}">{{!info.houseAuth?"去认证":"已认证"}}</text>
     </view>
   </navigator>
-  <navigator  url="/pages/myself/my_certification/car/car">
+  <view class="list-cell list-cell-no_arrow" wx:else> 
+    <image class="icon fl" src="/images/myself/vertification/icon_03.png" ></image>
+    <text class="fl">资产认证-房认证</text>
+    <text class="fr_desc fr {{!info.houseAuth?'cert_end':''}}">{{!info.houseAuth?"去认证":"已认证"}}</text>
+  </view>
+
+  <navigator  url="/pages/myself/my_certification/car/car"  wx:if="{{!info.carAuth}}">
     <view class="list-cell"> 
       <image class="icon fl" src="/images/myself/vertification/icon_04.png" ></image>
       <text class="fl">资产认证-车认证</text>
-      <text class="fr_desc fr cert_end">已认证</text>
+      <text class="fr_desc fr {{!info.carAuth?'cert_end':''}}">{{!info.carAuth?"去认证":"已认证"}}</text>
     </view>
   </navigator>
+  <view class="list-cell list-cell-no_arrow" wx:else> 
+    <image class="icon fl" src="/images/myself/vertification/icon_04.png" ></image>
+    <text class="fl">资产认证-车认证</text>
+    <text class="fr_desc fr {{!info.carAuth?'cert_end':''}}">{{!info.carAuth?"去认证":"已认证"}}</text>
+  </view>
 </view>

@@ -1,59 +1,49 @@
-// pages/myself/introduction/introduction.js
+
+const config = require('../../../utils/config.js');
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    myself: null,
+    annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
     myimg:{
       imgSrc:''
     },
+    
     upload_list: []
   },
 
   upimg() {
     var that = this;
     wx.chooseImage({
-      count: 9, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      count: 1,
+      sizeType: 'original',
       success: function (res) {
-        console.log(res)
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        that.setData({
-          'myimg.imgSrc': res.tempFilePaths
+        let str = res.tempFilePaths[0];
+        _this.setData({
+          "img.backImgSrc": str
         })
-      }
+
+        let suffix = str.substring(str.lastIndexOf('.'));
+
+        wx.getFileSystemManager().readFile({
+          filePath: res.tempFilePaths[0], //选择图片返回的相对路径
+          encoding: 'base64', //编码格式
+          success: res => { //成功的回调
+
+            _this.setData({
+              "img.backImg": res.data,
+              "img.backImgExt": suffix,
+            })
+          }
+        })
+
+      },
     })
-
-    //上传图片
-    // if (this.data.myimg.imgSrc == null || this.data.myimg.imgSrc == undefined) {
-    //   imgSrc = ''
-    // } else {
-    //   var n = this.data.myimg.imgSrc.length - 1;
-    //   var s = 0;
-    //   (function upArr() {
-    //     wx.uploadFile({
-    //       url: config.uploadFile, //仅为示例，非真实的接口地址
-    //       filePath: that.data.myimg.imgSrc[s],
-    //       name: 'file',
-    //       formData: {
-    //         filetype: 'image',
-    //         app: 'material'
-    //       },
-    //       success: function (res) {
-    //         myimgurl += ',' + JSON.parse(res.data).data[0].filepath
-    //         if (n > s) {
-    //           s++
-    //           upArr()
-    //         } else {
-    //           myimgurl.slice(1, myimgurl.length)
-    //         }
-    //       }
-    //     })
-    //   })()
-    // }
-
 
   },
   /**
@@ -62,68 +52,114 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
+    this.getInit()
+    this.getPhotos()
   },
+  getInit() {
+    let _this = this;
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    config.ajax('GET', {
+    }, `/user/`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          myself: res.data
+        })
 
-  },
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    })
 
   },
   add_upload() {
-    let dom = {
-      img: 1,
-      choose: false
-    };
     let _this = this;
-    let arr = _this.data.upload_list;
 
-    if (arr.length <= 7) {
-      arr.push(dom);
-      this.setData({
-        upload_list: arr
-      })
-    }
+    wx.chooseImage({
+      count: 9,
+      sizeType: 'original',
+      success: function (res) {
+        let arrImg = res.tempFilePaths;
+        let photos = [];
+        arrImg.forEach((value,index)=>{
+          wx.getFileSystemManager().readFile({
+            filePath: value, //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: res => { //成功的回调
+              photos.push({
+                img: res.data,
+                imgExt: value.substring(value.lastIndexOf('.'))
+              })
+              if (index == arrImg.length -1){
+                _this.uploadImg(photos)
+              }
+            }
+          })
+        })
+      },
+    })
   },
+  uploadImg(photos){
+
+    let _this = this;
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+    config.ajax('POST', {
+      photos: photos
+    }, `/personal/photo-album/add`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        _this.getPhotos();
+        config.mytoast(res.msg, (res) => { });
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+  },
+  getPhotos() {
+    let _this = this;
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+    config.ajax('POST', {
+    }, `/personal/photo-album/page`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          upload_list:res.data.data
+        })
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+
+  }
 })

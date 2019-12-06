@@ -1,8 +1,7 @@
 <!--Components/myToast.wxml-->
 
-<view class='maskCode' wx:if="{{noCode}}">
+<!-- <view class='maskCode' wx:if="{{noCode}}">
   <view class='toast_centerCode'>
-    <!-- <text class='iconfont icon-quxiao1' bindtap='hideMask'></text> -->
     <view class='toat_mainCode'>
       {{step=='5'?'您已提交审核,请查看认证详情':otherdetail}}
     </view>
@@ -11,6 +10,23 @@
     </view>
     <view class='toat_yes' wx:else  bindtap='goloading'>
       已提交认证，查看审核状况
+    </view>
+  </view>
+</view> -->
+
+
+<view class='maskCode' wx:if="{{noCode}}">
+  <view class='toast_centerCode'>
+    <view class='toat_mainCode'>
+      <text wx:if="{{!step.completeInfo}}">您尚未完善个人信息，请立即去完善</text>
+      <text wx:else>您尚未实名认证，请立即去认证</text>
+    </view>
+    
+    <view class='toat_yes' wx:if="{{!step.completeInfo}}" bindtap='goloading'>
+      去完善
+    </view>
+    <view class='toat_yes' wx:else  bindtap='goloading'>
+      去认证
     </view>
   </view>
 </view>

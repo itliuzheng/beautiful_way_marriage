@@ -9,11 +9,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+    background: [],
+    userRecommend: [],
+    annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
     hasUserInfo:false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     noCode: false,
-    step:0
+    info:null
   },
 
   /**
@@ -119,7 +121,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getInit();
+    this.getBanner();
+    this.getUserRecommend()
   },
 
   /**
@@ -155,5 +159,81 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  getInit() {
+
+    let _this = this;
+
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+    config.ajax('GET', {
+    }, `/auth/status`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          info: res.data
+        })
+        if (!res.data.completeInfo || !res.data.userAuth) {
+          this.setData({
+            noCode: true
+          })
+        } else {
+          this.setData({
+            noCode: false
+          })
+
+        }
+
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+
+  },
+  
+  getBanner() {
+
+    config.ajax('POST', {
+
+    }, config.getBanner, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        this.setData({
+          background: res.data.data.data
+        });
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  getUserRecommend() {
+
+    config.ajax('POST', {
+        pageSize:3,
+        pageNum:1
+    }, `/user/page`, (resp) => {
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          userRecommend: res.data
+        });
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
 })

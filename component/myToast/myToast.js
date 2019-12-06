@@ -13,8 +13,8 @@ Component({
       value: '您尚未注册,点击立即注册'
     },
     step: {
-      type: String,
-      value: '1'
+      type: Object,
+      value: null
     }
   },
 
@@ -34,7 +34,7 @@ Component({
       //   noCode:false
       // })
       wx.switchTab({
-        url: '/pages/index/index',
+        url: '/pages/home/index',
         success: function (res) { },
         fail: function (res) { },
         complete: function (res) { },
@@ -42,25 +42,17 @@ Component({
     },
     goloading() {
       console.log()
-      if (this.data.step == '1') {
+      if (!this.data.step.completeInfo) {
         wx.navigateTo({
-          url: '/pages/index/toloading/toloading',
+          url: '/pages/myself/person_info/person_info',
         })
-      } else if (this.data.step == '2') {
+      } else if (!this.data.step.userAuth) {
         wx.navigateTo({
-          url: '/pages/index/loginRegister/loginRegister',
-        })
-      } else if (this.data.step == '3') {
-        wx.navigateTo({
-          url: '/pages/index/basicInformation/basicInformation',
-        })
-      } else if (this.data.step == '5') {
-        wx.navigateTo({
-          url: '/pages/my/renzheng/renzheng',
+          url: '/pages/myself/my_certification/my_certification',
         })
       } else {
         wx.navigateTo({
-          url: '/pages/index/certificationInformation/certificationInformation',
+          url: '/pages/home/index/',
         })
       }
     }

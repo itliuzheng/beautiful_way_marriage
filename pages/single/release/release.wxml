@@ -11,21 +11,25 @@
 
     <view class="push">
       <textarea class="push-text" bindblur="bindTextAreaBlur" auto-height 
-      placeholder="记录单身每一天，晒给懂你的人......" name="textarea" />
+      placeholder="记录单身每一天，晒给懂你的人......" name="description" />
     </view>
     <view class="push_imgs">
       
       <view class="upload-box">
         <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">  
-          <image></image>
+          <image src="{{item.src}}"></image>
         </view>
-        <view class="add upload-list-m-b" bindtap="add_upload">
+        <view class="add upload-list-m-b" bindtap="chooseImage">
           <view class="horizontal"></view>
           <view class="vertical"></view>
         </view>
       </view>
     </view>
-    <view class="list-cell"><image class="address-icon" src="/images/single/release.png"></image> <text >所在位置</text></view>
+    <view class="list-cell" bindtap="getLocation"><image class="address-icon" src="/images/single/release.png"></image>
+     <text wx:if="{{!address_name}}">所在位置</text>
+     <text wx:else>{{address_name}}</text>
+     <!-- <text wx:else>纬度:{{latitude}} 经度:{{longitude}}</text> -->
+    </view>
 
     <button form-type="submit" class="btn btn_white"
       style="width:200rpx;height:80rpx;" data-type="caogao"

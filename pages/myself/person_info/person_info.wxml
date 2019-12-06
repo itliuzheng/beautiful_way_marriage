@@ -1,33 +1,38 @@
 <!--pages/myself/setting/setting.wxml-->
 <view class="setting-view">
- <picker bindchange="bindPickerChangeSex" value="{{info.sex}}" range="{{sexArray}}">
+ <picker bindchange="bindPickerChangeSex" value="{{info.sex}}" range="{{sexArray}}" wx:if="{{!info.sex}}">
     <view class="list-cell"> 
       <text>性别</text><text class="min_desc">（性别选择后无法修改）</text>
       <text class="fr_desc fr">{{!info.sex?'请选择':sexArray[info.sex]}}</text>
     </view>
   </picker>
+  <view class="list-cell list-cell-none" wx:else> 
+    <text>性别</text><text class="min_desc">（性别选择后无法修改）</text>
+    <text class="fr_desc fr">{{!info.sex?'请选择':sexArray[info.sex]}}</text>
+  </view>
+
  <picker bindchange="bindPickerChangeAge" value="{{age}}" range="{{ageArray}}">
     <view class="list-cell"> 
       <text>年龄</text>
-      <text class="fr_desc fr">{{!age?'请选择':ageArray[age]}}</text>
+      <text class="fr_desc fr">{{age == null?'请选择':ageArray[age]}}</text>
     </view>
   </picker>
  <picker bindchange="bindPickerChangeHeight" value="{{height}}" range="{{heightArray}}">
     <view class="list-cell"> 
       <text>身高</text><text class="min_desc">（cm）</text>
-      <text class="fr_desc fr">{{!height?'请选择':heightArray[height]}}</text>
+      <text class="fr_desc fr">{{height == null?'请选择':heightArray[height]}}</text>
     </view>
   </picker>
  <picker bindchange="bindPickerChangeEducation" value="{{education}}" range="{{educationArray}}">
     <view class="list-cell"> 
       <text>学历</text>
-      <text class="fr_desc fr">{{!education?'请选择':educationArray[education]}}</text>
+      <text class="fr_desc fr">{{education == null?'请选择':educationArray[education]}}</text>
     </view>
   </picker>
  <picker bindchange="bindPickerChangeMaritalStatus" value="{{maritalStatus}}" range="{{maritalStatusArray}}">
     <view class="list-cell"> 
       <text>婚况</text>
-      <text class="fr_desc fr">{{!maritalStatus?'请选择':maritalStatusArray[maritalStatus]}}</text>
+      <text class="fr_desc fr">{{maritalStatus == null?'请选择':maritalStatusArray[maritalStatus]}}</text>
     </view>
   </picker>
  <picker bindchange="bindPickerChangeAddress" value="{{nowResidence}}" mode="region">
@@ -39,13 +44,13 @@
  <picker bindchange="bindPickerChangeAnnualIncome" value="{{annualIncome}}" range="{{annualIncomeArray}}">
     <view class="list-cell"> 
       <text>年收入</text>
-      <text class="fr_desc fr">{{!annualIncome?'请选择':annualIncomeArray[annualIncome]}}</text>
+      <text class="fr_desc fr">{{annualIncome == null?'请选择':annualIncomeArray[annualIncome]}}</text>
     </view>
   </picker>
  <picker bindchange="bindPickerChangeConstellation" value="{{constellation}}" range="{{constellationArray}}">
     <view class="list-cell"> 
       <text>星座</text>
-      <text class="fr_desc fr">{{!constellation?'请选择':constellationArray[constellation]}}</text>
+      <text class="fr_desc fr">{{constellation == null?'请选择':constellationArray[constellation]}}</text>
     </view>
   </picker>
 </view>

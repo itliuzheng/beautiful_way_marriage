@@ -64,14 +64,14 @@
     <view class="title">每日推荐</view>
   </view>
 
-  <view class="recommend-list" wx:for="12" wx:key="unique">
-    <navigator url="/pages/introduction/introduction">
+  <view class="recommend-list" wx:for="{{userRecommend.data}}" wx:key="unique">
+    <navigator url="/pages/introduction/introduction?id={{item.id}}">
       <view class="list-bj">
         <!-- <image src="/images/home/banner_02.png"></image> -->
         <view class="certification_tag">
-          <text class="icon_ver"></text>
-          <text>已认证</text>
-          <text>身份-学历-房-车</text>
+          <text class="icon_ver "></text>
+          <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
+          <text>{{item.userAuth?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
         </view>
         <view class="certification_tag exchange_wx">
           <text class="icon_wx"></text>
@@ -80,24 +80,24 @@
       </view>
     </navigator>
     <view class="card-content">
-      <view class='move_title'>苏菀菁
-        <text class="lz-icon {{index == 0?'icon-certified':'icon-not-certified'}}"></text>
+      <view class='move_title'>{{item.realName}}
+        <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
         <view class='move_miniTitle'>期待两年内结婚</view>
       </view>
       <view class='name_other'>
-        <text>26岁</text>
+        <text>{{item.age}}岁</text>
         <text>|</text>
-        <text>180cm</text>
+        <text>{{item.height}}cm</text>
         <text>|</text>
-        <text>老师</text>
+        <text>老师?</text>
         <text>|</text>
-        <text>2000～3000</text>
+        <text>{{annualIncomeArray[item.annualIncome]}}</text>
       </view>
-      <view class="name_introduct">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名气…</view>
+      <view class="name_introduct">{{item.remark}}</view>
       <view class="go_more">全文</view>
     </view>
   </view>
 
 </view>
 
-<myToast noCode="{{noCode}}" step="{{step}}"></myToast>
+<myToast noCode="{{noCode}}" step="{{info}}"></myToast>
