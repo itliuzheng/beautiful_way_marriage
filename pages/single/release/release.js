@@ -28,13 +28,15 @@ Page({
     if(type == 'release'){
       //发布
       
-      this.releaseAjax(e.detail.description);
+      this.releaseAjax(e.detail.value.description,2);
 
     }else{
       //草稿
+      this.releaseAjax(e.detail.value.description, 1);
+
     }
   },
-  releaseAjax(description){
+  releaseAjax(description, status){
     let _this = this;
 
     wx.showLoading({
@@ -50,7 +52,9 @@ Page({
       singleCircleImg: _this.data.upload_list,
       description: description,
       latitude: _this.data.latitude,
-      longitude: _this.data.longitude
+      longitude: _this.data.longitude,
+      status: status,
+      address: _this.data.address_name
     }, `/circle/single-circle/add`, (resp) => {
       wx.hideLoading();
       let res = resp.data;

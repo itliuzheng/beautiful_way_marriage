@@ -13,7 +13,7 @@ Page({
     myimg:{
       imgSrc:''
     },
-    
+    mateChoiseList:[],
     upload_list: [],
     noCode:false
   },
@@ -25,9 +25,6 @@ Page({
       sizeType: 'original',
       success: function (res) {
         let str = res.tempFilePaths[0];
-        _this.setData({
-          "img.backImgSrc": str
-        })
 
         let suffix = str.substring(str.lastIndexOf('.'));
 
@@ -35,15 +32,46 @@ Page({
           filePath: res.tempFilePaths[0], //选择图片返回的相对路径
           encoding: 'base64', //编码格式
           success: res => { //成功的回调
+            let json = {
+              "image": res.data,
+              "imageExt": suffix,
 
-            _this.setData({
-              "img.backImg": res.data,
-              "img.backImgExt": suffix,
-            })
+            }
+            that.updateUserImage(json, str);
+
+
           }
         })
 
       },
+    })
+
+  },
+  updateUserImage(json,src) {
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+
+    config.ajax('POST', json, `/user/updateUserImage`, (resp) => {
+      let res = resp.data;
+      wx.hideLoading();
+      if (res.code == 1) {
+        let arr = res.data;
+
+        this.setData({
+          "myself.imageUrl": src
+        })
+
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
     })
 
   },
@@ -57,6 +85,7 @@ Page({
     this.setData({
       noCode:true
     })
+
   },
   cancel() {
     this.setData({
@@ -65,7 +94,36 @@ Page({
   },
   onShow: function () {
     this.getInit()
-    this.getPhotos()
+    this.getPhotos();
+    this.getMateChoiseList();
+  },
+  getMateChoiseList() {
+
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+
+    config.ajax('GET', {}, `/personal/mate-choice/getMateChoiseList`, (resp) => {
+      let res = resp.data;
+      wx.hideLoading();
+      if (res.code == 1) {
+        let arr = res.data;
+
+        this.setData({
+          mateChoiseList: arr
+        })
+
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
   },
   getInit() {
     let _this = this;
@@ -93,6 +151,37 @@ Page({
 
     })
 
+  },
+  addSelfIntroduce(e){
+
+    console.log(e.detail);
+    wx.showLoading({
+      title: '数据保存中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+
+    config.ajax('POST', {
+      selfIntroduce: e.detail.value.selfIntroduce
+    }, `/user/addSelfIntroduce`, (res) => {
+      wx.hideLoading();
+
+      if (res.data.code == 1) {
+
+        this.setData({
+          "myself.selfIntroduce": e.detail.value.selfIntroduce,
+          noCode: false
+        })
+
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
   },
   add_upload() {
     let _this = this;

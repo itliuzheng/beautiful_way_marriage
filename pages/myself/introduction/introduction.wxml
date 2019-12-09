@@ -2,7 +2,7 @@
 <view class="content-box">
   <view class="content-topic">
     <view class="header_bj">
-      <image src="/images/myself/banner.png" mode="aspectFill"></image>
+      <image src="{{myself.imageUrl}}" mode="aspectFill"></image>
     </view>
     <view class="modify_photo" bindtap="upimg">修改形象照</view>
   </view>
@@ -11,7 +11,9 @@
       <text class="fl">个人相册</text>
     </view>
     <view class="upload-box">
-      <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}"></view>
+      <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">
+        <image src="{{item.imgUrl}}"></image>
+      </view>
       <view class="add upload-list-m-b" bindtap="add_upload">
         <view class="horizontal"></view>
         <view class="vertical"></view>
@@ -51,19 +53,14 @@
       <text class="fl">择偶意向</text>
       <navigator class="fr" url="/pages/myself/introduction/mate_choice/mate_choice">编辑</navigator>
     </view>
-    <!-- <view class="section-content">
+    <view class="section-content" wx:if="{{mateChoiseList.length == 0}}">
       <view class="absolute-center">
         <view class="add_icon">添加择偶意向</view>
         <view class="add_desc">请添加详细的择偶标准更方便你挑选中意的TA</view>
       </view>
-    </view> -->
-    <view class="show-tag">
-      <view class="tag">18岁-30岁</view>
-      <view class="tag">158cm以上</view>
-      <view class="tag">学历：无要求</view>
-      <view class="tag">月收入：无要求</view>
-      <view class="tag">月收入：无要求</view>
-      <view class="tag">是否购房：无要求</view>
+    </view>
+    <view class="show-tag" wx:else>
+      <view class="tag"  wx:for="{{mateChoiseList}}" wx:key="{{index}}">{{item.ruleNameZh}}:{{item.ruleDesc}}</view>
     </view>
   </view>
   <view class="section">
@@ -71,23 +68,23 @@
       <text class="fl">魅力展示</text>
       <text class="fr" bindtap="edit">编辑></text>
     </view>
-    <view class="section-content" bindtap="edit">
+    <view class="section-content" bindtap="edit" wx:if="{{!myself.selfIntroduce}}">
       <view class="absolute-center">
         <view class="add_icon">添加自我介绍</view>
       </view>
     </view>
-    <!-- <view class="section-show">
-      <view class="show-text">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名，在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必在2018年9月份之前，我是有点抗拒参加有陌生人。</view>
-    </view> -->
+    <view class="section-show" wx:else>
+      <view class="show-text">{{myself.selfIntroduce}}</view>
+    </view>
   </view>
 </view>
 
 
 <view class='maskCode' wx:if="{{noCode}}">
   <view class='toast_centerCode'>
-    <form bindsubmit="add">
+    <form bindsubmit="addSelfIntroduce">
       <view class='toat_mainCode'>
-        <textarea placeholder="添加自我介绍"></textarea>
+        <textarea placeholder="添加自我介绍" name="selfIntroduce"></textarea>
       </view>
       <button class='toat_yes' form-type="submit">添加</button>
       <button class='toat_yes toat_no' bindtap="cancel">取消</button>

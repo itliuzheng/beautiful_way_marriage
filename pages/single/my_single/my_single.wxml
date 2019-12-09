@@ -2,73 +2,34 @@
   <text>草稿箱（23）</text>
 </view>
 <view class="single-list">
-  <view class="list">
+  <view class="list" wx:for="{{list}}" wx:key="{{index}}">
     <view class="fl user_icon">
-      <image></image>
+      <image src="{{item.avatarUrl}}"></image>
     </view>
     <view class="fl single-content">
-      <view class="name">王杨桐</view>
-      <view class="content">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名气…</view>
-      <view class="single-img single-img-one">
-        <image src="/images/single/big_bj.png"></image>
+      <view class="name">{{item.nickName}}</view>
+      <view class="content">{{item.description}}</view>
+      <view class="single-img {{item.singleCircleImg.length?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
+        <image src="{{itemImg.url}}"></image>
       </view>
-      <view class="address">北京 · 朝阳大悦城商城</view>
+      <view class="address">{{item.address}}</view>
       <view class="time-box clearfix">
-        <view class="fl time">昨天 23:23</view>
+        <view class="fl time">{{item.createDate}}</view>
         <view class="fr icons">
-          <text class="icon_dianzan icon_dianzan_ok"></text>
-          <text>23</text>
+          <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
+          <text>{{item.praise}}</text>
           <text class="icon_message"></text>
-          <text>23</text>
+          <text>{{item.commentCount}}</text>
           <text class="icon_share"></text>
-          <text>234</text>
+          <text>{{item.forwardCount}}</text>
         </view>
       </view>
-      <view class="comment">
-        <view class="comment-list">
-          <text class="user_name">追求完美的猪</text>:
-          <text>打开开开开开开开开开卡带圣。打开开开开开开开开开卡带圣。</text>
+      <view class="comment" wx:if="{{item.commentList.length}}">
+        <view class="comment-list"  wx:for="{{item.commentList}}" wx:key="" wx:for-item="itemList">
+          <text class="user_name">{{itemList.nickName}}</text>:
+          <text>{{itemList.content}}</text>
         </view>
-        <view class="comment-list">
-          <text class="user_name">追求完美的猪</text>:
-          <text>开开开开开开开开开卡带圣</text>
-        </view>
-        <view class="comment_more">查看所有评论</view>
-      </view>
-    </view>
-  </view>
-  <view class="list">
-    <view class="fl user_icon">
-      <image></image>
-    </view>
-    <view class="fl single-content">
-      <view class="name">王杨桐</view>
-      <view class="content">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名气…</view>
-      <view class="single-img single-img-one">
-        <image src="/images/single/big_bj.png"></image>
-      </view>
-      <view class="address">北京 · 朝阳大悦城商城</view>
-      <view class="time-box clearfix">
-        <view class="fl time">昨天 23:23</view>
-        <view class="fr icons">
-          <text class="icon_dianzan"></text>
-          <text>23</text>
-          <text class="icon_message"></text>
-          <text>23</text>
-          <text class="icon_share"></text>
-          <text>234</text>
-        </view>
-      </view>
-      <view class="comment">
-        <view class="comment-list">
-          <text class="user_name">追求完美的猪</text>:
-          <text>打开开开开开开开开开卡带圣。打开开开开开开开开开卡带圣。</text>
-        </view>
-        <view class="comment-list">
-          <text class="user_name">追求完美的猪</text>:
-          <text>开开开开开开开开开卡带圣</text>
-        </view>
-        <view class="comment_more">查看所有评论</view>
+        <view class="comment_more" wx:if="{{item.commentCount >= 3}}">查看所有评论</view>
       </view>
     </view>
   </view>

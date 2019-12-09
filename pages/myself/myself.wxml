@@ -1,13 +1,12 @@
 <!--index.wxml-->
 <view class="myself">
   <view class="userinfo">
-    <image class="my-bj" src="/images/myself/banner.png" mode="aspectFill"></image>
+    <image class="my-bj" src="{{myself.imageUrl}}" mode="aspectFill"></image>
   </view>
   <view class="my-info">
     <view class="list-cell">
       <view class="my_detail fl">
-        <!-- <view class="my_name">{{myself.realName}}</view> -->
-        <view class="my_name">{{myself.nickName}}</view>
+        <view class="my_name">{{myself.realName}}</view>
         <view class="my_desc">
           <text>{{myself.sex?'男':'女'}}</text>
           <text>{{myself.age}}岁</text>
