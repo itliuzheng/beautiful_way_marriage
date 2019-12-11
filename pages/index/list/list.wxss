@@ -1,6 +1,11 @@
 page{
   background: #F7F7F7;
 }
+.no-data{
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
 .recommend-list{
   width: 100%;
   padding: 40rpx;

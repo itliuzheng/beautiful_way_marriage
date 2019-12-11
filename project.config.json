@@ -192,6 +192,19 @@
 					"pathName": "pages/myself/introduction/mate_choice/mate_choice",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的单身圈",
+					"pathName": "pages/single/my_single/my_single",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "匹配结果",
+					"pathName": "pages/index/list/list",
+					"scene": null
 				}
 			]
 		}

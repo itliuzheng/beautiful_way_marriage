@@ -9,10 +9,9 @@
   <view class="page-body">
     <view class="page-section rc_swiper">
       <swiper style="height:258rpx;" indicator-dots="{{true}}" indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#fff" autoplay="{{true}}" interval="3000">
-        <block wx:for="{{background}}" wx:key="unique">
+        <block wx:for="{{home.banner}}" wx:key="unique">
           <swiper-item>
             <view class="swiper-item">
-              <!-- <image src="../../images/home/JM-home_banner.png" mode="aspectFill"></image> -->
               <image src="{{item.imgUrl}}" mode="aspectFill"></image>
             </view>
           </swiper-item>
@@ -38,21 +37,21 @@
       <view class="name fr">交友专区</view>
     </view>
   </view>
-  <view class="rc_news">
+  <view class="rc_news" wx:if="{{home.topUser.length}}">
     <view class="news-title">我要置顶</view>
     <scroll-view scroll-x class="scroll-x">
-      <view wx:for="1234" wx:key="{{index}}" wx:key="unique" class="view-parent">
+      <view wx:for="{{home.topUser}}" wx:key="{{index}}" wx:key="unique" class="view-parent" wx:if="{{item.top == 1}}">
         <view class="stick-card-list">
-          <image class="stick-img" src="/images/home/banner_01.png"></image>
+          <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
           <view class="card-content">
             <view class="card-head">
-              <text class="name">王杨桐</text>
-              <text class="lz-icon {{index == 0?'icon-certified':'icon-not-certified'}}"></text>
+              <text class="name">{{item.realName}}</text>
+              <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
             </view>
             <view class='name_other'>
-              <text>24岁</text>
+              <text>{{item.age}}岁</text>
               <text>|</text>
-              <text>173cm</text>
+              <text>{{item.height}}cm</text>
             </view>
           </view>
         </view>
@@ -60,14 +59,13 @@
     </scroll-view>
   </view>
 
-  <view class="title-box">
+  <view class="title-box" wx:if="{{home.recommendUser.length}}">
     <view class="title">每日推荐</view>
   </view>
-
-  <view class="recommend-list" wx:for="{{userRecommend.data}}" wx:key="unique">
+  <view class="recommend-list" wx:for="{{home.recommendUser}}" wx:key="unique" wx:if="{{item.recommend == 1}}">
     <navigator url="/pages/introduction/introduction?id={{item.id}}">
       <view class="list-bj">
-        <!-- <image src="/images/home/banner_02.png"></image> -->
+        <image src="{{item.imageUrl}}" mode="aspectFill"></image>
         <view class="certification_tag">
           <text class="icon_ver "></text>
           <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
@@ -88,8 +86,8 @@
         <text>{{item.age}}岁</text>
         <text>|</text>
         <text>{{item.height}}cm</text>
-        <text>|</text>
-        <text>老师?</text>
+        <!-- <text>|</text>
+        <text>老师</text> -->
         <text>|</text>
         <text>{{annualIncomeArray[item.annualIncome]}}</text>
       </view>

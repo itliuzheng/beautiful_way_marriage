@@ -1,89 +1,53 @@
   
-  <view class="search-box">
+  <!-- <view class="search-box">
     <mp-searchbar ext-class="search_bar" placeholder="" value="{{inputVal}}"
      bindinput="inputChange" bindclear="clearResult"  cancel="{{false}}"></mp-searchbar>
-  </view>
+  </view> -->
 
   <view class="section">
     <view class="nav_head">
       <text class="fl">基本信息</text>
     </view>
     
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
-      <view class="list">
-        <text class="fl">年龄</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
-      </view>
-    </picker>
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
-      <view class="list">
-        <text class="fl">居住地</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
-      </view>
-    </picker>
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
-      <view class="list">
-        <text class="fl">年收入</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
-      </view>
-    </picker>
+    <view wx:for="{{mate.baseInfo}}" wx:key="index">
+      <picker bindchange="bindPickerChangeBaseInfo" data-value="{{item.name}}" range="{{item.properties}}" range-key="desc">
+        <view class="list"> 
+          <text  class="fl">{{item.value}}</text>
+          <text class="fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>
+        </view>
+      </picker>
+    </view>
   </view>
   <view class="section">
     <view class="nav_head">
       <text class="fl">高级筛选</text>
     </view>
     
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
+    <picker mode="region" bindchange="bindPickerChangeAddress" value="{{nowResidence}}" mode="region">
       <view class="list">
         <text class="fl">工作生活在</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
+        <text class="fr">{{!nowResidence.length?'请选择':info.nowResidence}}</text>
       </view>
     </picker>
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
+    <picker mode="region" bindchange="bindPickerChangeAddress2" value="{{nowResidence2}}" mode="region">
       <view class="list">
         <text class="fl">户籍（老家）</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
+        <text class="fr">{{!nowResidence2.length?'请选择':info.nowResidence2}}</text>
       </view>
     </picker>
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
-      <view class="list">
-        <text class="fl">房产</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
-      </view>
-    </picker>
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
-      <view class="list">
-        <text class="fl">车产</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
-      </view>
-    </picker>
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
-      <view class="list">
-        <text class="fl">学历</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
-      </view>
-    </picker>
-    <picker mode="region" bindchange="bindPickerChange" value="{{region}}" custom-item="{{customItem}}">
-      <view class="list">
-        <text class="fl">星座</text>
-        <text class="fr">{{index == -1?'不限':'{{region[0],region[1],region[2]}}' }}</text>
-      </view>
-    </picker>
-    <picker bindchange="bindSignZodiac" value="{{sign_zodiac.index}}" range="{{sign_zodiac.array}}">
-      <view class="list">
-        <text class="fl">属相</text>
-        <text class="fr">{{sign_zodiac.array[sign_zodiac.index] }}</text>
-      </view>
-    </picker>
-    <picker bindchange="bindSignZodiac" value="{{sign_zodiac.index}}" range="{{sign_zodiac.array}}">
-      <view class="list">
-        <text class="fl">婚史</text>
-        <text class="fr">{{sign_zodiac.array[sign_zodiac.index] }}</text>
-      </view>
-    </picker>
+
+    <view wx:for="{{mate.advanced}}" wx:key="index">
+      <picker bindchange="bindPickerChange" data-value="{{item.name}}" range="{{item.properties}}" range-key="desc">
+        <view class="list"> 
+          <text  class="fl">{{item.value}}</text>
+          <text class="fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>
+        </view>
+      </picker>
+    </view>
+
   </view>
 
 <view class="btn-form">
   <view class="btn btn_white">重置</view>
-  <view class="btn btn_fill">确定</view>
+  <view class="btn btn_fill" bindtap="btn">确定</view>
 </view>

@@ -15,7 +15,8 @@ Page({
     hasUserInfo:false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     noCode: false,
-    info:null
+    info:null,
+    home:null,
   },
 
   /**
@@ -53,11 +54,13 @@ Page({
         console.log('token=2==', token);
 
         if (this.data.hasUserInfo == false) {
+          clearTimeout(timer);
           wx.navigateTo({
             url: '/pages/login/index'
           })
         }
         if (!token) {
+          clearTimeout(timer);
           wx.navigateTo({
             url: '/pages/login/login/login'
           })
@@ -122,38 +125,16 @@ Page({
    */
   onShow: function () {
     this.getInit();
-    this.getBanner();
-    this.getUserRecommend()
+    // this.getBanner();
+    // this.getUserRecommend()
+    this.getHome();
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
@@ -199,11 +180,28 @@ Page({
     })
 
   },
-  
+
+  getHome() {
+
+    config.ajax('GET', {
+    }, config.getHome, (resp) => {
+      let res = resp.data;
+
+      if (res.code == 1) {
+        this.setData({
+          home: res.data
+        });
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
   getBanner() {
 
     config.ajax('POST', {
-
+      type:1
     }, config.getBanner, (res) => {
       console.log(res.data);
 

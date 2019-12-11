@@ -10,20 +10,6 @@
   padding-right: 40rpx;
 }
 
-.add-single{
-  width: 100rpx;
-  height: 100rpx;
-  position: fixed;
-  bottom: 66rpx;
-  right: 50rpx;
-  z-index: 999;
-}
-.add-single image{
-  width: 100rpx;
-  height: 100rpx;
-  display: block;
-}
-
 .list{
   overflow: hidden;
   padding: 40rpx;
@@ -43,7 +29,8 @@
   background: #999;
 }
 .single-content{
-  margin-left: 108rpx;
+  padding-left: 108rpx;
+  width: 100%;
 }
 .name{
   font-size:28rpx;
@@ -138,13 +125,64 @@
 
 .single-img{
   margin-top: 20rpx;
+  display: inline-block;
+  margin-right: 10rpx;
+}
+.single-img:nth-child(3n){
+  margin-right: 0;
+}
+.single-img image{
+  display: block;
+  width: 180rpx;
+  height: 180rpx;
 }
 .single-img-one{
+  display: block;
   width: 100%;
   max-height: 400rpx;
+  margin-right: 0;
 }
 .single-img-one image{
   width: 100%;
-  max-height: 400rpx;
+  height: 400rpx;
   display: block;
+}
+
+.comment_input{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  padding-top: 10rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom:0;
+  z-index: 1000;
+}
+.form{
+  width: 94%;
+  margin:0 auto;
+}
+.input-style{
+  width: 70%;
+  height: 40px;
+  border-radius: 25px;
+  background: #f3f3f5;
+  font-size: 14px;
+  /* text-indent: 15px; */
+  padding-left: 15px;
+  float: left;
+  color:#808286;
+}
+ 
+.btn{
+  width: 20%;
+  max-width: 20%;
+  font-size: 14px;
+  float: right;
+  border-radius: 10px;
+  color: #2c3036;
+  background: #f3f3f5;
+  letter-spacing: 2px;
+  padding:0;
+  line-height: 40px;
 }

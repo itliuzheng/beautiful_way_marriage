@@ -1,28 +1,44 @@
 <view class="caogao">
-  <text>草稿箱（23）</text>
+  <text>草稿箱（{{draftCount}}）</text>
 </view>
 <view class="single-list">
-  <view class="list" wx:for="{{list}}" wx:key="{{index}}">
+  <view class="list" wx:for="{{list.data}}" wx:key="{{index}}">
     <view class="fl user_icon">
       <image src="{{item.avatarUrl}}"></image>
     </view>
     <view class="fl single-content">
       <view class="name">{{item.nickName}}</view>
       <view class="content">{{item.description}}</view>
-      <view class="single-img {{item.singleCircleImg.length?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
-        <image src="{{itemImg.url}}"></image>
+      <view>
+        <view class="single-img {{item.singleCircleImg.length != 1?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
+          <!-- <image src="{{itemImg.url}}" mode="aspectFit"></image> -->
+          <image src="{{itemImg.url}}" mode="aspectFill"></image>
+          
+        </view>
       </view>
       <view class="address">{{item.address}}</view>
       <view class="time-box clearfix">
         <view class="fl time">{{item.createDate}}</view>
-        <view class="fr icons">
-          <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
-          <text>{{item.praise}}</text>
-          <text class="icon_message"></text>
-          <text>{{item.commentCount}}</text>
+
+        <!-- 转发 -->
+        <view class="fr icons" bindtap="clickShare" data-id="{{item.id}}" data-index="{{index}}">
           <text class="icon_share"></text>
           <text>{{item.forwardCount}}</text>
         </view>
+
+        <!-- 消息 -->
+        <view class="fr icons">
+          <text class="icon_message"></text>
+          <text>{{item.commentCount}}</text>
+        </view>
+
+        <!-- 点赞 -->
+        <view class="fr icons" bindtap="clickPraise" data-id="{{item.id}}" data-is_praise="{{item.isPraise}}">
+          <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
+          <text>{{item.praise}}</text>
+        </view>
+        
+
       </view>
       <view class="comment" wx:if="{{item.commentList.length}}">
         <view class="comment-list"  wx:for="{{item.commentList}}" wx:key="" wx:for-item="itemList">
@@ -34,8 +50,3 @@
     </view>
   </view>
 </view>
-
-<!-- <navigator class="add-single" url="/pages/single/release/release">
-  <image src="/images/single/add.png"></image>
-</navigator> -->
-

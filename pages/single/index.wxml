@@ -1,10 +1,9 @@
 
 <view class="rc_swiper">
   <swiper style="height:320rpx;" indicator-dots="{{true}}" indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#fff" autoplay="{{true}}" interval="3000">
-    <block wx:for="123" wx:key="unique">
+    <block wx:for="{{background}}" wx:key="unique">
       <swiper-item>
         <view class="swiper-item">
-          <!-- <image src="../../images/home/JM-home_banner.png" mode="aspectFill"></image> -->
           <image src="{{item.imgUrl}}" mode="aspectFill"></image>
         </view>
       </swiper-item>
@@ -12,34 +11,50 @@
   </swiper>
 </view>
 <view class="single-list">
-  <view class="list" wx:for="{{list}}" wx:key="{{index}}">
+  <view class="list" wx:for="{{list.data}}" wx:key="{{index}}">
     <view class="fl user_icon">
       <image src="{{item.avatarUrl}}"></image>
     </view>
     <view class="fl single-content">
       <view class="name">{{item.nickName}}</view>
       <view class="content">{{item.description}}</view>
-      <view class="single-img {{item.singleCircleImg.length?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
-        <image src="{{itemImg.url}}"></image>
+      <view>
+        <view class="single-img {{item.singleCircleImg.length != 1?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
+          <!-- <image src="{{itemImg.url}}" mode="aspectFit"></image> -->
+          <image src="{{itemImg.url}}" mode="aspectFill"></image>
+          
+        </view>
       </view>
       <view class="address">{{item.address}}</view>
       <view class="time-box clearfix">
         <view class="fl time">{{item.createDate}}</view>
-        <view class="fr icons">
-          <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
-          <text>{{item.praise}}</text>
-          <text class="icon_message"></text>
-          <text>{{item.commentCount}}</text>
+
+        <!-- 转发 -->
+        <view class="fr icons" bindtap="clickShare" data-id="{{item.id}}" data-index="{{index}}">
           <text class="icon_share"></text>
           <text>{{item.forwardCount}}</text>
         </view>
+
+        <!-- 消息 -->
+        <view class="fr icons" bindtap="clickComment" data-id="{{item.id}}" data-name="{{item.nickName}}">
+          <text class="icon_message"></text>
+          <text>{{item.commentCount}}</text>
+        </view>
+
+        <!-- 点赞 -->
+        <view class="fr icons" bindtap="clickPraise" data-id="{{item.id}}" data-is_praise="{{item.isPraise}}">
+          <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
+          <text>{{item.praise}}</text>
+        </view>
+        
+
       </view>
       <view class="comment" wx:if="{{item.commentList.length}}">
         <view class="comment-list"  wx:for="{{item.commentList}}" wx:key="" wx:for-item="itemList">
           <text class="user_name">{{itemList.nickName}}</text>:
           <text>{{itemList.content}}</text>
         </view>
-        <view class="comment_more" wx:if="{{item.commentCount >= 3}}">查看所有评论</view>
+        <view class="comment_more" wx:if="{{item.commentCount > 3}}" bindtap="commentMore" data-index="{{index}}" data-id="{{item.id}}" data-is_show_more="{{item.is_show_more}}">{{item.is_show_more?'收起所有评论':'查看所有评论'}}</view>
       </view>
     </view>
   </view>
@@ -49,3 +64,9 @@
   <image src="/images/single/add.png"></image>
 </navigator>
 
+<view class="comment_input" wx:if="{{is_comment}}">
+  <form bindsubmit="formSubmitComment" class='form'>
+    <input type="text" name="content" focus="{{true}}" auto-focus="{{true}}" bindblur="commentBlur" placeholder='留下你精彩的评论吧' class="input-style" />
+    <button formType="submit" class="btn">发送</button>
+  </form>
+</view>

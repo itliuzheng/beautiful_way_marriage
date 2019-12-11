@@ -19,6 +19,9 @@ const getUid = '/wx/user/login',
   //注册
   register = '/wx/user/register',
 
+  //首页信息
+  getHome = '/home/',
+
   //获取banner
   getBanner = '/allocation/banner-config/page',
   //获取 咨询管理
@@ -239,6 +242,7 @@ module.exports = {
   userlogin: userlogin,
   setStorage: setStorage,
   getStorage: getStorage,
+  getHome: getHome,
   getBanner: getBanner,
   getNews: getNews
 } 

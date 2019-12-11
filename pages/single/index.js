@@ -7,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:[]
+    background:[],
+    list:[],
+    is_comment:false,
+    commentInfo:null
   },
 
   /**
@@ -29,6 +32,7 @@ Page({
    */
   onShow: function () {
     this.getInit();
+    this.getBanner();
   },
 
   /**
@@ -53,8 +57,6 @@ Page({
     this.getInit();
     wx.hideNavigationBarLoading();
     wx.stopPullDownRefresh();
-
-    
 
   },
 
@@ -108,5 +110,138 @@ Page({
     }, (res) => {
 
     })
-  }
+  },
+
+  getBanner() {
+
+    config.ajax('POST', {
+      type: 2
+    }, config.getBanner, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        this.setData({
+          background: res.data.data.data
+        });
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  clickShare(e) {
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+
+    config.ajax('POST', {
+    }, `/circle/single-circle/addForwardCount/${id}`, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        this.getInit(1);
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  clickPraise(e) {
+    let id = e.currentTarget.dataset.id;
+    let is_praise = e.currentTarget.dataset.is_praise;
+
+
+    let url = !is_praise ? '/praise/praise/add' : '/praise/praise/cancel';
+
+    config.ajax('POST', {
+      singleCircleId: id
+    }, url, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        this.getInit(1);
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  clickComment(e) {
+    let id = e.currentTarget.dataset.id;
+    let nickName = e.currentTarget.dataset.name;
+
+    // is_comment
+    this.setData({
+      is_comment:true,
+      commentInfo:{
+        id:id,
+        nickName: nickName
+      }
+    })
+  },
+  commentBlur() {
+    this.setData({
+      is_comment: false,
+    })
+  },
+  commentMore(e){
+
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    let is_show_more = e.currentTarget.dataset.is_show_more;  
+
+    if (is_show_more) {
+      this.getInit(1);
+      return false;
+    }
+  
+    config.ajax('GET', {}, `/comment/comment/all/${id}`, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        let commentList = res.data.data;
+
+        let list = this.data.list;
+
+        list.data[index].commentList = commentList;
+        list.data[index].is_show_more = true;
+        this.setData({
+          list: list
+        })
+
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+
+
+  },
+  formSubmitComment(e) {
+    let content = e.detail.value.content
+
+    console.log(
+      'singleCircleId:' + this.data.commentInfo.id,
+      "nickName:" + this.data.commentInfo.nickName,
+      "content:"+ content);
+
+    config.ajax('POST', {
+      singleCircleId: this.data.commentInfo.id,
+      nickName: this.data.commentInfo.nickName,
+      content: content
+    }, `/comment/comment/add`, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        this.getInit(1);
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
 })
