@@ -23,21 +23,21 @@
       <text class="fl">高级筛选</text>
     </view>
     
-    <picker mode="region" bindchange="bindPickerChangeAddress" value="{{nowResidence}}" mode="region">
-      <view class="list">
-        <text class="fl">工作生活在</text>
-        <text class="fr">{{!nowResidence.length?'请选择':info.nowResidence}}</text>
-      </view>
-    </picker>
-    <picker mode="region" bindchange="bindPickerChangeAddress2" value="{{nowResidence2}}" mode="region">
+    <!-- <picker mode="region" bindchange="bindPickerChangeAddress2" value="{{nowResidence2}}" mode="region">
       <view class="list">
         <text class="fl">户籍（老家）</text>
         <text class="fr">{{!nowResidence2.length?'请选择':info.nowResidence2}}</text>
       </view>
-    </picker>
+    </picker> -->
 
-    <view wx:for="{{mate.advanced}}" wx:key="index">
-      <picker bindchange="bindPickerChange" data-value="{{item.name}}" range="{{item.properties}}" range-key="desc">
+    <view wx:for="{{mate.advanced}}" wx:key="index" >
+      <picker wx:if="{{item.name != 'now_residence'}}" bindchange="bindPickerChange" data-value="{{item.name}}" range="{{item.properties}}" range-key="desc" >
+        <view class="list"> 
+          <text  class="fl">{{item.value}}</text>
+          <text class="fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>
+        </view>
+      </picker>
+      <picker wx:else bindchange="bindPickerChangeAddress" data-value="{{item.name}}" mode="region" custom-item="全部">
         <view class="list"> 
           <text  class="fl">{{item.value}}</text>
           <text class="fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>

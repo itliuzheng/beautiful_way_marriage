@@ -24,7 +24,8 @@
     "pages/myself/my_certification/car/car",
     "pages/myself/member/member",
     "pages/myself/person_info/person_info",
-    "pages/myself/introduction/mate_choice/mate_choice"
+    "pages/myself/introduction/mate_choice/mate_choice",
+    "pages/single/user_single/user_single"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,21 +1,25 @@
-// pages/myself/introduction/introduction.js
+const config = require('../../utils/config.js');
+let app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    info:null,
     myimg:{
       imgSrc:''
     },
     upload_list: [{},{},{},{}],
-    ver_height:230
+    ver_height: 230,
+    educationArray: ['初中', '高中', '大专', '本科', '研究生', '博士', '博士后'],
+    annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getInit(options.id)
   },
 
   /**
@@ -38,33 +42,23 @@ Page({
   onHide: function () {
 
   },
+  getInit(userId) {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+    config.ajax('POST', {
+      userId: userId
+    }, `/user/detail`, (resp) => {
+      let res = resp.data;
 
-  },
+      if (res.code == 1) {
+        this.setData({
+          info: res.data
+        });
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    })
   },
   goMorePhoto() {
     let dom = {

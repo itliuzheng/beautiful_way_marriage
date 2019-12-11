@@ -2,13 +2,12 @@
 <view class="content-box">
   <view class="content-topic">
     <view class="header_bj">
-      <!-- <image src="/images/myself/banner.png" mode="aspectFill"></image> -->
+      <image src="{{info.user.imageUrl}}" mode="aspectFill"></image>
     </view>
     <view class="header_mask">
       <view class="mask_list">
-        <!-- <image class="mask_icon" src="/images/introduction/love.png"></image> -->
-        <image class="mask_icon" src="/images/introduction/love_active.png"></image>
-        
+        <image class="mask_icon" src="/images/introduction/love.png" wx:if="{{!info.isLike}}"></image>
+        <image class="mask_icon" src="/images/introduction/love_active.png" wx:else></image>
         <text>心动</text>
       </view>
       <view class="mask_list">
@@ -19,30 +18,32 @@
   </view>
   <view class="section">
     <view class="card-content">
-      <view class='move_title'>苏菀菁
-        <text class="lz-icon {{true?'icon-certified':'icon-not-certified'}}"></text>
+      <view class='move_title'>{{info.user.realName}}
+        <text class="lz-icon {{info.user.userAuth?'icon-certified':'icon-not-certified'}}"></text>
         <view class='move_miniTitle'>期待两年内结婚</view>
       </view>
       <view class='name_other'>
-        <text>26岁</text>
+        <text>{{info.user.age}}岁</text>
         <text>|</text>
-        <text>180cm</text>
+        <text>{{info.user.height}}cm</text>
         <text>|</text>
-        <text>老师</text>
+        <text>{{educationArray[info.user.education]}}</text>
         <text>|</text>
-        <text>2000～3000</text>
+        <text>{{annualIncomeArray[info.user.annualIncome]}}</text>
         <view class="fr address">
           <image src="/images/introduction/address.png"></image>
-          <text class="address_desc">濮阳</text>
+          <text class="address_desc">{{info.user.nowResidence}}</text>
         </view>
       </view>
     </view>
   </view>
   <view class="section">
     <view class="detail clearfix">
-      <view class="detail_type fl">
-        <image src="/images/introduction/big_icon_01.png"></image>
-        <view class="detail_name">TA的动态</view>
+      <view class="detail_type fl" >
+        <navigator url="/pages/single/user_single/user_single?id={{info.user.id}}">
+          <image src="/images/introduction/big_icon_01.png"></image>
+          <view class="detail_name">TA的动态</view>
+        </navigator>
       </view>
       <view class="detail_type fl">
         <image src="/images/introduction/big_icon_02.png"></image>
@@ -55,51 +56,70 @@
       <text class="fl">个人相册</text>
     </view>
     <view class="upload-box">
-      <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">
-        <!-- <image src="/images/introduction/photo.png"></image> -->
+      <view class="upload-list upload-list-m-b" wx:for="{{info.photos}}" wx:key="{{index}}">
+        <image src="{{item.imgUrl}}"></image>
       </view>
-      <view class="upload-list upload-list-m-b ">
+      <view class="upload-list upload-list-m-b " wx:if="{{info.residuePhotoCount}}">
         <!-- <image src="/images/introduction/photo.png"></image> -->
         <view class="upload-list-more" bindtap="goMorePhoto">
-          <view class="number">+3</view>
+          <view class="number">+{{info.residuePhotoCount}}</view>
           <view class="more">查看更多></view>
         </view>
       </view>
     </view>
   </view>
   <view class="section">
-    <view class="nav_head">
+    <view class="nav_head"  wx:if="{{info.user.userAuth ||info.user.educationAuth ||info.user.carAuth ||info.user.houseAuth}}">
       <text class="fl">已认证信息</text>
     </view>
-    <view class="list" bindtap="clickShow">
-      <text class="fl">身份证认证</text>
-      <view class="fr arrow-box">
-        <text>张**</text>
-        <text class="arrow_b {{ver_height == 0?'':'arrow_t'}}"></text>
+    <view wx:if="{{info.user.userAuth}}">
+      <view class="list" bindtap="clickShow">
+        <text class="fl">身份证认证</text>
+        <view class="fr arrow-box">
+          <text>{{info.user.realName}}</text>
+          <text class="arrow_b {{ver_height == 0?'':'arrow_t'}}"></text>
+        </view>
       </view>
-      
+      <view class="ver_show" style="height:{{ver_height}}rpx">
+        <view>{{info.user.realName}}</view>
+        <view>{{info.user.identityNo}}</view>
+        <view>{{info.userAuthMethod}}</view>
+        <view>认证通过时间：{{info.userAuthDate}}</view>
+      </view>
     </view>
-    <view class="ver_show" style="height:{{ver_height}}rpx">
-      <view>张**</view>
-      <view>2191029303*********</view>
-      <view>通过身份证认证</view>
-      <view>认证通过时间：一个月前</view>
+    <view class="list" wx:if="{{info.user.educationAuth}}">
+      <text class="fl">学历认证</text>
+      <text class="fr">{{info.user.educationAuth?'已认证':'未认证'}}</text>
     </view>
-    <view class="nav_head">
+    <view class="list" wx:if="{{info.user.houseAuth}}">
+      <text class="fl">资产认证-房</text>
+      <text class="fr">{{info.user.houseAuth?'已认证':'未认证'}}</text>
+    </view>
+    <view class="list" wx:if="{{info.user.carAuth}}">
+      <text class="fl">资产认证-车</text>
+      <text class="fr">{{info.user.carAuth?'已认证':'未认证'}}</text>
+    </view>
+
+    <view class="nav_head"  wx:if="{{!info.user.userAuth ||!info.user.educationAuth ||!info.user.carAuth ||!info.user.houseAuth}}">
       <text class="fl">未认证信息</text>
     </view>
-    <view class="list">
+    <view class="list" wx:if="{{!info.user.userAuth}}">
+      <text class="fl">身份证认证</text>
+      <text class="fr">{{info.user.userAuth?'已认证':'未认证'}}</text>
+    </view>
+    <view class="list" wx:if="{{!info.user.educationAuth}}">
       <text class="fl">学历认证</text>
-      <text class="fr">未认证</text>
+      <text class="fr">{{info.user.educationAuth?'已认证':'未认证'}}</text>
     </view>
-    <view class="list">
+    <view class="list" wx:if="{{!info.user.houseAuth}}">
       <text class="fl">资产认证-房</text>
-      <text class="fr">未认证</text>
+      <text class="fr">{{info.user.houseAuth?'已认证':'未认证'}}</text>
     </view>
-    <view class="list">
+    <view class="list" wx:if="{{!info.user.carAuth}}">
       <text class="fl">资产认证-车</text>
-      <text class="fr">未认证</text>
+      <text class="fr">{{info.user.carAuth?'已认证':'未认证'}}</text>
     </view>
+
   </view>
 
   <view class="section">
@@ -107,7 +127,7 @@
       <text class="fl">自我介绍</text>
     </view>
     <view class="section-show">
-      <view class="show-text">在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必有一个环节——做自我介绍。我虽然有点名，在2018年9月份之前，我是有点抗拒参加有陌生人参加的活动的，因为每次活动中必在2018年9月份之前，我是有点抗拒参加有陌生人。</view>
+      <view class="show-text">{{info.user.selfIntroduce}}</view>
     </view>
   </view>
   
@@ -116,12 +136,11 @@
       <text class="fl">个人资料</text>
     </view>
     <view class="show-tag">
-      <view class="tag">18岁-30岁</view>
-      <view class="tag">158cm以上</view>
-      <view class="tag">学历：无要求</view>
-      <view class="tag">月收入：无要求</view>
-      <view class="tag">月收入：无要求</view>
-      <view class="tag">是否购房：无要求</view>
+      <view class="tag">{{info.user.age}}岁</view>
+      <view class="tag">{{info.user.height}}cm</view>
+      <view class="tag">学历：{{educationArray[info.user.education]}}</view>
+      <view class="tag">年收入：{{annualIncomeArray[info.user.annualIncome]}}</view>
+      <view class="tag">是否购房：{{info.user.houseAuth?'是':'否'}}</view>
     </view>
   </view>
 
@@ -130,12 +149,7 @@
       <text class="fl">择偶意向</text>
     </view>
     <view class="show-tag">
-      <view class="tag">18岁-30岁</view>
-      <view class="tag">158cm以上</view>
-      <view class="tag">学历：无要求</view>
-      <view class="tag">月收入：无要求</view>
-      <view class="tag">月收入：无要求</view>
-      <view class="tag">是否购房：无要求</view>
+      <view class="tag" wx:for="{{info.mateChoice}}" wx:key="{{index}}">{{item}}</view>
     </view>
   </view>
 

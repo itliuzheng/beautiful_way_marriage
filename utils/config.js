@@ -212,6 +212,14 @@ function ajax(Type, params, url, successData, errorData, completeData) {
     header: header,
     data: params,
     success: (res) => {
+      if (res.data.msg == 'Token已过期'){
+
+        wx.setStorageSync('token', null)
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+        return false
+      }
       successData(res)
     },
     error(res) {
