@@ -50,7 +50,8 @@
 
 .btn-form{
   text-align: center;
-  margin: 100rpx 0 120rpx;
+  margin: 100rpx 0 0;
+  padding-bottom: 120rpx;
 
 }
 .btn{

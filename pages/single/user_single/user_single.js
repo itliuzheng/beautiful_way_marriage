@@ -155,7 +155,7 @@ Page({
   },
   clickComment(e) {
     let id = e.currentTarget.dataset.id;
-    let nickName = e.currentTarget.dataset.name;
+    let nickName = app.globalData.userInfo.nickName
 
     // is_comment
     this.setData({

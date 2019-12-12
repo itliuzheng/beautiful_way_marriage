@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    background: [],
+    draftCount: [],
     list: [],
     is_comment: false,
     commentInfo: null
@@ -32,7 +32,6 @@ Page({
    */
   onShow: function () {
     this.getInit();
-    this.getBanner();
   },
 
   /**
@@ -91,21 +90,24 @@ Page({
       complete: function (res) { },
     })
 
-    config.ajax('POST', {
+    config.ajax('GET', {
       pageNum: page
     }, `/circle/single-circle/self`, (resp) => {
       wx.hideLoading();
       let res = resp.data;
+      console.log(res);
       if (page != 1) {
-        this.data.list.data.push.apply(this.data.list.data, res.data);
-        this.data.list.current = res.current;
+        this.data.list.data.push.apply(this.data.list.data, res.data.singleCircle.data);
+        this.data.list.current = res.data.singleCircle.current;
 
         that.setData({
-          list: that.data.list
+          list: that.data.list,
+          draftCount: res.data.draftCount
         })
       } else {
         that.setData({
-          list: res.data
+          list: res.data.singleCircle,
+          draftCount: res.data.draftCount
         })
 
       }
@@ -114,24 +116,6 @@ Page({
     })
   },
 
-  getBanner() {
-
-    config.ajax('POST', {
-      type: 2
-    }, config.getBanner, (res) => {
-      console.log(res.data);
-
-      if (res.data.code == 1) {
-        this.setData({
-          background: res.data.data.data
-        });
-      } else {
-        config.mytoast(res.data.msg, (res) => { })
-      }
-    }, (res) => {
-
-    })
-  },
   clickShare(e) {
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
@@ -172,7 +156,7 @@ Page({
   },
   clickComment(e) {
     let id = e.currentTarget.dataset.id;
-    let nickName = e.currentTarget.dataset.name;
+    let nickName = app.globalData.userInfo.nickName
 
     // is_comment
     this.setData({

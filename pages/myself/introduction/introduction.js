@@ -81,9 +81,15 @@ Page({
   onLoad: function (options) {
 
   },
-  edit(){
+  edit_mate_choice() {
+    wx.navigateTo({
+      url: '/pages/myself/introduction/mate_choice/mate_choice',
+    })
+
+  },
+  edit() {
     this.setData({
-      noCode:true
+      noCode: true
     })
 
   },

@@ -7,7 +7,7 @@ page{
   display: block;
 }
 .content{
-  padding: 28rpx 50rpx 0;
+  padding: 28rpx 50rpx 50rpx;
 }
 .title{
   font-size:32rpx;

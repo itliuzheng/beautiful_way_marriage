@@ -41,20 +41,24 @@
     <view class="news-title">我要置顶</view>
     <scroll-view scroll-x class="scroll-x">
       <view wx:for="{{home.topUser}}" wx:key="{{index}}" wx:key="unique" class="view-parent" wx:if="{{item.top == 1}}">
-        <view class="stick-card-list">
-          <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
-          <view class="card-content">
-            <view class="card-head">
-              <text class="name">{{item.realName}}</text>
-              <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
-            </view>
-            <view class='name_other'>
-              <text>{{item.age}}岁</text>
-              <text>|</text>
-              <text>{{item.height}}cm</text>
+        <navigator  url="/pages/introduction/introduction?id={{item.id}}">
+          
+          <view class="stick-card-list">
+            <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
+            <view class="card-content">
+              <view class="card-head">
+                <text class="name">{{item.realName}}</text>
+                <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
+              </view>
+              <view class='name_other'>
+                <text>{{item.age}}岁</text>
+                <text>|</text>
+                <text>{{item.height}}cm</text>
+              </view>
             </view>
           </view>
-        </view>
+        </navigator>
+
       </view>
     </scroll-view>
   </view>
@@ -76,24 +80,24 @@
           <text>交换微信</text>
         </view>
       </view>
+      <view class="card-content">
+        <view class='move_title'>{{item.realName}}
+          <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
+          <view class='move_miniTitle'>期待两年内结婚</view>
+        </view>
+        <view class='name_other'>
+          <text>{{item.age}}岁</text>
+          <text>|</text>
+          <text>{{item.height}}cm</text>
+          <!-- <text>|</text>
+          <text>老师</text> -->
+          <text>|</text>
+          <text>{{annualIncomeArray[item.annualIncome]}}</text>
+        </view>
+        <view class="name_introduct">{{item.selfIntroduce}}</view>
+        <view class="go_more" wx:if="{{item.selfIntroduce}}">全文</view>
+      </view>
     </navigator>
-    <view class="card-content">
-      <view class='move_title'>{{item.realName}}
-        <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
-        <view class='move_miniTitle'>期待两年内结婚</view>
-      </view>
-      <view class='name_other'>
-        <text>{{item.age}}岁</text>
-        <text>|</text>
-        <text>{{item.height}}cm</text>
-        <!-- <text>|</text>
-        <text>老师</text> -->
-        <text>|</text>
-        <text>{{annualIncomeArray[item.annualIncome]}}</text>
-      </view>
-      <view class="name_introduct">{{item.remark}}</view>
-      <view class="go_more">全文</view>
-    </view>
   </view>
 
 </view>

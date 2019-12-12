@@ -7,6 +7,8 @@ Page({
    */
   data: {
     info:null,
+    other_id:null,
+    my_id:null,
     myimg:{
       imgSrc:''
     },
@@ -19,6 +21,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      other_id: Number(options.id)
+    })
+    this.getUserId();
     this.getInit(options.id)
   },
 
@@ -41,6 +47,52 @@ Page({
    */
   onHide: function () {
 
+  },
+  clickLike(e) {
+
+    let is_like = e.currentTarget.dataset.is_like;
+    let url = '/like/add'
+
+    if (is_like){
+      url = '/like/cancel'
+    }
+    
+    if (this.data.my_id == this.data.other_id) {
+      config.mytoast('亲，太自恋可不太好喔~', (res) => { })
+      return false;
+    }
+
+    config.ajax('POST', {
+      likeUserId:this.data.my_id,
+      likedUserId:this.data.other_id
+    }, url, (resp) => {
+      let res = resp.data;
+
+      if (res.code == 1) {
+        this.getInit(this.data.other_id);
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  getUserId() {
+
+    config.ajax('GET', {
+    }, `/user/`, (resp) => {
+      let res = resp.data;
+
+      if (res.code == 1) {
+        this.setData({
+          my_id: res.data.id
+        });
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
   },
   getInit(userId) {
 

@@ -1,3 +1,7 @@
+.no-data{
+  line-height: 200rpx;
+  text-align: center;
+}
 .caogao{
   height:100rpx;
   background:rgba(247,247,247,1);

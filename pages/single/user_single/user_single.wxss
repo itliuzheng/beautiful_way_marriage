@@ -1,4 +1,7 @@
-
+.no-data{
+  line-height: 200rpx;
+  text-align: center;
+}
 
 .list{
   overflow: hidden;

@@ -54,7 +54,7 @@
       <navigator class="fr" url="/pages/myself/introduction/mate_choice/mate_choice">编辑</navigator>
     </view>
     <view class="section-content" wx:if="{{mateChoiseList.length == 0}}">
-      <view class="absolute-center">
+      <view class="absolute-center" bindtap="edit_mate_choice">
         <view class="add_icon">添加择偶意向</view>
         <view class="add_desc">请添加详细的择偶标准更方便你挑选中意的TA</view>
       </view>

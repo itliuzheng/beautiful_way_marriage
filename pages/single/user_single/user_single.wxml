@@ -47,6 +47,7 @@
       </view>
     </view>
   </view>
+  <view class="no-data" wx:if="{{!list.data.length}}">暂无数据</view>
 </view>
 <view class="comment_input" wx:if="{{is_comment}}">
   <form bindsubmit="formSubmitComment" class='form'>

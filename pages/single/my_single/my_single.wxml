@@ -49,4 +49,5 @@
       </view>
     </view>
   </view>
+  <view class="no-data" wx:if="{{!list.data.length}}">暂无数据</view>
 </view>

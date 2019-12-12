@@ -5,7 +5,7 @@
       <image src="{{info.user.imageUrl}}" mode="aspectFill"></image>
     </view>
     <view class="header_mask">
-      <view class="mask_list">
+      <view class="mask_list" bindtap="clickLike" data-is_like="{{info.isLike}}">
         <image class="mask_icon" src="/images/introduction/love.png" wx:if="{{!info.isLike}}"></image>
         <image class="mask_icon" src="/images/introduction/love_active.png" wx:else></image>
         <text>心动</text>
@@ -150,8 +150,9 @@
     </view>
     <view class="show-tag">
       <view class="tag" wx:for="{{info.mateChoice}}" wx:key="{{index}}">{{item}}</view>
+      <view class="tag" wx:if="{{!info.mateChoice.length}}">暂无数据</view>
     </view>
   </view>
 
-  <view class="btn">帮我联系TA</view>
+  <!-- <view class="btn">帮我联系TA</view> -->
 </view>

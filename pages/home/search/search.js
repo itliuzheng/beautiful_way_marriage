@@ -233,5 +233,19 @@ Page({
     wx.navigateTo({
       url: '/pages/index/list/list',
     })
-  }
+  },
+  resetHomeFilter() {
+
+    config.ajax('POST', {}, `/home/resetHomeFilter`, (res) => {
+
+      if (res.data.code == 1) {
+        config.mytoast('重置成功', (res) => { })
+        this.getDetail()
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
 })
