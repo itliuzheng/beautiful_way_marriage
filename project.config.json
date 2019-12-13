@@ -181,13 +181,6 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/myself/my_certification/verified/verified",
-					"pathName": "pages/myself/my_certification/verified/verified",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "择偶意向编辑",
 					"pathName": "pages/myself/introduction/mate_choice/mate_choice",
 					"query": "",
@@ -204,6 +197,20 @@
 					"id": -1,
 					"name": "匹配结果",
 					"pathName": "pages/index/list/list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/message/list/list",
+					"pathName": "pages/message/list/list",
+					"query": "name=liked",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "设置",
+					"pathName": "pages/myself/setting/setting",
 					"query": "",
 					"scene": null
 				}

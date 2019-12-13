@@ -28,6 +28,7 @@
         <text>|</text>
         <text>{{annualIncomeArray[item.annualIncome]}}</text>
       </view>
+      
       <view class="name_introduct">{{item.selfIntroduce}}</view>
       <view class="go_more" wx:if="{{item.selfIntroduce}}">全文</view>
     </view>

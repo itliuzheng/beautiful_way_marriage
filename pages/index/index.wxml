@@ -62,7 +62,8 @@
         </view>
 
         <view class="contact">
-          <text>常见问题</text><text class="sunstring">|</text><text>联系客服</text>
+          <text>常见问题</text><text class="sunstring">|</text>
+          <button class="contact_btn" open-type="contact">联系客服</button>
         </view>
       </view>
     </view>

@@ -20,19 +20,19 @@
     </view>
   </view>
   <view class="nav-box">
-    <view class="nav-list">
+    <view class="nav-list" bindtap="not_open_yet">
       <image src="/images/home/nav_icon_01.png"></image>
       <view class="name">MITU课堂</view>
     </view>
-    <view class="nav-list nav-list-center ">
+    <view class="nav-list nav-list-center " bindtap="not_open_yet">
       <image src="/images/home/nav_icon_02.png"></image>
       <view class="name">导师直播</view>
     </view>
-    <view class="nav-list nav-list-center">
+    <view class="nav-list nav-list-center" bindtap="not_open_yet">
       <image src="/images/home/nav_icon_03.png"></image>
       <view class="name">文章精选</view>
     </view>
-    <view class="nav-list ">
+    <view class="nav-list " bindtap="not_open_yet">
       <image class="fr" src="/images/home/nav_icon_04.png"></image>
       <view class="name fr">交友专区</view>
     </view>
@@ -75,10 +75,10 @@
           <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
           <text>{{item.userAuth?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
         </view>
-        <view class="certification_tag exchange_wx">
+        <!-- <view class="certification_tag exchange_wx">
           <text class="icon_wx"></text>
           <text>交换微信</text>
-        </view>
+        </view> -->
       </view>
       <view class="card-content">
         <view class='move_title'>{{item.realName}}

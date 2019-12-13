@@ -25,7 +25,8 @@
     "pages/myself/member/member",
     "pages/myself/person_info/person_info",
     "pages/myself/introduction/mate_choice/mate_choice",
-    "pages/single/user_single/user_single"
+    "pages/single/user_single/user_single",
+    "pages/message/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

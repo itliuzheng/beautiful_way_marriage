@@ -338,6 +338,17 @@ background:rgba(0,0,0,0);
   color:rgba(196,171,91,1);
   line-height:40rpx;
 }
+.contact_btn{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(196,171,91,1);
+  line-height:40rpx;
+  background: transparent;
+  padding: 0;
+  display: inline;
+  width: auto;
+}
 .sunstring{
   margin: 0 40rpx;
 }

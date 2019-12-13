@@ -38,4 +38,8 @@ Page({
     })
 
   },
+  not_open_yet() {
+
+    config.mytoast('暂未开放，敬请期待...', (res) => { });
+  },
 })

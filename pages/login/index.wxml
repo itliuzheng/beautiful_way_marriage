@@ -7,9 +7,9 @@
     <view class="chinese">美途婚恋</view>
   </view>
   <view class="login-box">
-    <button class="phone-btn" size="default"  open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">手机号一键登录</button>
+    <button class="phone-btn" size="default"  open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">开启美途之旅</button>
 
-    <navigator url="/pages/login/login/login" class="go_login">其他方式登录/注册</navigator>
+    <!-- <navigator url="/pages/login/login/login" class="go_login">其他方式登录/注册</navigator> -->
     <view class="login_desc">点击一键登录/注册默认您已经同意</view>
     <view class="login_link">《美途婚恋服务协议》</view>
 

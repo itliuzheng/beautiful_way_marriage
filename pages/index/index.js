@@ -380,7 +380,9 @@ Page({
     })
   },
   onShow: function () {
+    
 
+    config.mytoast('暂未开放，敬请期待...', (res) => { });
     // wx.showLoading({
     //   title: '数据加载中...',
     //   mask: true,
@@ -397,7 +399,6 @@ Page({
       y: winHeight,
       distance: winWidth
     })
-    console.log(this.data.distance)
     // config.getuid((res) => {
     //   if (res.data.data.code == '20000') {
     //     app.globalData.uid = res.data.data.uid
@@ -422,7 +423,7 @@ Page({
 
     this.setData({
       delect_time: 0,
-      noCode: true
+      // noCode: true
     })
     this.getallData()
     /*

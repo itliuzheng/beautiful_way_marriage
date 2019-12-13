@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-badge": "../../component/badge/badge"
+  },
+  "navigationBarTitleText": "消息列表"
 }

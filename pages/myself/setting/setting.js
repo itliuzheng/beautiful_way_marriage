@@ -20,30 +20,34 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    not_open_yet() {
+
+      config.mytoast('暂未开放，敬请期待...', (res) => { });
+    },
+    unsubscribe() {
+
+      let info = this.data.info;
+
+      wx.showLoading({
+        title: '资料注销中...',
+        mask: true,
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+
+      config.ajax('POST', info, `/user/unsubscribe`, (res) => {
+        wx.hideLoading();
+        if (res.data.code == 1) {
+          config.mytoast('资料注销成功，正在跳转...', (res) => { })
+          wx.navigateBack({})
+        } else {
+          config.mytoast(res.data.msg, (res) => { })
+        }
+      }, (res) => {
+
+      })
+    }
 
   },
-  unsubscribe() {
-
-    let info = this.data.info;
-
-    wx.showLoading({
-      title: '资料注销中...',
-      mask: true,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-
-    config.ajax('POST', info, `/user/unsubscribe`, (res) => {
-      wx.hideLoading();
-      if (res.data.code == 1) {
-        config.mytoast('资料注销成功，正在跳转...', (res) => { })
-        wx.navigateBack({})
-      } else {
-        config.mytoast(res.data.msg, (res) => { })
-      }
-    }, (res) => {
-
-    })
-  }
 })
