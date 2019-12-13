@@ -1,4 +1,6 @@
 // pages/myself/member/member.js
+const config = require('../../../utils/config.js');
+const app = getApp()
 
 const util = require('../../../utils/util.js');
 
@@ -25,6 +27,9 @@ Page({
       next_time: util.addDate(now_day, 365)
     })
 
+  },
+  not_open_yet() {
+    config.mytoast('暂未开放，敬请期待...', (res) => { });
   },
   goBuy(e){
     let now_day = new Date();

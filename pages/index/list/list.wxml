@@ -1,5 +1,5 @@
 <view class="result">
-  <view class="recommend-list" wx:for="{{list.data}}" wx:key="unique" wx:if="{{item.recommend == 1}}">
+  <view class="recommend-list" wx:for="{{list.data}}" wx:key="unique" >
     <navigator url="/pages/introduction/introduction?id={{item.id}}">
       <view class="list-bj">
         <image src="{{item.imageUrl}}" mode="aspectFill"></image>
@@ -13,24 +13,27 @@
           <text>交换微信</text>
         </view> -->
       </view>
+      
+      <view class="card-content">
+        <view class='move_title'>{{item.realName}}
+          <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
+          <view class='move_miniTitle'>期待两年内结婚</view>
+        </view>
+        <view class='name_other'>
+          <text>{{item.age}}岁</text>
+          <text>|</text>
+          <text>{{item.height}}cm</text>
+          <!-- <text>|</text>
+          <text>老师</text> -->
+          <text>|</text>
+          <text>{{annualIncomeArray[item.annualIncome]}}</text>
+        </view>
+        <view class="name_introduct">{{item.selfIntroduce}}</view>
+        <view class="go_more" wx:if="{{item.selfIntroduce}}">全文</view>
+      </view>
+    
+    
     </navigator>
-    <view class="card-content">
-      <view class='move_title'>{{item.realName}}
-        <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
-        <view class='move_miniTitle'>期待两年内结婚</view>
-      </view>
-      <view class='name_other'>
-        <text>{{item.age}}岁</text>
-        <text>|</text>
-        <text>{{item.height}}cm</text>
-        <!-- <text>|</text>
-        <text>老师</text> -->
-        <text>|</text>
-        <text>{{annualIncomeArray[item.annualIncome]}}</text>
-      </view>
-      <view class="name_introduct">{{item.selfIntroduce}}</view>
-      <view class="go_more" wx:if="{{item.selfIntroduce}}">全文</view>
-    </view>
   </view>
-  <view class="no-data" wx:if="!list.data.length">暂无数据</view>
+  <view class="no-data" wx:if="{{!list.data.length}}">暂无数据</view>
 </view>

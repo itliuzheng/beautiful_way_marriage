@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    url:'',
     list: null
   },
 
@@ -17,11 +18,22 @@ Page({
   onLoad: function (options) {
     console.log(options.name);
     let title = '';
+    let url = '';
     if (options.name == 'liked'){
       title = '心动列表'
+      url = '/like/page'
+    } else if (options.name == 'see_who') {
+      title = '我看过谁'
+      url = '/visit/visit-record/visitOther'
+    } else if (options.name == 'who_see') {
+      title = '谁看过我'
+      url = '/visit/visit-record/visitMe'
     }
     wx.setNavigationBarTitle({
-      title: title
+      title: title,
+    })
+    this.setData({
+      url: url
     })
   },
 
@@ -64,16 +76,16 @@ Page({
 
   getInit(page = 1) {
     let that = this;
-    
-    config.ajax('POST', {
 
-    }, `/like/page`, (resp) => {
+    config.ajax('POST', {
+      pageNum:page
+    }, that.data.url, (resp) => {
       let res = resp.data;
 
       if (res.code == 1) {
         if (page != 1) {
-          this.data.list.data.push.apply(this.data.list.data, res.data);
-          this.data.list.current = res.current;
+          this.data.list.data.push.apply(this.data.list.data, res.data.data);
+          this.data.list.current = res.data.current;
 
           that.setData({
             list: that.data.list

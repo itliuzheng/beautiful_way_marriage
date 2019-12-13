@@ -10,7 +10,7 @@
         <image class="mask_icon" src="/images/introduction/love_active.png" wx:else></image>
         <text>心动</text>
       </view>
-      <view class="mask_list">
+      <view class="mask_list" bindtap="not_open_yet">
         <image class="mask_icon_message" src="/images/introduction/message.png"></image>
         <text>聊天</text>
       </view>
@@ -57,7 +57,7 @@
     </view>
     <view class="upload-box">
       <view class="upload-list upload-list-m-b" wx:for="{{info.photos}}" wx:key="{{index}}">
-        <image src="{{item.imgUrl}}"></image>
+        <image src="{{item.imgUrl}}" bindtap="previewImg" data-list="{{info.photos}}" data-src="{{item.imgUrl}}"></image>
       </view>
       <view class="upload-list upload-list-m-b " wx:if="{{info.residuePhotoCount}}">
         <!-- <image src="/images/introduction/photo.png"></image> -->
@@ -149,8 +149,8 @@
       <text class="fl">择偶意向</text>
     </view>
     <view class="show-tag">
-      <view class="tag" wx:for="{{info.mateChoice}}" wx:key="{{index}}">{{item}}</view>
-      <view class="tag" wx:if="{{!info.mateChoice.length}}">暂无数据</view>
+      <view class="tag" wx:for="{{mateChoiceList}}" wx:key="{{index}}">{{item.name}}:{{item.value}}</view>
+      <view class="tag" wx:if="{{!mateChoiceList.length}}">暂无数据</view>
     </view>
   </view>
 

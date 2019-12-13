@@ -4,6 +4,7 @@ let app = getApp()
 
 Page({
   data: {
+    info:null
   },
   not_open_yet() {
 
@@ -21,5 +22,25 @@ Page({
       url: `/pages/message/list/list?name=${type}`,
     })
 
+  },
+  getInit() {
+    let that = this;
+
+    config.ajax('POST', {
+
+    }, `/message/`, (resp) => {
+      let res = resp.data;
+
+      if (res.code == 1) {
+          that.setData({
+            info: res.data
+          })
+        
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
   },
 })

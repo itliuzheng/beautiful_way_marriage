@@ -13,6 +13,7 @@ Page({
       imgSrc:''
     },
     upload_list: [{},{},{},{}],
+    mateChoiceList:[],
     ver_height: 230,
     educationArray: ['初中', '高中', '大专', '本科', '研究生', '博士', '博士后'],
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
@@ -28,6 +29,25 @@ Page({
     this.getInit(options.id)
   },
 
+  not_open_yet() {
+    config.mytoast('暂未开放，敬请期待...', (res) => { });
+  },
+  previewImg(e) {
+    //预览图片
+    var src = e.currentTarget.dataset.src;//获取data-src
+    var imgList = e.currentTarget.dataset.list;//获取data-list
+
+    let urls = []
+
+    imgList.forEach((value) => {
+      urls.push(value.imgUrl);
+    })
+
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: urls, // 需要预览的图片http链接列表
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -94,6 +114,14 @@ Page({
 
     })
   },
+  // json转map
+  _objToStrMap(obj) {
+    let strMap = new Map();
+    for (let k of Object.keys(obj)) {
+      strMap.set(k, obj[k]);
+    }
+    return strMap;
+  },
   getInit(userId) {
 
     config.ajax('POST', {
@@ -102,8 +130,20 @@ Page({
       let res = resp.data;
 
       if (res.code == 1) {
+
+        let arr = this._objToStrMap(res.data.mateChoice)
+        let list = [];
+
+        arr.forEach(function (value, key, map) {
+          list.push({
+            name:key,
+            value:value
+          });
+        });
+
         this.setData({
-          info: res.data
+          info: res.data,
+          mateChoiceList: list
         });
       } else {
         config.mytoast(res.msg, (res) => { })

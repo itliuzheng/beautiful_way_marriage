@@ -2,7 +2,7 @@
 <view class="content-box">
   <view class="content-topic">
     <view class="header_bj">
-      <image src="{{myself.imageUrl}}" mode="aspectFill"></image>
+      <image src="{{myself.imageUrl}}" mode="aspectFill" ></image>
     </view>
     <view class="modify_photo" bindtap="upimg">修改形象照</view>
   </view>
@@ -12,7 +12,7 @@
     </view>
     <view class="upload-box">
       <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">
-        <image src="{{item.imgUrl}}"></image>
+        <image src="{{item.imgUrl}}" bindtap="previewImg" data-list="{{upload_list}}" data-src="{{item.imgUrl}}"></image>
       </view>
       <view class="add upload-list-m-b" bindtap="add_upload">
         <view class="horizontal"></view>

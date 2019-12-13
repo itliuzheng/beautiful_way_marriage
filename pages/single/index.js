@@ -27,6 +27,22 @@ Page({
 
   },
 
+  previewImg(e) {
+    //预览图片
+    var src = e.currentTarget.dataset.src;//获取data-src
+    var imgList = e.currentTarget.dataset.list;//获取data-list
+
+    let urls = []
+
+    imgList.forEach((value) => {
+      urls.push(value.url);
+    })
+
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: urls, // 需要预览的图片http链接列表
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -95,8 +111,8 @@ Page({
       wx.hideLoading();
       let res = resp.data;
       if (page != 1) {
-        this.data.list.data.push.apply(this.data.list.data, res.data);
-        this.data.list.current = res.current;
+        this.data.list.data.push.apply(this.data.list.data, res.data.data);
+        this.data.list.current = res.data.current;
 
         that.setData({
           list: that.data.list

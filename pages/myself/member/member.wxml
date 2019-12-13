@@ -49,7 +49,7 @@
           <text class="time_end">{{now_time}}至{{next_time}}</text>
         </view>
       </view>
-      <view class="btn">立即付款</view>
+      <view class="btn"  bindtap="not_open_yet">立即付款</view>
     </view>
 
     <view class="buy-box vip-box">

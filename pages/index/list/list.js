@@ -64,8 +64,8 @@ Page({
 
       if (res.code == 1) {
         if (page != 1) {
-          this.data.list.data.push.apply(this.data.list.data, res.data);
-          this.data.list.current = res.current;
+          this.data.list.data.push.apply(this.data.list.data, res.data.data);
+          this.data.list.current = res.data.current;
 
           that.setData({
             list: that.data.list

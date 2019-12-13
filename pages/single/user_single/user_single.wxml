@@ -10,8 +10,7 @@
       <view>
         <view class="single-img {{item.singleCircleImg.length != 1?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
           <!-- <image src="{{itemImg.url}}" mode="aspectFit"></image> -->
-          <image src="{{itemImg.url}}" mode="aspectFill"></image>
-          
+          <image src="{{itemImg.url}}" mode="aspectFill" bindtap="previewImg" data-list="{{item.singleCircleImg}}" data-src="{{itemImg.url}}"></image>
         </view>
       </view>
       <view class="address">{{item.address}}</view>

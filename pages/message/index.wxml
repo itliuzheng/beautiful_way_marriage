@@ -2,15 +2,17 @@
 <view class="list-cell" bindtap="goDetail" data-type="see_who"> 
   <image class="icon" src="/images/message/icon_01.png"></image>
   <text>我看过谁</text>
-  <mp-badge content="1" style="margin-left: 5px;"/>
+  <mp-badge content="{{info.visitOtherCount}}" wx:if="{{info.visitOtherCount}}" style="margin-left: 5px;"/>
 </view>
 <view class="list-cell" bindtap="goDetail" data-type="who_see"> 
   <image class="icon" src="/images/message/icon_02.png"></image>
   <text>谁看过我</text>
+  <mp-badge content="{{info.visitMeCount}}" wx:if="{{info.visitMeCount}}" style="margin-left: 5px;"/>
 </view>
 <view class="list-cell" bindtap="goDetail" data-type="liked"> 
   <image class="icon" src="/images/message/icon_03.png"></image>
   <text>我心动的</text>
+  <mp-badge content="{{info.likeOtherCount}}" wx:if="{{info.likeOtherCount}}" style="margin-left: 5px;"/>
 </view>
 <view class="list-cell" bindtap="not_open_yet"> 
   <image class="icon" src="/images/message/icon_04.png"></image>
