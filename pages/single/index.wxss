@@ -2,6 +2,19 @@
   line-height: 200rpx;
   text-align: center;
 }
+.no-data image{
+  width: 200rpx;
+  height: 220rpx;
+  display: block;
+  margin: 184rpx auto 36rpx;
+}
+.no-data view{
+  font-size:28rpx;
+  font-weight:400;
+  color:rgba(43,43,43,1);
+  line-height:40px;
+  padding-right: 20rpx;
+}
 .rc_swiper swiper{
   height: 258rpx;
 }

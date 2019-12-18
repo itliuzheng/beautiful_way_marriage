@@ -1,7 +1,8 @@
 <!--index.wxml-->
 <view class="myself">
-  <view class="userinfo">
-    <image class="my-bj" src="{{myself.imageUrl}}" mode="aspectFill"></image>
+  <view class="userinfo {{myself.imageUrl?'':'no_user'}}">
+    <image class="no_user_data" src="/images/no_data/no_user.png" wx:if="{{!myself.imageUrl}}"></image>
+    <image class="my-bj" src="{{myself.imageUrl}}" wx:else mode="aspectFill"></image>
   </view>
   <view class="my-info">
     <view class="list-cell">

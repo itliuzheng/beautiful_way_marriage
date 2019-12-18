@@ -49,5 +49,8 @@
       </view>
     </view>
   </view>
-  <view class="no-data" wx:if="{{!list.data.length}}">暂无数据</view>
+  <view class="no-data" wx:if="{{!list.data.length}}">
+    <image src="/images/no_data/no_list_data.png"></image>
+    <view>暂无数据</view>
+  </view>
 </view>

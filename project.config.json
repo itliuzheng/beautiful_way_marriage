@@ -213,6 +213,13 @@
 					"pathName": "pages/myself/setting/setting",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "music",
+					"pathName": "pages/music/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

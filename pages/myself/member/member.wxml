@@ -8,16 +8,16 @@
       <view class="buy-list {{type == 1?'active':''}}" data-type="1" data-time="365"
        bindtap="goBuy">
         <view class="fl">
-          <text class="name">钻卡</text>
+          <text class="name">会员</text>
           <text class="day">365天</text>
-          <text class="day_amount">日均0.19元</text>
+          <text class="day_amount">日均0.14元</text>
         </view>
         <view class="fr">
-          <text class="amount">¥69.9</text>
+          <text class="amount">¥49.9</text>
           <text class="active_icon"></text>
         </view>
       </view>
-      <view class="buy-list {{type == 2?'active':''}}" data-type="2" data-time="180"
+      <!-- <view class="buy-list {{type == 2?'active':''}}" data-type="2" data-time="180"
        bindtap="goBuy">
         <view class="fl">
           <text class="name">金卡</text>
@@ -40,7 +40,7 @@
           <text class="amount">¥29.9</text>
           <text class="active_icon"></text>
         </view>
-      </view>
+      </view> -->
       <view class="buy-list">
         <view class="fl">
           <text class="name">有效期</text>
@@ -49,6 +49,7 @@
           <text class="time_end">{{now_time}}至{{next_time}}</text>
         </view>
       </view>
+      <!-- <view class="btn"  bindtap="buyMember">立即付款</view> -->
       <view class="btn"  bindtap="not_open_yet">立即付款</view>
     </view>
 

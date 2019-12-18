@@ -21,7 +21,6 @@ Page({
   onLoad: function (options) {
     let now_day = new Date();
     let now = util.formatTime(now_day).substring(0, 10);
-    console.log(now);
     this.setData({
       now_time: now,
       next_time: util.addDate(now_day, 365)
@@ -30,6 +29,14 @@ Page({
   },
   not_open_yet() {
     config.mytoast('暂未开放，敬请期待...', (res) => { });
+  },
+  buyMember(){
+    config.pay({}, function (res) {
+      console.log(res);
+
+    }, function (error) { 
+      console.log(error);
+    })
   },
   goBuy(e){
     let now_day = new Date();

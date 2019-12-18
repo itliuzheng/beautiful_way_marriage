@@ -1,7 +1,7 @@
 //注册或登录
 const getUid = '/wx/user/login',
   //主域名
-  https = "http://192.168.11.121:8008",
+  https = "https://www.jinlianchu.top",
 
   //存微信头像
   saveInfo = '/wx/user/saveInfo',
@@ -252,5 +252,6 @@ module.exports = {
   getStorage: getStorage,
   getHome: getHome,
   getBanner: getBanner,
-  getNews: getNews
+  getNews: getNews,
+  pay: pay
 } 
