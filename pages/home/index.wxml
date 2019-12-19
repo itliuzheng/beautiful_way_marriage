@@ -20,35 +20,40 @@
     </view>
   </view>
   <view class="nav-box">
-    <view class="nav-list" bindtap="not_open_yet">
-      <image src="/images/home/nav_icon_01.png"></image>
-      <view class="name">MITU课堂</view>
+    <view class="nav-list">
+      <navigator url="/pages/music/index">
+        <image src="/images/home/nav_icon_01.png"></image>
+        <view class="name">MITU课堂</view>
+      </navigator>
     </view>
     <view class="nav-list nav-list-center " bindtap="not_open_yet">
       <image src="/images/home/nav_icon_02.png"></image>
       <view class="name">导师直播</view>
     </view>
-    <view class="nav-list nav-list-center" bindtap="not_open_yet">
-      <image src="/images/home/nav_icon_03.png"></image>
-      <view class="name">文章精选</view>
+    <view class="nav-list nav-list-center">
+      <navigator url="/pages/article/article">
+        <image src="/images/home/nav_icon_03.png"></image>
+        <view class="name">文章精选</view>
+      </navigator>
     </view>
-    <view class="nav-list " bindtap="not_open_yet">
-      <image class="fr" src="/images/home/nav_icon_04.png"></image>
-      <view class="name fr">交友专区</view>
+    <view class="nav-list ">
+      <navigator url="/pages/friends/friends">
+        <image class="fr" src="/images/home/nav_icon_04.png"></image>
+        <view class="name fr">交友专区</view>
+      </navigator>
     </view>
   </view>
   <view class="rc_news" wx:if="{{home.topUser.length}}">
     <view class="news-title">我要置顶</view>
     <scroll-view scroll-x class="scroll-x">
       <view wx:for="{{home.topUser}}" wx:key="{{index}}" wx:key="unique" class="view-parent" wx:if="{{item.top == 1}}">
-        <navigator  url="/pages/introduction/introduction?id={{item.id}}">
-          
+        <view bindtap="isVip" data-id="{{item.id}}">
           <view class="stick-card-list">
             <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
             <view class="card-content">
               <view class="card-head">
                 <text class="name">{{item.realName}}</text>
-                <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
+                <text class="lz-icon {{item.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
               </view>
               <view class='name_other'>
                 <text>{{item.age}}岁</text>
@@ -57,7 +62,7 @@
               </view>
             </view>
           </view>
-        </navigator>
+        </view>
 
       </view>
     </scroll-view>
@@ -67,11 +72,11 @@
     <view class="title">每日推荐</view>
   </view>
   <view class="recommend-list" wx:for="{{home.recommendUser}}" wx:key="unique" wx:if="{{item.recommend == 1}}">
-    <navigator url="/pages/introduction/introduction?id={{item.id}}">
+    <view bindtap="isVip" data-id="{{item.id}}">
       <view class="list-bj">
         <image src="{{item.imageUrl}}" mode="aspectFill"></image>
         <view class="certification_tag">
-          <text class="icon_ver "></text>
+          <text class=" {{item.vipLevel == 1?'icon_ver':'icon_ver_not'}}"></text>
           <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
           <text>{{item.userAuth?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
         </view>
@@ -82,7 +87,7 @@
       </view>
       <view class="card-content">
         <view class='move_title'>{{item.realName}}
-          <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
+          <text class="lz-icon {{item.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
           <view class='move_miniTitle'>期待两年内结婚</view>
         </view>
         <view class='name_other'>
@@ -97,7 +102,7 @@
         <view class="name_introduct">{{item.selfIntroduce}}</view>
         <view class="go_more" wx:if="{{item.selfIntroduce}}">全文</view>
       </view>
-    </navigator>
+    </view>
   </view>
 
 </view>

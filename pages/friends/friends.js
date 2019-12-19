@@ -1,5 +1,5 @@
 
-const config = require('../../../utils/config.js');
+const config = require('../../utils/config.js');
 let app = getApp()
 let timer = null
 Page({
@@ -8,34 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url: '',
-    info: null,
-    list: null
+    info:null,
+    list:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.name);
-    let title = '';
-    let url = '';
-    if (options.name == 'liked'){
-      title = '心动列表'
-      url = '/like/page'
-    } else if (options.name == 'see_who') {
-      title = '我看过谁'
-      url = '/visit/visit-record/visitOther'
-    } else if (options.name == 'who_see') {
-      title = '谁看过我'
-      url = '/visit/visit-record/visitMe'
-    }
-    wx.setNavigationBarTitle({
-      title: title,
-    })
-    this.setData({
-      url: url
-    })
+
   },
 
   /**
@@ -122,8 +103,7 @@ Page({
     let that = this;
 
     config.ajax('POST', {
-      pageNum:page
-    }, that.data.url, (resp) => {
+    }, `/user/page`, (resp) => {
       let res = resp.data;
 
       if (res.code == 1) {

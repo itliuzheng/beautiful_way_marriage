@@ -17,6 +17,7 @@ Page({
     noCode: false,
     info:null,
     home:null,
+    vipLevel:false
   },
 
   /**
@@ -180,7 +181,20 @@ Page({
     })
 
   },
-
+  isVip(e){
+    let id = e.currentTarget.dataset.id;
+    if (this.data.info.vipLevel){
+      let url = `/pages/introduction/introduction?id=${id}`
+      wx.navigateTo({
+        url: url,
+      })
+    }else{
+      config.mytoast('您还不是会员，暂不能查看他/她的个人信息', (res) => { })
+      wx.navigateTo({
+        url: '/pages/myself/member/member',
+      })
+    }
+  },
   getHome() {
 
     config.ajax('GET', {

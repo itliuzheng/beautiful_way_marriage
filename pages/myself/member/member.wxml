@@ -46,11 +46,12 @@
           <text class="name">有效期</text>
         </view>
         <view class="fr">
-          <text class="time_end">{{now_time}}至{{next_time}}</text>
+          <text class="time_end" wx:if="{{info.vipLevel != 1}}">{{now_time}}至{{next_time}}</text>
+          <text class="time_end" wx:else>{{now_time}}至{{info.vipExpireDate}}</text>
         </view>
       </view>
-      <!-- <view class="btn"  bindtap="buyMember">立即付款</view> -->
-      <view class="btn"  bindtap="not_open_yet">立即付款</view>
+      <view class="btn"  bindtap="buyMember" wx:if="{{info.vipLevel != 1}}">立即付款</view>
+      <view class="btn"  wx:else>您已是会员了</view>
     </view>
 
     <view class="buy-box vip-box">

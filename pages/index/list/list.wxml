@@ -1,10 +1,10 @@
 <view class="result">
   <view class="recommend-list" wx:for="{{list.data}}" wx:key="unique" >
-    <navigator url="/pages/introduction/introduction?id={{item.id}}">
+    <view bindtap="isVip" data-id="{{item.id}}">
       <view class="list-bj">
         <image src="{{item.imageUrl}}" mode="aspectFill"></image>
         <view class="certification_tag">
-          <text class="icon_ver "></text>
+          <text class=" {{item.vipLevel == 1?'icon_ver':'icon_ver_not'}}"></text>
           <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
           <text>{{item.userAuth?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
         </view>
@@ -16,7 +16,7 @@
       
       <view class="card-content">
         <view class='move_title'>{{item.realName}}
-          <text class="lz-icon {{item.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
+          <text class="lz-icon {{item.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
           <view class='move_miniTitle'>期待两年内结婚</view>
         </view>
         <view class='name_other'>
@@ -32,8 +32,7 @@
         <view class="go_more" wx:if="{{item.selfIntroduce}}">全文</view>
       </view>
     
-    
-    </navigator>
+    </view>
   </view>
   <view class="no-data" wx:if="{{!list.data.length}}">暂无数据</view>
 </view>

@@ -1,0 +1,45 @@
+
+<view class="audio-box">
+  <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls="{{false}}" loop autoplay="{{true}}"></audio>
+  <view class="name">{{name}}</view>
+  <view class="poster">
+    <image src="{{poster}}"></image>
+  </view>
+  
+  <view class="progress-box">
+    <view class="percent-num">{{starttime}}/{{duration}}</view>
+    <view class='slid music-prog'>
+      <slider bindchange="sliderChange" activeColor="#FFFFFF" backgroundColor="rgba(255,255,255,0.4)"  block-size="12px" step="2" value="{{offset}}" max="{{max}}" />
+    </view>
+  </view>
+
+
+
+  <view class="icon-box">
+    <view class="icon-type fl">
+      <image class="icon_list" src="/images/music/list.png"></image>
+      <view class="icon_name">播放列表</view>
+    </view>
+    <view class="icon-type fr">
+      <image class="icon_close" src="/images/music/close.png"></image>
+      <view class="icon_name">定时关闭</view>
+    </view>
+    <view class="play-box">
+      <view class="icon-type fl">
+        <image class="icon_back" src="/images/music/back_01.png"></image>
+      </view>
+      <view class="icon-type fl" wx:if="{{!isOpen}}">
+        <image class="icon_play"   src="/images/music/play.png" bindtap="audioPlay"></image>
+      </view>
+      <view class="icon-type type_pause fl" wx:else>
+        <image class="icon_pause"  src="/images/music/pause.png" bindtap="audioPause"></image>
+      </view>
+      <view class="icon-type fl">
+        <image class="icon_front" src="/images/music/front_01.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- <button type="primary" bindtap="audio14">设置当前播放时间为14秒</button> -->

@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    info: null,
     list:null
   },
 
@@ -29,6 +30,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getStatus();
     this.getInit();
 
   },
@@ -55,6 +57,48 @@ Page({
     }
   },
 
+  getStatus() {
+
+    let _this = this;
+
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+    config.ajax('GET', {
+    }, `/auth/status`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          info: res.data
+        })
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+
+  },
+  isVip(e) {
+    let id = e.currentTarget.dataset.id;
+    if (this.data.info.vipLevel) {
+      let url = `/pages/introduction/introduction?id=${id}`
+      wx.navigateTo({
+        url: url,
+      })
+    } else {
+      config.mytoast('您还不是会员，暂不能查看他/她的个人信息', (res) => { })
+      wx.navigateTo({
+        url: '/pages/myself/member/member',
+      })
+    }
+  },
   getInit(page = 1) {
     let that = this;
 

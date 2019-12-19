@@ -147,11 +147,12 @@ function getData(e, name) {
  */
 function pay(res, successData, errorData) {
   wx.requestPayment({
-    "timeStamp": res.data.data.timeStamp,
-    "nonceStr": res.data.data.nonceStr,
-    "package": res.data.data.package,
+    "appId": res.data.appId,
+    "timeStamp": res.data.timeStamp,
+    "nonceStr": res.data.nonceStr,
+    "package": res.data.package,
     "signType": "MD5",
-    "paySign": res.data.data.paySign,
+    "paySign": res.data.paySign,
     "success": function (res) {
       wx.showToast({
         title: '支付完成',

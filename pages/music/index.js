@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_match: false,
+    is_match: true,
     danmuList: [
       {
         text: '第 1s 出现的弹幕',
@@ -84,8 +84,10 @@ Page({
     }
   },
   clickPlayer(e){
-
-    config.mytoast('暂未开放，敬请期待...', (res) => { });
+    wx.navigateTo({
+      url: '/pages/music/audio/audio',
+    })
+    // config.mytoast('暂未开放，敬请期待...', (res) => { });
   },
   clickMessage(){
 

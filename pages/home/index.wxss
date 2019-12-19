@@ -229,6 +229,15 @@ page{
   margin-left: 0;
   margin-top: 8rpx;
 }
+.certification_tag .icon_ver_not{
+  display: inline-block;
+  width: 24rpx;
+  height: 24rpx;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAEdElEQVRIS61WW0hsVRj+1t7u7Vx0dFTUvJzRBMW7Yo17znscgiAf7DykZg0UPURQQeBLj4egpyIo6qHzEOoRb09RoigaOBdHVCRTEJWTouKNvF/2XvVvnHFm9p7B6Hwv417r+//vX67/shjuAc45C4VCNaqqugEUaZqWwhjjAM4BrAD4XVGUnXu4AktGmpqackqS9CljrJNzXpyEyznn04IgfOt2u3tvgzGlmwpyzkW/3/8JgC4AWfeJPIozyzn/zOPxTJjZGQRvT/UMwGv/USiarjLGupqbm7+K9xEjODk5+ZIsyxRZ+f8Qizb9UVGUD6IXIoLj4+MWq9VKYs0vSCzspktRlC/DHxFBn8/3A4D3X7AYudMEQXjkdrtH6UMXDAQCDZqmhQAIKSkpsNlsMbo3Nzc4OztLGEt6ejoYM+bf5eUlzs/PaW9RUZR6xpims3w+368AHtHfmZmZqKioiHFORgsLC6aCDocDlZWVpnujo6PY2NhAQUEBnE7nex6P5ykLBoMVmqYtUXHrR2YMkiShvLwcdrtdd8Q5x9zcHK6urgyOq6urkZaWZljf3t7G0NBQZN1isTz3er0PmM/no1p7Em9RWFiIoqKiyPLa2hp2d3djaE6nUw8sHhTg4OCggZ+VleUhwV8AvB5vRKerqamJLB8eHmJlhbrYHerq6mC1Wg2CxBsbGzOs2+32z0lwDUCJ2SU0NjZClmV9S9M0hEIh/ZeQk5ODsrIyg9n19TV6enpwenpq2BNF8QkJ0k5sWt5SS0tLkZubGzFcXl7G0dGRfs/19fVITU01OJ2ZmUEwGDRNIlEUfyJBygTJjBF/Rzs7O1hfX0d+fj5cLpfB5OTkRD8dlZEZRFF8RoJ7ALLNCIIgoKmpCfRLoCydn59HQ0ODnsnxoHuLv+dojiiK35Agnf8V05AAvSapNsM4ODhAVpZxgFAGDwwMJHKjr0uS9AXz+/3fcc4/TMTMy8tDSYlpTkVMqAyGh4dBtZcM2dnZb5NgC+f8rkLjLCgx6F+YDKurqxgZGUnKEQThprCwMIMtLi7KJycnzwHcpWOcaW1traG/himUIL29vTg+Pk4qaLFY+r1e71t6O5uenv6YMfZ1Iovi4mK9H5phdnYWfr8/qRg9ORwOx6ttbW0hXbCvr092uVx/cM6NlQyApkFVVZXBKU2Q7u5uULEng8Vi6fZ6vW3EiZ6HCoBxABYzYyoPGl3RmJiYwNLSUlIxURQ3nU5n3ePHjw9iBOnD7/e/A+BpeHJEe6I2Ru0sjL29PfT39+uTJBFEUTyz2WwPOzo65sMcw9QMBALvqqr6PWMspm+pqqp3fxIiEeqp4b5qJiiK4r7dbn+jvb3dF71v+kwMBAIPVVXtYYw9iHd2cXGBra0tvacmgizLgZycnNaWlhbK/hgkfAjTo8put3+kaZrp25SmwebmJqh/hiFJ0l+yLHd1dnb+nCiYpC9vMpqZmbGpqvom55xmJj31X45q9n/v7+//ub29PZuRkfFba2vrcNIM+nfzH6QZsQGrc+6DAAAAAElFTkSuQmCC') no-repeat center;
+  background-size: 100%;
+  margin-left: 0;
+  margin-top: 8rpx;
+}
 .certification_tag .icon_wx{
   display: inline-block;
   width: 30rpx;
@@ -298,6 +307,14 @@ page{
   font-weight:400;
   color:rgba(182,182,182,1);
   line-height:40rpx;
+  
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .go_more{
   text-align: right;

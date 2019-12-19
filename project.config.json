@@ -220,6 +220,33 @@
 					"pathName": "pages/music/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "文章精选",
+					"pathName": "pages/article/article",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "文章详情",
+					"pathName": "pages/article/detail/detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "颜值专区",
+					"pathName": "pages/friends/friends",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "音频",
+					"pathName": "pages/music/audio/audio",
+					"scene": null
 				}
 			]
 		}

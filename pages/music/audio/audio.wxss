@@ -1,0 +1,109 @@
+.audio-box{
+  width: 100%;
+  padding-bottom: 40rpx;
+  background: #000;
+}
+
+.name{
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:44rpx;
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+.poster{
+  width: 280rpx;
+  height: 280rpx;
+  margin: 0 auto;
+}
+.poster image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.icon-box{
+  padding: 0 40rpx;
+  overflow: hidden;
+  position: relative;
+}
+.play-box{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%,0);
+}
+.icon-type{
+  display: inline-block;
+  text-align: center;
+}
+.icon_name{
+  font-size:20rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:28rpx;
+}
+.icon_list{
+  width: 44rpx;
+  height: 46rpx;
+  margin-bottom: 2rpx;
+}
+.icon_close{
+  width: 44rpx;
+  height: 44rpx;
+  margin-bottom: 4rpx;
+}
+
+.icon_back{
+  width: 30rpx;
+  height: 34rpx;
+  margin-right: 80rpx;
+}
+.icon_front{
+  width: 30rpx;
+  height: 34rpx;
+}
+.icon_play{
+  width: 60rpx;
+  height: 68rpx;
+  margin-right: 80rpx;
+}
+.type_pause{
+  padding: 0 10rpx;
+}
+.icon_pause{
+  width: 42rpx;
+  height: 64rpx;
+  margin-right: 80rpx;
+}
+
+.progress-box{
+  overflow: hidden;
+  padding: 0 40rpx;
+  margin:84rpx 0 42rpx;
+}
+.music-prog{
+  float: right;
+  width: 500rpx;
+}
+
+.percent-num{
+  width:176rpx;
+  height:34rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0px 2rpx 0px rgba(0,0,0,0.5);
+  border-radius:17rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(196,171,91,1);
+  line-height:34rpx;
+  text-align: center;
+  float: left;
+  margin-right: -100%;
+  margin-top: 18rpx;
+}

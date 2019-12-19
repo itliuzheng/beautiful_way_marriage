@@ -1,0 +1,14 @@
+
+  <view class="recommend-list" wx:for="123" wx:key="unique">
+    <view class="time">2019年3月17日  下午4:29</view>
+    <navigator url="/pages/article/detail/detail?id={{item.id}}">
+      <view class="list-bj">
+        <image src="{{item.imageUrl}}" mode="aspectFill"></image>
+      </view>
+      <view class="card-content">
+        <view class='move_title'>找来找去找不到原因
+        </view>
+        <view class="name_introduct">顺风车是以私家车主为运力、以车主和乘客平等互助合乘为特征的新兴出行方式。但在顺风合乘中，车内吸烟现象时有发生，导致车内空气质量变差，甚至由此产生了一些车乘矛盾和纠纷，影响了用户的出行体验。 基于此，在顺风车用户委员会的提议下，为搭建清新健康的顺风合乘环境，嘀嗒顺风车平台推出《无烟顺风车管理办法》并予以公示征求公众意见反馈。 顺风车是以私家车主为运力、以车主和乘客平等互助合乘为特征的新兴出行方式。但在顺风合乘中，车内吸烟现象时有发生，导致车内空气质量变差，甚至由此产生了一些车乘矛盾和纠纷，影响了用户的出行体验。 基于此，在顺风车用户委员会的提议下，为搭建清新健康的顺风合乘环境，嘀嗒顺风车平台推出《无烟顺风车管理办法》并予以公示征求公众意见反馈。</view>
+      </view>
+    </navigator>
+  </view>

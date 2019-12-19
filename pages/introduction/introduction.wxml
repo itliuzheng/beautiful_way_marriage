@@ -48,6 +48,7 @@
       <view class="detail_type fl">
         <image src="/images/introduction/big_icon_02.png"></image>
         <view class="detail_name">帮我约TA</view>
+        <button class="contact_tbn" open-type="contact" bindcontact="handleContact"></button>
       </view>
     </view>
   </view>

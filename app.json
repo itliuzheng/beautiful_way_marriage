@@ -27,7 +27,11 @@
     "pages/myself/introduction/mate_choice/mate_choice",
     "pages/single/user_single/user_single",
     "pages/message/list/list",
-    "pages/music/index"
+    "pages/music/index",
+    "pages/article/article",
+    "pages/article/detail/detail",
+    "pages/friends/friends",
+    "pages/music/audio/audio"
   ],
   "window": {
     "backgroundTextStyle": "light",
