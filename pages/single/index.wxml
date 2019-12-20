@@ -1,7 +1,7 @@
 
 <view class="rc_swiper">
   <swiper style="height:320rpx;" indicator-dots="{{true}}" indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#fff" autoplay="{{true}}" interval="3000">
-    <block wx:for="{{background}}" wx:key="unique">
+    <block wx:for="{{background}}" wx:key="unique" wx:if="{{!item.isShow}}">
       <swiper-item>
         <view class="swiper-item">
           <image src="{{item.imgUrl}}" mode="aspectFill"></image>

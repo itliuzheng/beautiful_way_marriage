@@ -9,11 +9,11 @@
     <form bindsubmit="formSubmitRegister" >
       <view class="input-cell">
         <text class="input-icon icon-phone"></text>
-        <!-- <input placeholder="手机号"></input> -->
-        <view class="input">{{phone}}</view>
-        <button class="code-btn" style="width:170rpx;height:58rpx;min-height:58rpx;"
+        <input placeholder="手机号" name="phone" type="number"></input>
+        <!-- <view class="input">{{phone}}</view> -->
+        <!-- <button class="code-btn" style="width:170rpx;height:58rpx;min-height:58rpx;"
          open-type="getPhoneNumber" 
-         bindgetphonenumber="getPhoneNumber">获取手机号</button>
+         bindgetphonenumber="getPhoneNumber">获取手机号</button> -->
       </view>
       <view class="input-cell">
         <text class="input-icon icon-password"></text>

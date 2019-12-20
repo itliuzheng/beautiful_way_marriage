@@ -37,10 +37,10 @@ Page({
   formSubmitRegister(e) {
     let form = e.detail.value;
     console.log(form);
-    if (this.data.phone == '' || this.data.phone == '点击右侧按钮') {
-      config.mytoast('手机号不能为空', (res) => { })
-      return false
-    }
+    // if (this.data.phone == '' || this.data.phone == '点击右侧按钮') {
+    //   config.mytoast('手机号不能为空', (res) => { })
+    //   return false
+    // }
     if (form.password == '') {
       config.mytoast('密码不能为空', (res) => { })
       return false
@@ -48,7 +48,8 @@ Page({
 
     config.ajax('POST', {
       openId: app.globalData.uid,
-      phone: this.data.phone,
+      // phone: this.data.phone,
+      phone: form.phone,
       password: form.password,
       sources: '微信小程序'
     }, config.register, (res) => {

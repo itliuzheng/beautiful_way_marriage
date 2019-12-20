@@ -44,7 +44,8 @@ Page({
     var that = this;
     wx.chooseImage({
       count: 1,
-      sizeType: 'original',
+      // sizeType: 'original',
+      sizeType: 'compressed',
       success: function (res) {
         let str = res.tempFilePaths[0];
 
@@ -216,7 +217,8 @@ Page({
 
     wx.chooseImage({
       count: 9,
-      sizeType: 'original',
+      // sizeType: 'original',
+      sizeType: 'compressed',
       success: function (res) {
         let arrImg = res.tempFilePaths;
         let photos = [];

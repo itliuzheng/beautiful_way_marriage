@@ -134,6 +134,7 @@ Page({
       type: 2
     }, config.getBanner, (res) => {
       console.log(res.data);
+      console.log(res.data.data.data);
 
       if (res.data.code == 1) {
         this.setData({

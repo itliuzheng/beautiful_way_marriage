@@ -82,7 +82,8 @@ Page({
 
     wx.chooseImage({
       count: 1,
-      sizeType: 'original',
+      // sizeType: 'original',
+      sizeType: 'compressed',
       success: function (res) {
         let str = res.tempFilePaths[0];
         _this.setData({
