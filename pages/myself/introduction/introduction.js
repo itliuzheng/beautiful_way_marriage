@@ -49,22 +49,27 @@ Page({
       success: function (res) {
         let str = res.tempFilePaths[0];
 
-        let suffix = str.substring(str.lastIndexOf('.'));
-
-        wx.getFileSystemManager().readFile({
-          filePath: res.tempFilePaths[0], //选择图片返回的相对路径
-          encoding: 'base64', //编码格式
-          success: res => { //成功的回调
-            let json = {
-              "image": res.data,
-              "imageExt": suffix,
-
-            }
-            that.updateUserImage(json, str);
-
-
-          }
+        console.log(str);
+        wx.redirectTo({
+          url: `/pages/myself/introduction/cropper_img/cropper_img?src=${str}`,
         })
+
+        // let suffix = str.substring(str.lastIndexOf('.'));
+
+        // wx.getFileSystemManager().readFile({
+        //   filePath: res.tempFilePaths[0], //选择图片返回的相对路径
+        //   encoding: 'base64', //编码格式
+        //   success: res => { //成功的回调
+        //     let json = {
+        //       "image": res.data,
+        //       "imageExt": suffix,
+
+        //     }
+        //     that.updateUserImage(json, str);
+
+
+        //   }
+        // })
 
       },
     })

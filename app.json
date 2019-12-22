@@ -32,7 +32,8 @@
     "pages/article/detail/detail",
     "pages/friends/friends/friends",
     "pages/music/audio/audio",
-    "pages/friends/index"
+    "pages/friends/index",
+    "pages/myself/introduction/cropper_img/cropper_img"
   ],
   "window": {
     "backgroundTextStyle": "light",
