@@ -30,8 +30,9 @@
     "pages/music/index",
     "pages/article/article",
     "pages/article/detail/detail",
-    "pages/friends/friends",
-    "pages/music/audio/audio"
+    "pages/friends/friends/friends",
+    "pages/music/audio/audio",
+    "pages/friends/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

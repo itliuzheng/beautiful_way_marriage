@@ -236,9 +236,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "颜值专区",
-					"pathName": "pages/friends/friends",
+					"id": 26,
+					"name": "交友专区",
+					"pathName": "pages/friends/index",
 					"query": "",
 					"scene": null
 				},
@@ -246,6 +246,7 @@
 					"id": -1,
 					"name": "音频",
 					"pathName": "pages/music/audio/audio",
+					"query": "",
 					"scene": null
 				}
 			]

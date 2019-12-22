@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_match: true,
+    is_match: false,
     danmuList: [
       {
         text: '第 1s 出现的弹幕',

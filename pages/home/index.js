@@ -40,6 +40,7 @@ Page({
         wx.navigateTo({
           url: '/pages/login/login/login'
         })
+        return false;
       }
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -59,12 +60,14 @@ Page({
           wx.navigateTo({
             url: '/pages/login/index'
           })
+          return false;
         }
         if (!token) {
           clearTimeout(timer);
           wx.navigateTo({
             url: '/pages/login/login/login'
           })
+          return false;
         }
       }
     } else {
@@ -86,12 +89,14 @@ Page({
         wx.navigateTo({
           url: '/pages/login/index'
         })
+        return false;
       }
 
       if (!token) {
         wx.navigateTo({
           url: '/pages/login/login/login'
         })
+        return false;
       }
     }
 
@@ -251,5 +256,39 @@ Page({
   not_open_yet(){
 
     config.mytoast('暂未开放，敬请期待...', (res) => { });
+  },
+  goUrl(e) {
+    let url = e.currentTarget.dataset.url;
+    var token = wx.getStorageSync('token')
+
+    console.log(url);
+    console.log(app.globalData.userInfo);
+    console.log(token);
+
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function(){
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      },500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+    if (url) {
+      wx.navigateTo({
+        url: url,
+      })
+    } else {
+      config.mytoast('暂未开放，敬请期待...', (res) => { });
+    }
   }
 })

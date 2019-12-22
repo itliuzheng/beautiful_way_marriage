@@ -1,10 +1,10 @@
 <!--pages/home/index.wxml-->
 <view class="home">
-  <navigator class="search-box" url="/pages/home/search/search">
+  <view class="search-box" data-url="/pages/home/search/search" bindtap="goUrl">
     <text class="search-icon"></text>
     <text class="search-line"></text>
     <text class="search-text">自定义筛选</text>
-  </navigator>
+  </view>
   
   <view class="page-body">
     <view class="page-section rc_swiper">
@@ -37,10 +37,10 @@
       </navigator>
     </view>
     <view class="nav-list ">
-      <navigator url="/pages/friends/friends">
+      <view data-url="/pages/friends/friends" bindtap="goUrl">
         <image class="fr" src="/images/home/nav_icon_04.png"></image>
         <view class="name fr">交友专区</view>
-      </navigator>
+      </view>
     </view>
   </view>
   <view class="rc_news" wx:if="{{home.topUser.length}}">
