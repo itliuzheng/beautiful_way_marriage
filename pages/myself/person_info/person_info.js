@@ -8,7 +8,7 @@ Page({
     ageArray: [],
     heightArray: [],
     educationArray: ['初中', '高中', '大专', '本科', '研究生', '博士', '博士后'],
-    maritalStatusArray: ['未婚','已婚','离异'],
+    maritalStatusArray: ['未婚','丧偶','离异'],
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
     // constellationArray: ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'],
     constellationArray: ['白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座'],

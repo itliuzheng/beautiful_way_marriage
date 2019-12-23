@@ -128,7 +128,6 @@ Page({
       })
       setTimeout(function () {
         var content = that.data.content;
-        console.log(content[_num].user_id)
         that.getselectL(content[_num].user_id)
         content.splice(_num, 1);
         console.log(content);

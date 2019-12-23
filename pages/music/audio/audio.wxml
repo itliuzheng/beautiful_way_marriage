@@ -1,9 +1,9 @@
 
 <view class="audio-box">
-  <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls="{{false}}" loop autoplay="{{true}}"></audio>
-  <view class="name">{{name}}</view>
+  <audio poster="{{audio.imgUrl}}" name="{{audio.title}}" src="{{audio.audioUrl}}" id="myAudio" controls="{{false}}" loop autoplay="{{true}}"></audio>
+  <view class="name">{{audio.title}}</view>
   <view class="poster">
-    <image src="{{poster}}"></image>
+    <image src="{{audio.imgUrl}}"></image>
   </view>
   
   <view class="progress-box">

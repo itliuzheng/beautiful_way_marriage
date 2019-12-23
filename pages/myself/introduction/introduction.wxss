@@ -158,6 +158,14 @@ page{
 .upload-list:nth-child(4n){
   margin-right: 0;
 }
+.upload-list .close{
+  position: absolute;
+  right: -15rpx;
+  top: -15rpx;
+  width: 30rpx;
+  height: 30rpx;
+  z-index: 10;
+}
 
 
 .upload-list-m-b{

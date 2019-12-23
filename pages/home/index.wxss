@@ -47,12 +47,37 @@ page{
   vertical-align: top;
 }
 
+.rc_swiper{
+  position: relative;
+}
 .rc_swiper swiper{
-  height: 258rpx;
+  height: 240rpx;
+}
+
+.dots{
+  position: absolute;
+  bottom: 16rpx;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  left: 50%;
+  transform: translate(-50%,0)
+}
+.dot{
+  width: 20rpx;
+  height: 4rpx;
+  background:rgba(255,255,255,0.5);
+  margin: 0 16rpx;
+}
+.active{
+  width: 20rpx;
+  height: 4rpx;
+  background-color: #fff;
 }
 .swiper-item{
   width: 100%;
-  height: 258rpx;
+  height: 240rpx;
 }
 .swiper-item image{
   height: 100%;
@@ -324,4 +349,53 @@ page{
   color:rgba(192,164,76,1);
   line-height:34rpx;
   margin-top: 10rpx;
+}
+
+
+.maskCode{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toast_centerCode{
+  position: relative;
+  width: 686rpx;
+  height: 678rpx;
+  border-radius:10rpx;
+  background-color: rgba(255, 255, 255, 1);
+  box-sizing: border-box;
+  padding:60rpx 40rpx 40rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.toat_mainCode{
+    width: 100%;
+  height: 400rpx;
+  font-size:28rpx;
+  color: RGBA(153, 153, 153, 1);
+  text-align: center;
+}
+.toat_mainCode text{
+  display: block;
+  margin: 0 auto;
+}
+.toat_mainCode image{
+  width: 282rpx;
+  height: 282rpx;
+  display: block;
+  margin: 100rpx auto 0;
+}
+.mask_close{
+  position: absolute;
+  width: 48rpx;
+  height: 48rpx;
+  right: -24rpx;
+  top: -24rpx;
+  z-index: 99;
 }

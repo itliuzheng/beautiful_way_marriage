@@ -3,11 +3,14 @@
 </view>
 <view class="single-list">
   <view class="list" wx:for="{{list.data}}" wx:key="{{index}}">
-    <view class="fl user_icon">
+    <view class="fl user_icon" bindtap="goUrl" data-url="/pages/introduction/introduction?id={{item.id}}">
       <image src="{{item.avatarUrl}}"></image>
     </view>
     <view class="fl single-content">
-      <view class="name">{{item.nickName}}</view>
+      <view class="name clearfix">{{item.nickName}}
+        <text class="deleteSingle" bindtap="deleteSingle" data-id="{{item.id}}" wx:if="{{user_id == item.userId}}">删除</text>
+      </view>
+      <view class="time">{{item.createDate}}</view>
       <view class="content">{{item.description}}</view>
       <view>
         <view class="single-img {{item.singleCircleImg.length != 1?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
@@ -18,7 +21,18 @@
       </view>
       <view class="address">{{item.address}}</view>
       <view class="time-box clearfix">
-        <view class="fl time">{{item.createDate}}</view>
+        <!-- 点赞 -->
+        <view class="fl icons" bindtap="clickPraise" data-id="{{item.id}}" data-is_praise="{{item.isPraise}}">
+          <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
+          <text>{{item.praise}}</text>
+        </view>
+
+        <!-- 评论 -->
+        <view class="fl icons" bindtap="clickComment" data-id="{{item.id}}" data-name="{{item.nickName}}">
+          <text class="icon_message"></text>
+          <text>{{item.commentCount}}</text>
+        </view>
+
 
         <!-- 转发 -->
         <view class="fr icons" bindtap="clickShare" data-id="{{item.id}}" data-index="{{index}}">
@@ -26,18 +40,6 @@
           <text>{{item.forwardCount}}</text>
         </view>
 
-        <!-- 消息 -->
-        <view class="fr icons" bindtap="clickComment" data-id="{{item.id}}" data-name="{{item.nickName}}">
-          <text class="icon_message"></text>
-          <text>{{item.commentCount}}</text>
-        </view>
-
-        <!-- 点赞 -->
-        <view class="fr icons" bindtap="clickPraise" data-id="{{item.id}}" data-is_praise="{{item.isPraise}}">
-          <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
-          <text>{{item.praise}}</text>
-        </view>
-        
 
       </view>
       <view class="comment" wx:if="{{item.commentList.length}}">

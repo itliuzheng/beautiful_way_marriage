@@ -16,7 +16,8 @@
     <view class="push_imgs">
       
       <view class="upload-box">
-        <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">  
+        <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}" bindtap="closeImg" data-index="{{index}}">  
+          <text class="close">x</text>
           <image src="{{item.src}}"></image>
         </view>
         <view class="add upload-list-m-b" bindtap="chooseImage">

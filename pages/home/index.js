@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentSwiper:0,
     background: [],
     userRecommend: [],
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
@@ -17,7 +18,8 @@ Page({
     noCode: false,
     info:null,
     home:null,
-    vipLevel:false
+    vipLevel:false,
+    isShow_wx:false
   },
 
   /**
@@ -260,11 +262,6 @@ Page({
   goUrl(e) {
     let url = e.currentTarget.dataset.url;
     var token = wx.getStorageSync('token')
-
-    console.log(url);
-    console.log(app.globalData.userInfo);
-    console.log(token);
-
     if (!app.globalData.userInfo) {
       config.mytoast('您还未登录，请先登录', (res) => { });
       setTimeout(function(){
@@ -290,5 +287,69 @@ Page({
     } else {
       config.mytoast('暂未开放，敬请期待...', (res) => { });
     }
+  },
+  showWx(){
+
+    var token = wx.getStorageSync('token')
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.info.completeInfo) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/person_info/person_info',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.info.userAuth) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.info.vipLevel) {
+      config.mytoast('请购买会员后查看~', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/member/member',
+        })
+      }, 500)
+      return false;
+    }
+
+    this.setData({
+      isShow_wx:true
+    })
+  },
+  closeMask() {
+    this.setData({
+      isShow_wx: false
+    })
+
+  },
+  swiperChange(e) {
+    this.setData({
+      currentSwiper: e.detail.current
+    })
   }
 })

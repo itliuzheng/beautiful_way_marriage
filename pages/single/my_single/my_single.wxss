@@ -38,6 +38,8 @@
   border-radius: 50%;
   overflow: hidden;
   margin-right: -100%;
+  position: relative;
+  z-index: 10;
 }
 .user_icon image{
   display: block;
@@ -80,6 +82,14 @@
   font-weight:400;
   color:rgba(136,136,136,1);
   line-height:34rpx;
+}
+.time{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(136,136,136,1);
+  line-height:34rpx;
+  text-align: right;
 }
 .icons text{
   display: inline-block;
@@ -202,4 +212,8 @@
   letter-spacing: 2px;
   padding:0;
   line-height: 40px;
+}
+.deleteSingle{
+  float: right;
+  font-weight: normal;
 }

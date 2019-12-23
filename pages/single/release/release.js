@@ -27,7 +27,6 @@ Page({
     let type = e.detail.target.dataset.type;
     if(type == 'release'){
       //发布
-      
       this.releaseAjax(e.detail.value.description,2);
 
     }else{
@@ -36,8 +35,24 @@ Page({
 
     }
   },
+  closeImg(e){
+    let index = e.currentTarget.dataset.index;
+    let arr = this.data.upload_list;
+
+    arr.splice(index,1);
+    this.setData({
+      upload_list: arr
+    })
+  },
   releaseAjax(description, status){
     let _this = this;
+
+    console.log(description);
+    if (!description) {
+      config.mytoast('内容不能为空', (res) => { });
+      return false;
+    }
+
 
     wx.showLoading({
       title: '数据加载中...',
@@ -59,10 +74,8 @@ Page({
       wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
-
         wx.navigateBack()
       } else {
-
         config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
@@ -81,35 +94,40 @@ Page({
     }
 
     wx.chooseImage({
-      count: 1,
+      count: 9,
       // sizeType: 'original',
       sizeType: 'compressed',
       success: function (res) {
-        let str = res.tempFilePaths[0];
-        _this.setData({
-          image_front: str
+
+        res.tempFilePaths.forEach((value,index)=>{
+
+
+          // let value = res.tempFilePaths[0];
+
+          let suffix = value.substring(value.lastIndexOf('.'));
+
+          wx.getFileSystemManager().readFile({
+            filePath: value, //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: res => { //成功的回调
+              let arrList = _this.data.upload_list;
+
+              arrList.push({
+                src: value,
+                singleCircleImg: res.data,
+                singleCircleImgExt: suffix
+              });
+
+              _this.setData({
+                upload_list: arrList,
+              })
+            }
+          })
+
+
         })
 
-        let suffix = str.substring(str.lastIndexOf('.'));
 
-        wx.getFileSystemManager().readFile({
-          filePath: res.tempFilePaths[0], //选择图片返回的相对路径
-          encoding: 'base64', //编码格式
-          success: res => { //成功的回调
-            console.log('data:image/png;base64,' + res.data)
-            let arrList = _this.data.upload_list;
-
-            arrList.push({
-              src: str,
-              singleCircleImg: res.data,
-              singleCircleImgExt: suffix
-            });
-
-            _this.setData({
-              upload_list: arrList,
-            })
-          }
-        })
 
       },
     })

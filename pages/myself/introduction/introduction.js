@@ -249,7 +249,7 @@ Page({
 
     let _this = this;
     wx.showLoading({
-      title: '数据加载中...',
+      title: '图片上传中...',
       mask: true,
       success: function (res) { },
       fail: function (res) { },
@@ -274,7 +274,7 @@ Page({
   getPhotos() {
     let _this = this;
     wx.showLoading({
-      title: '数据加载中...',
+      title: '获取图片中...',
       mask: true,
       success: function (res) { },
       fail: function (res) { },
@@ -296,5 +296,30 @@ Page({
 
     })
 
-  }
+  },
+  closeImg(e) {
+    let id = e.currentTarget.dataset.id;
+
+    let _this = this;
+    wx.showLoading({
+      title: '删除中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+    config.ajax('POST', {
+    }, `/personal/photo-album/delete/${id}`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.getPhotos();
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+  },
 })

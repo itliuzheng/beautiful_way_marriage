@@ -8,15 +8,21 @@
   
   <view class="page-body">
     <view class="page-section rc_swiper">
-      <swiper style="height:258rpx;" indicator-dots="{{true}}" indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#fff" autoplay="{{true}}" interval="3000">
+      <swiper style="height:240rpx;" indicator-dots="{{false}}" bindchange="swiperChange" current="{{currentSwiper}}"
+       indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#fff" autoplay="{{true}}" interval="3000">
         <block wx:for="{{home.banner}}" wx:key="unique">
-          <swiper-item>
+          <swiper-item class="class-notes">
             <view class="swiper-item">
               <image src="{{item.imgUrl}}" mode="aspectFill"></image>
             </view>
           </swiper-item>
         </block>
       </swiper>
+      <view class="dots"> 
+        <block wx:for="{{home.banner}}" wx:key>
+          <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>
+        </block>
+      </view>
     </view>
   </view>
   <view class="nav-box">
@@ -72,7 +78,7 @@
     <view class="title">每日推荐</view>
   </view>
   <view class="recommend-list" wx:for="{{home.recommendUser}}" wx:key="unique" wx:if="{{item.recommend == 1}}">
-    <view bindtap="isVip" data-id="{{item.id}}">
+    <view >
       <view class="list-bj">
         <image src="{{item.imageUrl}}" mode="aspectFill"></image>
         <view class="certification_tag">
@@ -80,12 +86,12 @@
           <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
           <text>{{item.userAuth?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
         </view>
-        <!-- <view class="certification_tag exchange_wx">
+        <view class="certification_tag exchange_wx" bindtap="showWx">
           <text class="icon_wx"></text>
           <text>交换微信</text>
-        </view> -->
+        </view>
       </view>
-      <view class="card-content">
+      <view class="card-content" bindtap="isVip" data-id="{{item.id}}">
         <view class='move_title'>{{item.realName}}
           <text class="lz-icon {{item.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
           <view class='move_miniTitle'>期待两年内结婚</view>
@@ -108,3 +114,16 @@
 </view>
 
 <myToast noCode="{{noCode}}" step="{{info}}"></myToast>
+
+
+<view class='maskCode' wx:if="{{isShow_wx}}">
+  <view class='toast_centerCode'>
+    
+    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"></image>
+    <view class='toat_mainCode'>
+      <text>微信号： pymt1818</text>
+      <image src="/images/home/wx.png"></image>
+    </view>
+
+  </view>
+</view>

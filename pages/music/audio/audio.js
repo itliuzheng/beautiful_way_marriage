@@ -1,4 +1,6 @@
 // pages/music/audio/audio.js
+const config = require('../../../utils/config.js');
+let app = getApp()
 
 const bgMusic = wx.getBackgroundAudioManager()
 
@@ -8,19 +10,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
-    name: '此时此刻',
-    author: '许巍',
-    src: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
+    id:null,
     isOpen:false,
     starttime: '00:00', //正在播放时长
-    duration: '00:00',   //总时长
+    duration: '00:00',   //总时长,
+    audio:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      id: options.id
+    })
   },
 
   /**
@@ -73,12 +76,41 @@ Page({
 
   },
   audioPlay: function () {
- 
-    var that = this
+
+    let that = this;
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+
+    config.ajax('GET', {
+    }, `/audio/${this.data.id}`, (resp) => {
+      let res = resp.data;
+      wx.hideLoading();
+      if (res.code == 1) {
+        this.audioDetail(res.data);
+        this.setData({
+          poster: res.data.imgUrl,
+          audio: res.data
+        })
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  audioDetail(audio){
+
+    let that = this;
     //bug ios 播放时必须加title 不然会报错导致音乐不播放
-    bgMusic.title = '此时此刻'
-    bgMusic.epname = '此时此刻'
-    bgMusic.src = that.data.src;
+    bgMusic.title = audio.title;
+    bgMusic.epname = audio.title;
+    bgMusic.src = audio.audioUrl;
     bgMusic.onTimeUpdate(() => {
 
       //bgMusic.duration总时长  bgMusic.currentTime当前进度
@@ -124,8 +156,6 @@ Page({
     that.setData({
       isOpen: true,
     })
-
-
   },
   audioPause: function () {
     var that = this
@@ -133,6 +163,9 @@ Page({
     that.setData({
       isOpen: false,
     })
+  },
+  listenerButtonStop(){
+    bgMusic.pause()
   },
   audio14: function () {
     this.audioCtx.seek(14)

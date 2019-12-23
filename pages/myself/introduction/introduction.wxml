@@ -13,6 +13,7 @@
     <view class="upload-box">
       <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">
         <image src="{{item.imgUrl}}" bindtap="previewImg" data-list="{{upload_list}}" data-src="{{item.imgUrl}}"></image>
+        <image class="close" src="/images/delete/delete.png" bindtap="closeImg" data-id="{{item.id}}"></image>
       </view>
       <view class="add upload-list-m-b" bindtap="add_upload">
         <view class="horizontal"></view>
@@ -40,7 +41,7 @@
     <view class="list">
       <text class="fl">情感状态</text>
       <text class="fr" wx:if="{{myself.maritalStatus == 0}}">未婚</text>
-      <text class="fr" wx:elif="{{myself.maritalStatus == 1}}">已婚</text>
+      <text class="fr" wx:elif="{{myself.maritalStatus == 1}}">丧偶</text>
       <text class="fr" wx:else>离异</text>
     </view>
     <view class="list">
@@ -65,7 +66,7 @@
   </view>
   <view class="section">
     <view class="nav_head">
-      <text class="fl">魅力展示</text>
+      <text class="fl">自我介绍</text>
       <text class="fr" bindtap="edit">编辑></text>
     </view>
     <view class="section-content" bindtap="edit" wx:if="{{!myself.selfIntroduce}}">

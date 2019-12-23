@@ -11,7 +11,8 @@ Page({
     list:[],
     is_comment:false,
     commentInfo:null,
-    STATUS:null
+    STATUS:null,
+    user_id:null
   },
 
   /**
@@ -48,6 +49,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getUserId();
     this.getInit();
     this.getStatus();
     this.getBanner();
@@ -71,7 +73,6 @@ Page({
    */
   onPullDownRefresh() {
     wx.showNavigationBarLoading();
-
     this.getInit();
     wx.hideNavigationBarLoading();
     wx.stopPullDownRefresh();
@@ -354,6 +355,84 @@ Page({
       if (res.code == 1) {
         this.setData({
           STATUS: res.data
+        })
+
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+
+  },
+  goUrl(e) {
+    let url = e.currentTarget.dataset.url;
+    var token = wx.getStorageSync('token')
+
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+
+    if (url) {
+      wx.navigateTo({
+        url: url,
+      })
+    } else {
+      config.mytoast('暂未开放，敬请期待...', (res) => { });
+    }
+  },
+  deleteSingle(e) {
+
+    let id = e.currentTarget.dataset.id;
+    let _this = this;
+    console.log(e);
+    console.log(id);
+    wx.showLoading({
+      title: '删除中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+    config.ajax('POST', {
+    }, `/circle/single-circle/delete/${id}`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.getInit();
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+  },
+  getUserId() {
+    let _this = this;
+
+    config.ajax('GET', {
+    }, `/user/`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          user_id: res.data.id
         })
 
       } else {

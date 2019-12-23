@@ -12,7 +12,8 @@ Page({
     is_comment: false,
     commentInfo: null,
     id: null,
-    STATUS: null
+    STATUS: null,
+    user_id: null
   },
 
   /**
@@ -53,6 +54,7 @@ Page({
   onShow: function () {
     this.getInit();
     this.getStatus();
+    this.getUserId();
   },
 
   /**
@@ -343,4 +345,82 @@ Page({
     })
 
   },
+  goUrl(e) {
+    let url = e.currentTarget.dataset.url;
+    var token = wx.getStorageSync('token')
+
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+
+    if (url) {
+      wx.navigateTo({
+        url: url,
+      })
+    } else {
+      config.mytoast('暂未开放，敬请期待...', (res) => { });
+    }
+  },
+  deleteSingle(e) {
+
+    let id = e.currentTarget.dataset.id;
+    let _this = this;
+    console.log(e);
+    console.log(id);
+    wx.showLoading({
+      title: '删除中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+    config.ajax('POST', {
+    }, `/circle/single-circle/delete/${id}`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.getInit();
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+  },
+  getUserId() {
+    let _this = this;
+
+    config.ajax('GET', {
+    }, `/user/`, (resp) => {
+      wx.hideLoading();
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          user_id: res.data.id
+        })
+
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+
+  }
 })
