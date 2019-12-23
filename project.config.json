@@ -236,9 +236,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "颜值专区",
-					"pathName": "pages/friends/friends",
+					"id": 26,
+					"name": "交友专区",
+					"pathName": "pages/friends/index",
 					"query": "",
 					"scene": null
 				},
@@ -246,6 +246,14 @@
 					"id": -1,
 					"name": "音频",
 					"pathName": "pages/music/audio/audio",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 28,
+					"name": "裁切",
+					"pathName": "pages/myself/introduction/cropper_img/cropper_img",
+					"query": "src=http://tmp/wx4da35c771f33c40d.o6zAJs538SKDTSH0ur9DVpfRhJhw.NzyKxcZkRrxG0ff8727b1dd60ebc7621a929b307f3a0.png",
 					"scene": null
 				}
 			]

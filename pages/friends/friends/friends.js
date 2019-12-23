@@ -1,5 +1,5 @@
 
-const config = require('../../utils/config.js');
+const config = require('../../../utils/config.js');
 let app = getApp()
 let timer = null
 Page({

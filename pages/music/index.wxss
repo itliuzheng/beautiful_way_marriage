@@ -3,9 +3,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding-top: 40rpx;
+  padding: 40rpx 0;
   text-align: center;
   background: #fff;
+  z-index: 999;
 }
 .nav_dom{
   font-size:32rpx;

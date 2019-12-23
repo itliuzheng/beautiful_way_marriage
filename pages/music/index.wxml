@@ -1,6 +1,6 @@
 <view class="home_nav">
-  <view class="nav_dom {{is_match?'active':''}}" bindtap="clickNav" data-type="music">音频</view>
   <view class="nav_dom {{is_match?'':'active'}}" bindtap="clickNav" data-type="moive">视频</view>
+  <view class="nav_dom {{is_match?'active':''}}" bindtap="clickNav" data-type="music">音频</view>
 </view>
 
 <view wx:if="{{is_match}}">
