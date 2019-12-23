@@ -7,6 +7,7 @@ Page({
    */
   data: {
     info:null,
+    myself:null,
     other_id:null,
     my_id:null,
     myimg:{
@@ -69,6 +70,38 @@ Page({
 
   },
   clickLike(e) {
+    var token = wx.getStorageSync('token')
+
+
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+    
+    if (!this.data.myself.realName) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+
 
     let is_like = e.currentTarget.dataset.is_like;
     let url = '/like/add'
@@ -105,7 +138,8 @@ Page({
 
       if (res.code == 1) {
         this.setData({
-          my_id: res.data.id
+          my_id: res.data.id,
+          myself:res.data
         });
       } else {
         config.mytoast(res.msg, (res) => { })
@@ -130,21 +164,25 @@ Page({
       let res = resp.data;
 
       if (res.code == 1) {
+        if (res.data) {
+          let arr = this._objToStrMap(res.data.mateChoice)
+          let list = [];
 
-        let arr = this._objToStrMap(res.data.mateChoice)
-        let list = [];
-
-        arr.forEach(function (value, key, map) {
-          list.push({
-            name:key,
-            value:value
+          arr.forEach(function (value, key, map) {
+            list.push({
+              name: key,
+              value: value
+            });
           });
-        });
 
-        this.setData({
-          info: res.data,
-          mateChoiceList: list
-        });
+          this.setData({
+            info: res.data,
+            mateChoiceList: list
+          });
+        }else{
+          wx.navigateBack({})
+        }
+
       } else {
         config.mytoast(res.msg, (res) => { })
       }

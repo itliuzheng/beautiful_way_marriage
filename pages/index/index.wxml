@@ -47,15 +47,15 @@
           <view class="match_desc">个人信息越完善，认证越多，匹配越精准越快速</view>
         </view>
         <view class="match-step">
-          <view class="step" bindtap="goUrl" data-url="">
+          <view class="step" bindtap="goUrl" data-url="" data-vip="1">
             <image src="/images/match/icon_01.png"></image>
             <view class="step_desc">系统匹配</view>
           </view>
-          <view class="step" bindtap="goUrl" data-url="/pages/index/couple_face/couple_face">
+          <view class="step" bindtap="goUrl" data-url="/pages/index/couple_face/couple_face" >
             <image src="/images/match/icon_02.png"></image>
             <view class="step_desc">夫妻脸匹配</view>
           </view>
-          <view class="step" bindtap="goUrl" data-url="/pages/index/exact_match/exact_match">
+          <view class="step" bindtap="goUrl" data-url="/pages/index/exact_match/exact_match" data-vip="1">
             <image src="/images/match/icon_03.png"></image>
             <view class="step_desc">精准匹配</view>
           </view>

@@ -27,7 +27,7 @@
         </view>
 
         <!-- 消息 -->
-        <view class="fr icons">
+        <view class="fr icons" bindtap="clickComment" data-id="{{item.id}}" data-name="{{item.nickName}}">
           <text class="icon_message"></text>
           <text>{{item.commentCount}}</text>
         </view>
@@ -53,4 +53,11 @@
     <image src="/images/no_data/no_list_data.png"></image>
     <view>暂无数据</view>
   </view>
+</view>
+
+<view class="comment_input" wx:if="{{is_comment}}">
+  <form bindsubmit="formSubmitComment" class='form'>
+    <input type="text" name="content" focus="{{true}}" auto-focus="{{true}}" bindblur="commentBlur" placeholder='留下你精彩的评论吧' class="input-style" />
+    <button formType="submit" class="btn">发送</button>
+  </form>
 </view>

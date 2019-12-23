@@ -19,8 +19,29 @@ Page({
     wrapContent: false,
     is_match: true,
     hasUserInfo: false,
+    STATUS:null
   },
   onLoad: function () {
+
+  },
+  getStatus() {
+
+    let _this = this;
+
+    config.ajax('GET', {
+    }, `/auth/status`, (resp) => {
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          STATUS: res.data
+        })
+
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
 
   },
   /**
@@ -382,7 +403,7 @@ Page({
     })
   },
   onShow: function () {
-    
+    this.getStatus();
 
     config.mytoast('暂未开放，敬请期待...', (res) => { });
     // wx.showLoading({
@@ -440,6 +461,16 @@ Page({
         is_match:true
       })
     }else{
+
+      if (!this.data.STATUS.vipLevel) {
+        config.mytoast('请购买会员后查看~', (res) => { });
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '/pages/myself/member/member',
+          })
+        }, 500)
+        return false;
+      }
       this.setData({
         is_match: false
       })
@@ -447,6 +478,7 @@ Page({
   },
   goUrl(e) {
     let url = e.currentTarget.dataset.url;
+    let isVip = e.currentTarget.dataset.vip;
     var token = wx.getStorageSync('token')
 
     console.log(url);
@@ -471,6 +503,36 @@ Page({
       }, 500)
       return false;
     }
+    if (!this.data.STATUS.completeInfo) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/person_info/person_info',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.STATUS.userAuth) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+    if (isVip) {
+      if (!this.data.STATUS.vipLevel) {
+        config.mytoast('请购买会员后查看~', (res) => { });
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '/pages/myself/member/member',
+          })
+        }, 500)
+        return false;
+      }
+    }
+
     if (url) {
       wx.navigateTo({
         url: url,

@@ -7,7 +7,8 @@ Page({
     mate: null,
     nowResidence: [],
     nowResidence2:[],
-    info: {}
+    info: {},
+    STATUS:null
   },
 
   /**
@@ -15,6 +16,27 @@ Page({
    */
   onLoad: function (options) {
     this.getInit();
+    this.getStatus();
+  },
+  getStatus() {
+
+    let _this = this;
+
+    config.ajax('GET', {
+    }, `/auth/status`, (resp) => {
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          STATUS: res.data
+        })
+
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+
   },
 
   getArrayIndex(arr, obj) {
@@ -165,6 +187,20 @@ Page({
     // console.log(this.data.info);
   },
   bindPickerChange: function (e) {
+
+
+
+    if (!this.data.STATUS.vipLevel) {
+      config.mytoast('请购买会员后查看~', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/member/member',
+        })
+      }, 500)
+      return false;
+    }
+
+
     // console.log('picker发送选择改变，携带值为', e)
 
     let _index = e.detail.value;

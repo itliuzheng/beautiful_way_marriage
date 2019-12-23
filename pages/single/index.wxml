@@ -33,7 +33,7 @@
           <text>{{item.forwardCount}}</text>
         </view>
 
-        <!-- 消息 -->
+        <!-- 评论 -->
         <view class="fr icons" bindtap="clickComment" data-id="{{item.id}}" data-name="{{item.nickName}}">
           <text class="icon_message"></text>
           <text>{{item.commentCount}}</text>

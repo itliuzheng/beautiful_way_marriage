@@ -13,9 +13,12 @@ Component({
    * 组件的初始数据
    */
   data: {
-    switchChecked:true
+    switchChecked:true,
+    STATUS:null
   },
-
+  ready:function(){
+    this.getStatus();
+  },
   /**
    * 组件的方法列表
    */
@@ -47,7 +50,76 @@ Component({
       }, (res) => {
 
       })
-    }
+    },
+    switchChecked(e){
+      let value = e.detail.value;
+
+
+      if (!this.data.STATUS.completeInfo) {
+        config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+
+        this.setData({
+          switchChecked: !value
+        })
+
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '/pages/myself/person_info/person_info',
+          })
+        }, 500)
+        return false;
+      }
+      if (!this.data.STATUS.userAuth) {
+        config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+        this.setData({
+          switchChecked: !value
+        })
+
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '/pages/myself/my_certification/my_certification',
+          })
+        }, 500)
+        return false;
+      }
+
+      if (!this.data.STATUS.vipLevel) {
+        config.mytoast('请购买会员后查看~', (res) => { });
+
+        this.setData({
+          switchChecked: !value
+        })
+
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '/pages/myself/member/member',
+          })
+        }, 500)
+        return false;
+      }
+
+
+    },
+    getStatus() {
+
+      let _this = this;
+
+      config.ajax('GET', {
+      }, `/auth/status`, (resp) => {
+        let res = resp.data;
+        if (res.code == 1) {
+          this.setData({
+            STATUS: res.data
+          })
+
+        } else {
+          config.mytoast(res.msg, (res) => { });
+        }
+      }, (res) => {
+
+      })
+
+    },
 
   },
 })

@@ -43,11 +43,8 @@ Page({
   },
   goUrl(e) {
     let url = e.currentTarget.dataset.url;
+    let isVip = e.currentTarget.dataset.vip;
     var token = wx.getStorageSync('token')
-
-    console.log(url);
-    console.log(app.globalData.userInfo);
-    console.log(token);
 
     if (!app.globalData.userInfo) {
       config.mytoast('您还未登录，请先登录', (res) => { });
@@ -67,14 +64,34 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.myself) {
-      config.mytoast('您还未登录，请先登录', (res) => { });
+    if (!this.data.myself.completeInfo) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({
-          url: '/pages/login/login/login',
+          url: '/pages/myself/person_info/person_info',
         })
       }, 500)
       return false;
+    }
+    if (!this.data.myself.realName) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+    if (isVip){
+      if (!this.data.myself.vipLevel) {
+        config.mytoast('请购买会员后查看~', (res) => { });
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '/pages/myself/member/member',
+          })
+        }, 500)
+        return false;
+      }
     }
     
     if(url){

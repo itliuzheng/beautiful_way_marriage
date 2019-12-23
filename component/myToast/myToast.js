@@ -41,7 +41,6 @@ Component({
       })
     },
     goloading() {
-      console.log()
       if (!this.data.step.completeInfo) {
         wx.navigateTo({
           url: '/pages/myself/person_info/person_info',

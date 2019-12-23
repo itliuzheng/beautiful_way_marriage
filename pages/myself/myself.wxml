@@ -7,7 +7,7 @@
   <view class="my-info">
     <view class="list-cell" bindtap="goUrl" data-url="/pages/myself/introduction/introduction">
       <view class="my_detail fl">
-        <view class="my_name">{{myself.realName?myself.realName:"暂未登录"}}</view>
+        <view class="my_name">{{myself.realName?myself.realName:myself.nickName}}</view>
         <view class="my_desc" wx:if="{{myself.realName}}">
           <text>{{myself.sex?'男':'女'}}</text>
           <text>{{myself.age}}岁</text>
@@ -27,10 +27,10 @@
       <navigator class="list-cell" url="/pages/myself/member/member" hover-class="none">
         <text>会员服务</text>
       </navigator>
-      <view class="list-cell" bindtap="goUrl"> <text >我要置顶</text></view>
-      <navigator class="list-cell" url="/pages/single/my_single/my_single" hover-class="none">
+      <view class="list-cell" bindtap="goUrl" data-url="" data-vip="1"> <text >我要置顶</text></view>
+      <view class="list-cell" data-url="/pages/single/my_single/my_single" bindtap="goUrl" data-vip="0">
         <text>我的单身圈</text>
-      </navigator>
+      </view>
       <navigator class="list-cell" url="/pages/myself/setting/setting" hover-class="none">
         <text>设置</text>
       </navigator>
