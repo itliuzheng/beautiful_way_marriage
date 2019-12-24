@@ -27,6 +27,9 @@ Page({
    */
   onReady: function () {
 
+    this.getInit();
+    this.getStatus();
+    this.getUserId();
   },
 
   previewImg(e) {
@@ -49,9 +52,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getInit();
-    this.getStatus();
-    this.getUserId();
   },
 
   /**
@@ -96,7 +96,55 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var that = this;
+    // 设置菜单中的转发按钮触发转发事件时的转发内容
+    var shareObj = {
+      title: `单身圈`,        // 默认是小程序的名称(可以写slogan等)
+      path: `/pages/single/index`,        // 默认是当前页面，必须是以‘/’开头的完整路径
+      imageUrl: '',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      success: function (res) {
+        // 转发成功之后的回调
+        if (res.errMsg == 'shareAppMessage:ok') { }
+      },
+      fail: function (res) {
+        // 转发失败之后的回调
+        if (res.errMsg == 'shareAppMessage:fail cancel') {
+          // 用户取消转发
+        } else if (res.errMsg == 'shareAppMessage:fail') {
+          // 转发失败，其中 detail message 为详细失败信息
+        }
+      }
+    };
+    // 来自页面内的按钮的转发
+    if (options.from == 'button') {
+      var eData = options.target.dataset;
+      shareObj = {
+        title: `${eData.name}的单身圈`,
+        path: `/pages/single/user_single/user_single?id=${eData.id}`,
+        imageUrl: '',
+      };
+      that.shareData(eData);
+    }
+    // 返回shareObj
+    return shareObj;
 
+  },
+  shareData(data) {
+    let id = data.id;
+    let index = data.index;
+
+    config.ajax('POST', {
+    }, `/circle/single-circle/addForwardCount/${id}`, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        this.getInit(1);
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
   },
   getInit(page = 1) {
 

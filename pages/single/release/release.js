@@ -13,7 +13,9 @@ Page({
     upload_list: [],
     latitude:'',
     longitude:'',
-    address_name:''
+    address_name:'',
+    addressList:[],
+    showActionsheet: false,
   },
 
   /**
@@ -167,10 +169,39 @@ Page({
     myAmapFun.getRegeo({
       location: `${longitude},${latitude}`,
       success: function (e) {
+        console.log(e);
+        let arr = [];
+        for(var i = 0;i<=8;i++){
+
+          arr.push({
+            text: e[0].regeocodeData.pois[i].address,
+            value: e[0].regeocodeData.pois[i].address
+          })
+        }
         _this.setData({
-          address_name: e[0].name
+          addressList: arr,
+          address_name: e[0].name,
+          showActionsheet: true
         })
       }
     })
+  },
+  close: function () {
+    this.setData({
+      showActionsheet: false
+    })
+  },
+  open: function () {
+    this.setData({
+      showActionsheet: true
+    })
+  },
+  btnClick(e) {
+    console.log(e)
+
+    this.setData({
+      address_name: e.detail.value,
+    })
+    this.close()
   }
 })

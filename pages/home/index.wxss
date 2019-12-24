@@ -54,6 +54,18 @@ page{
   height: 240rpx;
 }
 
+.backTop{
+  position: fixed;
+  bottom: 20rpx;
+  right: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: #fff;
+  border-radius: 50%;
+}
+
+
+
 .dots{
   position: absolute;
   bottom: 16rpx;

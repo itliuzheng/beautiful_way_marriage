@@ -7,7 +7,10 @@
   <view class="my-info">
     <view class="list-cell" bindtap="goUrl" data-url="/pages/myself/introduction/introduction">
       <view class="my_detail fl">
-        <view class="my_name">{{myself.realName?myself.realName:myself.nickName}}</view>
+        <view class="my_name">{{myself.realName?myself.realName:myself.nickName}} 
+          <text>(ID：{{myself.id}})</text>
+          <text class="lz-icon {{myself.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
+        </view>
         <view class="my_desc" wx:if="{{myself.realName}}">
           <text>{{myself.sex?'男':'女'}}</text>
           <text>{{myself.age}}岁</text>

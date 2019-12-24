@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "颜值专区"
+  "navigationBarTitleText": "颜值专区",
+  "enablePullDownRefresh": true
 }

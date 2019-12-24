@@ -169,7 +169,7 @@
 					"id": 16,
 					"name": "个人介绍（他人）",
 					"pathName": "pages/introduction/introduction",
-					"query": "id=4",
+					"query": "id=7",
 					"scene": null
 				},
 				{
@@ -260,6 +260,13 @@
 					"id": -1,
 					"name": "音频详情",
 					"pathName": "pages/music/audio/audio",
+					"query": "id=4",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "视频详情",
+					"pathName": "pages/music/video/video",
 					"query": "id=4",
 					"scene": null
 				}

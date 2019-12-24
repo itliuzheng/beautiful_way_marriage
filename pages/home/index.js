@@ -11,7 +11,8 @@ Page({
   data: {
     currentSwiper:0,
     background: [],
-    userRecommend: [],
+    topList: [],
+    recommendUserList:[],
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
     hasUserInfo:false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -19,7 +20,8 @@ Page({
     info:null,
     home:null,
     vipLevel:false,
-    isShow_wx:false
+    isShow_wx:false,
+    backTopValue:false
   },
 
   /**
@@ -134,7 +136,8 @@ Page({
   onShow: function () {
     this.getInit();
     // this.getBanner();
-    // this.getUserRecommend()
+    this.getTopList()
+    this.getRecommendUser();
     this.getHome();
   },
   /**
@@ -142,6 +145,16 @@ Page({
    */
   onPullDownRefresh: function () {
 
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+    if (this.data.recommendUserList.current < this.data.recommendUserList.pages) {
+      let page = this.data.recommendUserList.current + 1;
+      this.getRecommendUser(page);
+    }
   },
   /**
    * 用户点击右上角分享
@@ -237,17 +250,44 @@ Page({
 
     })
   },
-  getUserRecommend() {
+  getTopList() {
 
-    config.ajax('POST', {
-        pageSize:3,
-        pageNum:1
-    }, `/user/page`, (resp) => {
+    config.ajax('GET', {
+      pageSize: 100,
+      pageNum: 1
+    }, `/user/topList`, (resp) => {
       let res = resp.data;
       if (res.code == 1) {
         this.setData({
-          userRecommend: res.data
+          topList: res.data
         });
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  getRecommendUser(page = 1) {
+    let that = this;
+    config.ajax('GET', {
+      pageSize: 10,
+      pageNum: page
+    }, `/user/topList`, (resp) => {
+      let res = resp.data;
+      if (res.code == 1) {
+        if (page != 1) {
+          this.data.recommendUserList.data.push.apply(this.data.recommendUserList.data, res.data.data);
+          this.data.recommendUserList.current = res.data.current;
+
+          that.setData({
+            recommendUserList: that.data.recommendUserList
+          })
+        } else {
+          that.setData({
+            recommendUserList: res.data
+          })
+        }
       } else {
         config.mytoast(res.msg, (res) => { })
       }
@@ -280,6 +320,7 @@ Page({
       }, 500)
       return false;
     }
+    console.log(url);
     if (url) {
       wx.navigateTo({
         url: url,
@@ -350,6 +391,19 @@ Page({
   swiperChange(e) {
     this.setData({
       currentSwiper: e.detail.current
+    })
+  },
+  onPageScroll(e){
+    var that = this
+    var scrollTop = e.scrollTop
+    var backTopValue = scrollTop > 500 ? true : false
+    that.setData({
+      backTopValue: backTopValue
+    })
+  },
+  backTop(){
+    wx.pageScrollTo({
+      scrollTop: 0,
     })
   }
 })

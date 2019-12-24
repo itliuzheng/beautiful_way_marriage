@@ -123,6 +123,21 @@
   margin: 0 14rpx 0 22rpx;
 }
 
+.icons{
+  position: relative;
+}
+.icons-button{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  min-width: auto;
+  min-height: auto;
+  background: transparent;
+}
+
 .comment{
   width: 100%;
   background:rgba(247,247,247,1);

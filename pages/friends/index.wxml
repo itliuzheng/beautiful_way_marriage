@@ -1,30 +1,30 @@
 
 <view class="friends-box">
-  <view class="friends" bindtap="goUrl" data-url="pages/friends/friends/friends">
+  <view class="friends" bindtap="goUrl" data-url="/pages/friends/friends/friends?type=highQuality">
     <image src="/images/friends/icon_01.png"></image>
     <view class="content">
       <view class="title"><text>优质专区</text></view>
       <view class="desc">专为有诚意的用户特别推荐</view>
     </view>
   </view>
-  <view class="friends" bindtap="goUrl" data-url="pages/friends/friends/friends">
+  <view class="friends" bindtap="goUrl" data-url="/pages/friends/friends/friends?type=highFaceScore">
     <image src="/images/friends/icon_02.png"></image>
     <view class="content">
       <view class="title"><text>颜值专区</text></view>
       <view class="desc">这里能找到你们的共同语言</view>
     </view>
   </view>
-  <view class="friends" bindtap="goUrl" data-url="pages/friends/friends/friends">
+  <!-- <view class="friends" bindtap="goUrl" data-url="/pages/friends/friends/friends">
     <image src="/images/friends/icon_03.png"></image>
     <view class="content">
       <view class="title"><text>油田专区</text></view>
       <view class="desc">一直奋斗在事业上，只为爱情的基础更坚实</view>
     </view>
-  </view>
-  <view class="friends" bindtap="goUrl" data-url="pages/friends/friends/friends">
+  </view> -->
+  <view class="friends" bindtap="goUrl" data-url="/pages/friends/friends/friends">
     <image src="/images/friends/icon_04.png"></image>
     <view class="content">
-      <view class="title"><text>名校专区</text></view>
+      <view class="title"><text>高学历专区</text></view>
       <view class="desc">有涵养、高学历、渴望普通的爱情</view>
     </view>
   </view>

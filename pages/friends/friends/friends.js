@@ -9,14 +9,18 @@ Page({
    */
   data: {
     info:null,
-    list:null
+    list:null,
+    type:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options);
+    this.setData({
+      type: options.type
+    })
   },
 
   /**
@@ -31,8 +35,8 @@ Page({
    */
   onShow: function () {
     this.getStatus();
-    this.getInit();
 
+    this.getInit();
   },
 
   /**
@@ -44,6 +48,7 @@ Page({
     this.getInit();
     wx.hideNavigationBarLoading();
     wx.stopPullDownRefresh();
+    
 
   },
   /**
@@ -102,8 +107,8 @@ Page({
   getInit(page = 1) {
     let that = this;
 
-    config.ajax('POST', {
-    }, `/user/page`, (resp) => {
+    config.ajax('GET', {
+    }, `/user/${that.data.type}`, (resp) => {
       let res = resp.data;
 
       if (res.code == 1) {

@@ -43,16 +43,16 @@
       </navigator>
     </view>
     <view class="nav-list ">
-      <view data-url="/pages/friends/friends" bindtap="goUrl">
+      <view data-url="/pages/friends/index" bindtap="goUrl">
         <image class="fr" src="/images/home/nav_icon_04.png"></image>
         <view class="name fr">交友专区</view>
       </view>
     </view>
   </view>
-  <view class="rc_news" wx:if="{{home.topUser.length}}">
+  <view class="rc_news" wx:if="{{topList.data.length}}">
     <view class="news-title">我要置顶</view>
     <scroll-view scroll-x class="scroll-x">
-      <view wx:for="{{home.topUser}}" wx:key="{{index}}" wx:key="unique" class="view-parent" wx:if="{{item.top == 1}}">
+      <view wx:for="{{topList.data}}" wx:key="{{index}}" wx:key="unique" class="view-parent" wx:if="{{item.top == 1}}">
         <view bindtap="isVip" data-id="{{item.id}}">
           <view class="stick-card-list">
             <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
@@ -74,10 +74,10 @@
     </scroll-view>
   </view>
 
-  <view class="title-box" wx:if="{{home.recommendUser.length}}">
+  <view class="title-box" wx:if="{{recommendUserList.data.length}}">
     <view class="title">每日推荐</view>
   </view>
-  <view class="recommend-list" wx:for="{{home.recommendUser}}" wx:key="unique" wx:if="{{item.recommend == 1}}">
+  <view class="recommend-list" wx:for="{{recommendUserList.data}}" wx:key="unique" wx:if="{{item.recommend == 1}}">
     <view >
       <view class="list-bj">
         <image src="{{item.imageUrl}}" mode="aspectFill"></image>
@@ -118,12 +118,12 @@
 
 <view class='maskCode' wx:if="{{isShow_wx}}">
   <view class='toast_centerCode'>
-    
     <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"></image>
     <view class='toat_mainCode'>
       <text>微信号： pymt1818</text>
       <image src="/images/home/wx.png"></image>
     </view>
-
   </view>
 </view>
+
+<image class="backTop" bindtap="backTop" src="/images/home/backTop.png" wx:if="{{backTopValue}}"></image>

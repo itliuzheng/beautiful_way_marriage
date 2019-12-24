@@ -14,7 +14,8 @@ Component({
    */
   data: {
     switchChecked:true,
-    STATUS:null
+    STATUS: null,
+    noCode: false
   },
   ready:function(){
     this.getStatus();
@@ -27,9 +28,24 @@ Component({
 
       config.mytoast('暂未开放，敬请期待...', (res) => { });
     },
-    unsubscribe() {
+    edit() {
+      this.setData({
+        noCode: true
+      })
 
-      let info = this.data.info;
+    },
+    cancel() {
+      this.setData({
+        noCode: false
+      })
+    },
+    addSelfIntroduce(e) {
+
+      console.log(e.detail);
+      if (!e.detail.value.remark){
+        config.mytoast('注销原因不能为空', (res) => { })
+        return false;
+      }
 
       wx.showLoading({
         title: '资料注销中...',
@@ -39,7 +55,10 @@ Component({
         complete: function (res) { },
       })
 
-      config.ajax('POST', info, `/user/unsubscribe`, (res) => {
+
+      config.ajax('POST', {
+        remark: e.detail.value.remark
+      }, `/user/unsubscribe`, (res) => {
         wx.hideLoading();
         if (res.data.code == 1) {
           config.mytoast('资料注销成功，正在跳转...', (res) => { })

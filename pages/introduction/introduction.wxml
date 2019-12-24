@@ -8,7 +8,7 @@
     <view class="header_mask">
       <view class="mask_list" bindtap="clickLike" data-is_like="{{info.isLike}}">
         <image class="mask_icon" src="/images/introduction/love.png" wx:if="{{!info.isLike}}"></image>
-        <image class="mask_icon" src="/images/introduction/love_active.png" wx:else></image>
+        <image class="mask_icon mask_icon_transform" src="/images/introduction/love_active.png" wx:else></image>
         <text>心动</text>
       </view>
       <view class="mask_list" bindtap="not_open_yet">
@@ -19,7 +19,7 @@
   </view>
   <view class="section">
     <view class="card-content">
-      <view class='move_title'>{{info.user.realName}}
+      <view class='move_title'>{{info.user.realName}} (ID：{{info.user.id}})
         <text class="lz-icon {{info.user.userAuth?'icon-certified':'icon-not-certified'}}"></text>
         <view class='move_miniTitle'>期待两年内结婚</view>
       </view>
@@ -46,10 +46,10 @@
           <view class="detail_name">TA的动态</view>
         </navigator>
       </view>
-      <view class="detail_type fl">
+      <view class="detail_type fl" bindtap="showWx">
         <image src="/images/introduction/big_icon_02.png"></image>
         <view class="detail_name">帮我约TA</view>
-        <button class="contact_tbn" open-type="contact" bindcontact="handleContact"></button>
+        <!-- <button class="contact_tbn" open-type="contact" bindcontact="handleContact"></button> -->
       </view>
     </view>
   </view>
@@ -89,17 +89,43 @@
         <view>认证通过时间：{{info.userAuthDate}}</view>
       </view>
     </view>
-    <view class="list" wx:if="{{info.user.educationAuth}}">
-      <text class="fl">学历认证</text>
-      <text class="fr">{{info.user.educationAuth?'已认证':'未认证'}}</text>
+    <view wx:if="{{info.user.educationAuth}}">
+      <view class="list" bindtap="clickShow" data-type="education">
+        <text class="fl">学历认证</text>
+        <view class="fr arrow-box">
+          <text>{{info.user.educationAuth?'已认证':'未认证'}}</text>
+          <text class="arrow_b {{education_height == 0?'':'arrow_t'}}"></text>
+        </view>
+      </view>
+      <view class="ver_show" style="height:{{education_height}}rpx">
+        <view>{{educationArray[info.user.education]}}</view>
+      </view>
+
     </view>
-    <view class="list" wx:if="{{info.user.houseAuth}}">
-      <text class="fl">资产认证-房</text>
-      <text class="fr">{{info.user.houseAuth?'已认证':'未认证'}}</text>
+    <view class="" wx:if="{{info.user.houseAuth}}">
+      <view class="list" bindtap="clickShow" data-type="house">
+        <text class="fl">资产认证-房</text>
+        <view class="fr arrow-box">
+          <text>{{info.user.houseAuth?'已认证':'未认证'}}</text>
+          <text class="arrow_b {{house_height == 0?'':'arrow_t'}}"></text>
+        </view>
+      </view>
+      <view class="ver_show" style="height:{{house_height}}rpx">
+        <view>有房</view>
+      </view>
     </view>
-    <view class="list" wx:if="{{info.user.carAuth}}">
-      <text class="fl">资产认证-车</text>
-      <text class="fr">{{info.user.carAuth?'已认证':'未认证'}}</text>
+    <view class="" wx:if="{{info.user.carAuth}}">
+      
+      <view class="list" bindtap="clickShow" data-type="car">
+        <text class="fl">资产认证-车</text>
+        <view class="fr arrow-box">
+          <text>{{info.user.carAuth?'已认证':'未认证'}}</text>
+          <text class="arrow_b {{car_height == 0?'':'arrow_t'}}"></text>
+        </view>
+      </view>
+      <view class="ver_show" style="height:{{car_height}}rpx">
+        <view>有车</view>
+      </view>
     </view>
 
     <view class="nav_head"  wx:if="{{!info.user.userAuth ||!info.user.educationAuth ||!info.user.carAuth ||!info.user.houseAuth}}">
@@ -157,4 +183,14 @@
   </view>
 
   <!-- <view class="btn">帮我联系TA</view> -->
+</view>
+
+<view class='maskCode' wx:if="{{isShow_wx}}">
+  <view class='toast_centerCode'>
+    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"></image>
+    <view class='toat_mainCode'>
+      <text>微信号： pymt1818</text>
+      <image src="/images/home/wx.png"></image>
+    </view>
+  </view>
 </view>

@@ -17,7 +17,10 @@ Page({
     is_match: false,
     danmuList: [],
     videoList:null,
-    audioList:null
+    audioList: null,
+    is_comment: false,
+    commentInfo: null,
+    STATUS:null
 
   },
 
@@ -32,9 +35,30 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (res) {
+    this.getStatus();
     // this.videoContext = wx.createVideoContext('myVideo')
   },
 
+  getStatus() {
+
+    let _this = this;
+
+    config.ajax('GET', {
+    }, `/auth/status`, (resp) => {
+      let res = resp.data;
+      if (res.code == 1) {
+        this.setData({
+          STATUS: res.data
+        })
+
+      } else {
+        config.mytoast(res.msg, (res) => { });
+      }
+    }, (res) => {
+
+    })
+
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -180,12 +204,110 @@ Page({
       url: `/pages/music/audio/audio?id=${id}`,
     })
   },
-  clickMessage(){
+  clickMessage(e){
 
-    config.mytoast('暂未开放，敬请期待...', (res) => { });
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/music/video/video?id=${id}`,
+    })
+    // config.mytoast('暂未开放，敬请期待...', (res) => { });
   },
   clickCollect(){
 
     config.mytoast('暂未开放，敬请期待...', (res) => { });
-  }
+  },
+
+  clickComment(e) {
+
+    var token = wx.getStorageSync('token')
+
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.STATUS.completeInfo) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/person_info/person_info',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.STATUS.userAuth) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.STATUS.vipLevel) {
+      config.mytoast('请购买会员后再评论~', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/member/member',
+        })
+      }, 500)
+      return false;
+    }
+
+
+    let id = e.currentTarget.dataset.id;
+    // is_comment
+    this.setData({
+      is_comment: true,
+      commentInfo: {
+        id: id
+      }
+    })
+  },
+  formSubmitComment(e) {
+    let content = e.detail.value.content
+
+    console.log(
+      'videoId:' + this.data.commentInfo.id,
+      "content:" + content);
+
+    config.ajax('POST', {
+      videoId: this.data.commentInfo.id,
+      content: content
+    }, `/video/video-comment/add`, (res) => {
+      console.log(res.data);
+
+      if (res.data.code == 1) {
+        if (this.is_match) {
+          //音频
+          this.getAudio();
+        } else {
+          //视频
+          this.getVideo();
+        }
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
+    })
+  },
+  commentBlur() {
+    this.setData({
+      is_comment: false,
+    })
+  },
 })

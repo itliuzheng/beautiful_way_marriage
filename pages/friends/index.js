@@ -119,8 +119,6 @@ Page({
       return false;
     }
 
-
-
     if (url) {
       wx.navigateTo({
         url: url,

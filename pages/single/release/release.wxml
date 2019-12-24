@@ -26,14 +26,23 @@
         </view>
       </view>
     </view>
-    <view class="list-cell" bindtap="getLocation"><image class="address-icon" src="/images/single/release.png"></image>
-     <text wx:if="{{!address_name}}">所在位置</text>
-     <text wx:else>{{address_name}}</text>
+    <view class="list-cell">
+      <image class="address-icon" src="/images/single/release.png"></image>
+      <view class="getLocation" wx:if="{{!address_name}}"  bindtap="getLocation"></view>
+      <view class="getLocation" wx:else  bindtap="open"></view>
+      <text wx:if="{{!address_name}}">所在位置</text>
+      <text class="address_name" wx:else>{{address_name}}</text>
      <!-- <text wx:else>纬度:{{latitude}} 经度:{{longitude}}</text> -->
     </view>
+    <!-- <view class="list-cell">
+      <picker bindchange="bindPickerChangeBaseInfo" class="picker_address" value="{{address_name}}" wx:if="{{addressList.length}}"  range="{{addressList}}" range-key="address"></picker>
+    </view> -->
 
     <button form-type="submit" class="btn btn_white"
       style="width:200rpx;height:80rpx;" data-type="caogao"
     > 保存 </button>
   </form>
 </view>
+
+<mp-actionSheet bindactiontap="btnClick" show="{{showActionsheet}}" actions="{{addressList}}" title="地址">
+</mp-actionSheet>

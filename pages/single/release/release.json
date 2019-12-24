@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-actionSheet": "../../../component/actionsheet/actionsheet"
+  },
   "navigationBarTitleText": "发布"
 }

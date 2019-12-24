@@ -14,10 +14,14 @@ Page({
       imgSrc:''
     },
     upload_list: [{},{},{},{}],
-    mateChoiceList:[],
+    mateChoiceList: [],
     ver_height: 230,
+    education_height: 0,
+    house_height: 0,
+    car_height: 0,
     educationArray: ['初中', '高中', '大专', '本科', '研究生', '博士', '博士后'],
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
+    isShow_wx: false,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -62,7 +66,40 @@ Page({
   onShow: function () {
 
   },
-
+  /**
+   * 分享
+   */
+  onShareAppMessage: function (options ){
+    var that = this;
+    　　// 设置菜单中的转发按钮触发转发事件时的转发内容
+    　　var shareObj = {
+              title: `${that.data.info.user.realName}的个人资料`,        // 默认是小程序的名称(可以写slogan等)
+              path: `/pages/introduction/introduction?id=${that.data.info.user.id}`,        // 默认是当前页面，必须是以‘/’开头的完整路径
+      　　　　imageUrl: '',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      　　　　success: function (res) {
+        　　　　　　// 转发成功之后的回调
+        　　　　　　if (res.errMsg == 'shareAppMessage:ok') {
+        　　　　　　}
+      　　　　},
+      　　　　fail: function () {
+        　　　　　　// 转发失败之后的回调
+        　　　　　　if (res.errMsg == 'shareAppMessage:fail cancel') {
+          　　　　　　　　// 用户取消转发
+        　　　　　　} else if (res.errMsg == 'shareAppMessage:fail') {
+          　　　　　　　　// 转发失败，其中 detail message 为详细失败信息
+        　　　　　　}
+      　　　　}
+  　　};
+  　　// 来自页面内的按钮的转发
+//   　　if(options.from == 'button'){
+//   　　　　var eData = options.target.dataset;
+//   　　　　console.log(eData.name);     // shareBtn
+//   　　　　// 此处可以修改 shareObj 中的内容
+//   　　　　shareObj.path = '/pages/btnname/btnname?btn_name=' + eData.name;
+// 　　  }
+　　// 返回shareObj
+　　return shareObj;
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -92,8 +129,17 @@ Page({
       return false;
     }
     
-    if (!this.data.myself.realName) {
+    if (!this.data.myself.completeInfo) {
       config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/person_info/person_info',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.myself.userAuth) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({
           url: '/pages/myself/my_certification/my_certification',
@@ -205,18 +251,117 @@ Page({
       upload_list: arr
     })
   },
-  clickShow(){
-    let height = this.data.ver_height;
-    if (height == 230){
+  clickShow(e){
+    let type = e.currentTarget.dataset.type;
 
-      this.setData({
-        ver_height: 0
-      })
-    } else {
-      this.setData({
-        ver_height: 230
-      })
+    if (type == 'education'){
+
+      let height = this.data.education_height;
+      if (height == 80) {
+        this.setData({
+          education_height: 0
+        })
+      } else {
+        this.setData({
+          education_height: 80
+        })
+      }
+    } else if (type == 'house') {
+      let height = this.data.house_height;
+      if (height == 80) {
+        this.setData({
+          house_height: 0
+        })
+      } else {
+        this.setData({
+          house_height: 80
+        })
+      }
+    } else if (type == 'car') {
+      let height = this.data.car_height;
+      if (height == 80) {
+        this.setData({
+          car_height: 0
+        })
+      } else {
+        this.setData({
+          car_height: 80
+        })
+      }
+    }else{
+
+      let height = this.data.ver_height;
+      if (height == 230) {
+
+        this.setData({
+          ver_height: 0
+        })
+      } else {
+        this.setData({
+          ver_height: 230
+        })
+      }
 
     }
-  }
+  },
+  showWx() {
+
+    var token = wx.getStorageSync('token')
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+
+    if (!this.data.myself.completeInfo) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/person_info/person_info',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.myself.userAuth) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.myself.vipLevel) {
+      config.mytoast('请购买会员后查看~', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/member/member',
+        })
+      }, 500)
+      return false;
+    }
+
+    this.setData({
+      isShow_wx: true
+    })
+  },
+  closeMask() {
+    this.setData({
+      isShow_wx: false
+    })
+
+  },
 })

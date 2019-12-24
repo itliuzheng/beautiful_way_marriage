@@ -44,9 +44,10 @@
 
 
         <!-- 转发 -->
-        <view class="fr icons" bindtap="clickShare" data-id="{{item.id}}" data-index="{{index}}">
+        <view class="fr icons">
           <text class="icon_share"></text>
           <text>{{item.forwardCount}}</text>
+          <button class="icons-button" open-type="share"  data-id="{{item.id}}" data-index="{{index}}" data-name="{{item.nickName}}"></button>
         </view>
 
 

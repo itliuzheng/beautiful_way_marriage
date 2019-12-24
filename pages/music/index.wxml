@@ -10,16 +10,17 @@
       <view class="list-content fl">
         <view class="title">{{item.title}}</view>
         <view class="type-icon">
-          <view class="icon-box" >
+          <view class="icon-box">
             <icon class="player"></icon>
             <text>0</text>
           </view>
-          <view class="icon-box" bindtap="clickMessage">
+          <view class="icon-box">
             <icon class="message"></icon>
             <text>0</text>
           </view>
-          <view class="icon-box" bindtap="clickCollect">
-            <icon class="collect {{index%2?'collectend':''}}"></icon>
+          <view class="icon-box">
+            <icon class="collect"></icon>
+            <!-- <icon class="collect {{index%2?'collectend':''}}"></icon> -->
             <text>0</text>
           </view>
         </view>
@@ -33,14 +34,22 @@
       <video id="myVideo_{{item.id}}" src="{{item.videoUrl}}" 
       danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
         <view class="type-icon">
-          <view class="icon-box" bindtap="clickMessage">
+          <view class="icon-box" bindtap="clickComment" data-id="{{item.id}}">
             <icon class="message"></icon>
             <text>0</text>
           </view>
-          <view class="icon-box" bindtap="clickMessage">
+          <view class="icon-box" bindtap="clickMessage" data-id="{{item.id}}">
             <text>...</text>
           </view>
         </view>
     </view>
   </view>
+</view>
+
+
+<view class="comment_input" wx:if="{{is_comment}}">
+  <form bindsubmit="formSubmitComment" class='form'>
+    <input type="text" name="content" focus="{{true}}" auto-focus="{{true}}" bindblur="commentBlur" placeholder='留下你精彩的评论吧' class="input-style" />
+    <button formType="submit" class="btn">发送</button>
+  </form>
 </view>
