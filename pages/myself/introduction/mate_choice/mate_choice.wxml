@@ -1,12 +1,25 @@
 <!--pages/myself/setting/setting.wxml-->
 <view class="setting-view">
   <view wx:for="{{mate}}" wx:key="index">
-    <picker bindchange="bindPickerChange" data-value="{{item.name}}" range="{{item.properties}}" range-key="desc">
+    <picker wx:if="{{item.name == 'now_residence'}}" bindchange="bindPickerChangeAddress" data-value="{{item.name}}" mode="region" custom-item="全部">
+      <view class="list-cell"> 
+        <text  class="fl">{{item.value}}</text>
+        <text class="fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>
+      </view>
+    </picker>
+    <picker wx:elif="{{item.name == 'native_place'}}" bindchange="bindPickerChangeAddress" data-value="{{item.name}}" mode="region" custom-item="全部">
+      <view class="list-cell"> 
+        <text  class="fl">{{item.value}}</text>
+        <text class="fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>
+      </view>
+    </picker>
+    <picker wx:else bindchange="bindPickerChange" data-value="{{item.name}}" range="{{item.properties}}" range-key="desc">
       <view class="list-cell"> 
         <text>{{item.value}}</text>
         <text class="fr_desc fr">{{info[item.name].ruleDesc?info[item.name].ruleDesc:'请选择'}}</text>
       </view>
     </picker>
+    
   </view>
 
 </view>

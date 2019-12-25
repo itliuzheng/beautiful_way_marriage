@@ -1,0 +1,74 @@
+<view>
+  <view class="banner">
+    <image src="/images/myself/member/banner.png"></image>
+  </view>
+  <view class="content">
+    <view class="buy-box">
+      <view class="title">选择置顶天数</view>
+      <view wx:if="{{info.top != 1}}" class="buy-list {{type == 1?'active':''}}" data-type="1" data-time="7" data-amount="30"
+       bindtap="goBuy">
+        <view class="fl">
+          <text class="name">顶</text>
+          <text class="day">7天</text>
+          <!-- <text class="day_amount">日均0.14元</text> -->
+        </view>
+        <view class="fr">
+          <text class="amount">¥30</text>
+          <text class="active_icon"></text>
+        </view>
+      </view>
+      <view wx:if="{{info.top != 1}}" class="buy-list {{type == 2?'active':''}}" data-type="2" data-time="14" data-amount="50"
+       bindtap="goBuy">
+        <view class="fl">
+          <text class="name">顶</text>
+          <text class="day">14天</text>
+          <!-- <text class="day_amount">日均0.27元</text> -->
+        </view>
+        <view class="fr">
+          <text class="amount">¥50</text>
+          <text class="active_icon"></text>
+        </view>
+      </view>
+      <view wx:if="{{info.top != 1}}" class="buy-list {{type == 3?'active':''}}" data-type="3" data-time="30" data-amount="80"
+      bindtap="goBuy">
+        <view class="fl">
+          <text class="name">顶</text>
+          <text class="day">30天</text>
+          <!-- <text class="day_amount">日均0.33元</text> -->
+        </view>
+        <view class="fr">
+          <text class="amount">¥80</text>
+          <text class="active_icon"></text>
+        </view>
+      </view>
+      <view class="buy-list">
+        <view class="fl">
+          <text class="name">有效期</text>
+        </view>
+        <view class="fr">
+          <text class="time_end" wx:if="{{info.top != 1}}">{{now_time}}至{{next_time}}</text>
+          <text class="time_end" wx:else>{{now_time}}至{{info.vipExpireDate}}</text>
+        </view>
+      </view>
+      <view class="btn"  bindtap="buyMember" wx:if="{{info.top != 1}}">微信支付</view>
+      <view class="btn"  wx:else>您已购买置顶服务</view>
+    </view>
+
+    <view class="buy-box vip-box">
+      <view class="title">置顶尊享特权</view>
+      <view class="vip-box-list">
+        <image class="fl list_icon" src="/images/myself/member/icon_01.png"></image>
+        <view class="fl list-name">
+          <view class="name_title">优先排序在最前</view>
+          <view class="name_desc">吸引更多关注，增加相亲成功概率</view>
+        </view>
+      </view>
+    </view>
+    <view class="buy-box vip-box">
+      <view class="title">安全征婚提示</view>
+      <view class="desc">为了您的征婚安全，请您做到：</view>
+      <view class="desc">1.不借钱给任何会员，也不与对方发生任何形式的经济关系。</view>
+      <view class="desc">2.拒绝一夜情，自尊自爱，理性征婚，不轻易发生亲密关系。</view>
+    </view>
+  </view>
+</view>

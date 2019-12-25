@@ -269,6 +269,27 @@
 					"pathName": "pages/music/video/video",
 					"query": "id=4",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "置顶",
+					"pathName": "pages/myself/top/top",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "实名认证",
+					"pathName": "pages/myself/my_certification/verified/verified",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 33,
+					"name": "修改头像",
+					"pathName": "pages/myself/introduction/avatar/avatar",
+					"query": "src= http://tmp/wx4da35c771f33c40d.o6zAJs538SKDTSH0ur9DVpfRhJhw.DwkzBCuZpOUY7dbc4b7c3282850f25ce64d639f819fa.png",
+					"scene": null
 				}
 			]
 		}

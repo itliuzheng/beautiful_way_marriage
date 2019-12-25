@@ -30,7 +30,7 @@
       <navigator class="list-cell" url="/pages/myself/member/member" hover-class="none">
         <text>会员服务</text>
       </navigator>
-      <view class="list-cell" bindtap="goUrl" data-url="" data-vip="1"> <text >我要置顶</text></view>
+      <view class="list-cell" bindtap="goUrl" data-url="/pages/myself/top/top" data-vip="1"> <text >我要置顶</text></view>
       <view class="list-cell" data-url="/pages/single/my_single/my_single" bindtap="goUrl" data-vip="0">
         <text>我的单身圈</text>
       </view>

@@ -14,6 +14,7 @@ Page({
     topList: [],
     recommendUserList:[],
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
+    expectMarriedArray: ['半年内', '一年内', '两年内'],
     hasUserInfo:false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     noCode: false,

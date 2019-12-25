@@ -12,11 +12,11 @@
         <view class="type-icon">
           <view class="icon-box">
             <icon class="player"></icon>
-            <text>0</text>
+            <text>{{item.commentCount}}</text>
           </view>
           <view class="icon-box">
             <icon class="message"></icon>
-            <text>0</text>
+            <text>{{item.commentCount}}</text>
           </view>
           <view class="icon-box">
             <icon class="collect"></icon>
@@ -34,9 +34,10 @@
       <video id="myVideo_{{item.id}}" src="{{item.videoUrl}}" 
       danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
         <view class="type-icon">
-          <view class="icon-box" bindtap="clickComment" data-id="{{item.id}}">
+          <!-- <view class="icon-box" bindtap="clickComment" data-id="{{item.id}}"> -->
+          <view class="icon-box" bindtap="clickMessage" data-id="{{item.id}}">
             <icon class="message"></icon>
-            <text>0</text>
+            <text>{{item.commentCount}}</text>
           </view>
           <view class="icon-box" bindtap="clickMessage" data-id="{{item.id}}">
             <text>...</text>

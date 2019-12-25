@@ -14,7 +14,7 @@
               <view class='move_res'>
                 <view class='move_title'>苏菀菁
                   <text class="lz-icon {{index == 0?'icon-certified':'icon-not-certified'}}"></text>
-                  <view class='move_miniTitle'>期待两年内结婚</view>
+                  <view class='move_miniTitle'>期待{{expectMarriedArray[item.expectMarried]}}结婚</view>
                 </view>
                 <view class='move_other'>
                   <text>24岁</text>

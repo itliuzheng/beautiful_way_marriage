@@ -9,6 +9,7 @@ Page({
    */
   data: {
     info: null,
+    expectMarriedArray: ['半年内', '一年内', '两年内'],
     list:null
   },
 

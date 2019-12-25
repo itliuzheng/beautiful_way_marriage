@@ -1,0 +1,128 @@
+page{
+  background: #F7F7F7;
+}
+.banner image{
+  width: 100%;
+  height: 260rpx;
+  display: block;
+}
+.content{
+  padding: 28rpx 50rpx 50rpx;
+}
+.title{
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:bold;
+  color:rgba(196,171,91,1);
+  line-height:44rpx;
+  margin-bottom: 40rpx;
+}
+.buy-box{
+  width: 100%;
+  /* height:726rpx; */
+  padding: 40rpx 30rpx 0;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 4px 8px 0px rgba(0,0,0,0.3);
+  border-radius:20px;
+  margin-bottom: 20rpx;
+  padding-bottom: 60rpx;
+}
+
+.buy-list{
+  height: 96rpx;
+  line-height: 96rpx;
+  overflow: hidden;
+  border-bottom: 4rpx solid #F7F7F7;
+}
+.buy-lis text{
+  font-size: 32rpx;
+  color: #2B2B2B;
+}
+.buy-list .name{
+  margin-right: 30rpx;
+  font-weight: bold;
+}
+.buy-list .day,.day_amount{
+  font-size: 24rpx;
+  color: #888888;
+  margin-right: 10rpx;
+}
+.buy-list .amount{
+  margin-right: 40rpx;
+}
+.buy-list .active_icon{
+  width: 36rpx;
+  height: 36rpx;
+  border: 2rpx solid #D2D2D2;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.buy-list.active .amount{
+  color: #C4AB5B;
+}
+.buy-list.active .active_icon{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAFCklEQVRYR71YbWxTVRh+3nvbbg46GbDBmA75kjGnOAKBrd3MkMgPE34wuijdCJioIMg04k//ogaJEFDUxI/ABmTt+AHxh4ZksbTjUzBYWI0mkhEI4ICxja3t3b2vOVfWtevtegvF8/c8z/M+5z3nfc+5l5DhOH20aZYS1VYSkxPEC5hRCiK7LsPcT4RuMHUxsd9qk35auurA35mEIDPgtjaXXEK5LiZtCxjVAEzxhEUQOomlvdc47Glo8Kjp4qUVPuldu0Jl2gOgLJ1YmvmQTPxu1ZqDx8fDpTTU8f36XOvE4V1E/BaLdWZhEIGZ6RtlwPJe3YYfwkaShoF8ba5CWbL9yIwlWfCRJEGEs6oWfbW2wfPP2MkkQ7oZsvn40bdo3LUQEFI5WjvWVIIhsU02u+J7XJlJygbhbLTfWhu/fQmG/J7GrwB++3FsU2pN+trpatk4Mh8zJKpJA/2crQNsdlHioEvgV0aqTzck+swMsgWzUNpmfYzFha5ztEL0Kd1QwNP0GkM79LBq2eARpNcdrgOHdUN+r9sPhiMbwg+tQQg417Q66YR37Wxi+iuD6yDjmBMmPYNZC5sgW3Nw5eJh3LslTkfSYCaeS36veyMY+zKOYpJgnzIP5c4PYbHm6Qwl0o8zxzYZswmbKOBpbGGw26R+RrD8wgUod3wA2ZIb4ymRAZw5FqvyBD0CtVLA6/6VGYsyimQCPGna8yireh+yxRZDs6YidGoP7lw/Z6hAhPPk97jFfTLVRAzTkILiSpQt2wpJtsY4mjaMP07tTWnmAbCH/N7GMJhzjKLlTCjCzOdckGQLui8dwWDf1bSmJpcswfylmyFJllEzqoLQyd24e+O38flEEZGhQQBPGCErXvoITxbO16eGlUFcPrED/Xf+TCk69ekqPLtkI0iSYxh1OIKuzs9TVdZYrSFh6BqAGUZRKlfuQJ69OE48jMv+nejr6UqCF82swdzFb4JIGoP/DH09obSZfQC4Tn7P2vMAVRoxCooXYUFVc9KKQyd3offm7zHKtNnLMadyA4hG72ozGU2OyRco4HF/y8AbqZYwecZizF+2JeWZKJ67ErMWNiaaiQ7gku9TDPRm9L4Xz9LvTDXGgukvoqyqOalqeq6eQmGpI8GMEulD0PcJBu91m92mUZxojJ3H1pVwWO1mYHTzDaQmFVWgrFr0FcOC1BnRcC+Cvo8x1CeOZcZDk3Ll0v8uV4/bB6AmnUT+1DKUO7cldN4RTmToDoK/bEd44EY6mVTzJ5yu1lrdkK/NvUYieMwo2SfPQ3nN6N0kOOH7Pbjk247w/VtmJAwxGsNV29Dq1Q2JV2Kg3X0RjAozihML5uiZsubYERm8jaAwM3DTDNUYQwg66ltfEK/HWJ0G2pqWM6nHgbjaHSeEJNuQl/8U7vdeAbP28GZEOiS87Kw/2CFEEh75gXb3F6zhnUdQz5hKEr501LduHiEmfQZZ7crx/+31SAgo/dYVKT+DhMvTR9ZNUVTV/7gf/ETUZZGkmqWr99+OT6vhp7QwFVXVowT9T0fWBwOdNlleNdZM0hmKj9zRsT7X1qPsZPAmswc9nXMCNCbsU6ZYt9XVZfCzIV5Yrz5J2222JaQ0RQiCeOtINaXCmfrNIvpUZ3vjamZuJsCR7pqJqxiNgQAR7a6ubzki+oyJLKaDJM53tq0rYWirQLyYwZUATQejQEcR7gJ8g0AXwHSOIB2tbtif0cX2L/hi62cP3GyUAAAAAElFTkSuQmCC) no-repeat center;
+  background-size: 100%;
+  border-color: transparent;
+}
+
+.time_end{
+  font-size: 28rpx;
+  color: #C4AB5B;
+
+}
+.btn{
+  width:480rpx;
+  height:80rpx;
+  line-height:80rpx;
+  margin: 58rpx auto 0;
+  text-align: center;
+  background:rgba(196,171,91,1);
+  border-radius:10rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+
+}
+
+.vip-box .desc{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(43,43,43,1);
+  line-height:40rpx;
+  text-align: justify;
+}
+
+
+.vip-box-list{
+  border-bottom: 4rpx solid #f7f7f7;
+  overflow: hidden;
+  height: 128rpx;
+}
+.list_icon{
+  margin-right: -100%;
+  width: 70rpx;
+  height: 70rpx;
+  margin-top: 20rpx;
+}
+.list-name{
+  margin-left: 100rpx;
+}
+.name_title{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(43,43,43,1);
+  line-height:40rpx;
+  margin-top: 26rpx;
+}
+.name_desc{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(136,136,136,1);
+  line-height:34rpx;
+}

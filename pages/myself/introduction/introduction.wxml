@@ -8,6 +8,19 @@
   </view>
   <view class="section">
     <view class="nav_head">
+      <text class="fl">头像与昵称</text>
+    </view>
+    <view class="list">
+      <image class="avatarUrl fl" src="{{myself.avatarUrl}}"></image>
+      <text class="fr" bindtap="edit_avatar">修改</text>
+    </view>
+    <view class="list">
+      <text class="fl">昵称</text>
+      <text class="fr" bindtap="edit_nickName">{{myself.nickName}}</text>
+    </view>
+  </view>
+  <view class="section">
+    <view class="nav_head">
       <text class="fl">个人相册</text>
     </view>
     <view class="upload-box">
@@ -27,27 +40,148 @@
       <navigator class="fr" url="/pages/myself/person_info/person_info">编辑</navigator>
     </view>
     <view class="list">
-      <text class="fl">居住地</text>
-      <text class="fr">{{myself.nowResidence}}</text>
+      <text class="fl">年龄</text>
+      <text class="fr">{{myself.age}}</text>
     </view>
     <view class="list">
-      <text class="fl">家乡</text>
-      <text class="fr"></text>
+      <text class="fl">身高（cm）</text>
+      <text class="fr">{{myself.height}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">体重（kg）</text>
+      <text class="fr">{{myself.weight}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">学历</text>
+      <text class="fr">{{educationArray[myself.education - 1]}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">情感状态</text>
+      <text class="fr">{{maritalStatusArray[myself.maritalStatus]}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">有无子女</text>
+      <text class="fr">{{hasChildArray[myself.hasChild]}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">民族</text>
+      <text class="fr">{{myself.nation}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">职业</text>
+      <text class="fr">{{myself.profession}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">期望多久结婚</text>
+      <text class="fr">{{expectMarriedArray[myself.expectMarried]}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">户籍地</text>
+      <text class="fr">{{myself.nativePlace}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">居住地</text>
+      <text class="fr">{{myself.nowResidence}}</text>
     </view>
     <view class="list">
       <text class="fl">年收入</text>
       <text class="fr">{{annualIncomeArray[myself.annualIncome]}}</text>
     </view>
     <view class="list">
-      <text class="fl">情感状态</text>
-      <text class="fr" wx:if="{{myself.maritalStatus == 0}}">未婚</text>
-      <text class="fr" wx:elif="{{myself.maritalStatus == 1}}">丧偶</text>
-      <text class="fr" wx:else>离异</text>
+      <text class="fl">星座</text>
+      <text class="fr">{{myself.constellation}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">属相</text>
+      <text class="fr">{{myself.zodiac}}</text>
+    </view>
+    <view class="list">
+      <text class="fl">微信账号</text>
+      <text class="fr">{{myself.wechatAccount}}</text>
     </view>
     <view class="list">
       <text class="fl">房产状态</text>
       <text class="fr">{{myself.houseAuth?'已购房':'未购房'}}</text>
     </view>
+  </view>
+  
+  <view class="section">
+    <view class="nav_head"  wx:if="{{myself.userAuth ||myself.educationAuth ||myself.carAuth ||myself.houseAuth}}">
+      <text class="fl">已认证信息</text>
+    </view>
+    <view wx:if="{{myself.userAuth}}">
+      <view class="list" bindtap="clickShow">
+        <text class="fl">身份证认证</text>
+        <view class="fr arrow-box">
+          <text>已认证</text>
+          <text class="arrow_b {{ver_height == 0?'':'arrow_t'}}"></text>
+        </view>
+      </view>
+      <view class="ver_show" style="height:{{ver_height}}rpx">
+        <view>{{myself.realName}}</view>
+        <view>{{myself.identityNo}}</view>
+      </view>
+    </view>
+    <view wx:if="{{myself.educationAuth}}">
+      <view class="list" bindtap="clickShow" data-type="education">
+        <text class="fl">学历认证</text>
+        <view class="fr arrow-box">
+          <text>{{myself.educationAuth?'已认证':'未认证'}}</text>
+          <text class="arrow_b {{education_height == 0?'':'arrow_t'}}"></text>
+        </view>
+      </view>
+      <view class="ver_show" style="height:{{education_height}}rpx">
+        <view>{{educationArray[myself.education - 1]}}</view>
+      </view>
+
+    </view>
+    <view class="" wx:if="{{myself.houseAuth}}">
+      <view class="list" bindtap="clickShow" data-type="house">
+        <text class="fl">资产认证-房</text>
+        <view class="fr arrow-box">
+          <text>{{myself.houseAuth?'已认证':'未认证'}}</text>
+          <text class="arrow_b {{house_height == 0?'':'arrow_t'}}"></text>
+        </view>
+      </view>
+      <view class="ver_show" style="height:{{house_height}}rpx">
+        <view>有房</view>
+      </view>
+    </view>
+    <view class="" wx:if="{{myself.carAuth}}">
+      
+      <view class="list" bindtap="clickShow" data-type="car">
+        <text class="fl">资产认证-车</text>
+        <view class="fr arrow-box">
+          <text>{{myself.carAuth?'已认证':'未认证'}}</text>
+          <text class="arrow_b {{car_height == 0?'':'arrow_t'}}"></text>
+        </view>
+      </view>
+      <view class="ver_show" style="height:{{car_height}}rpx">
+        <view>有车</view>
+      </view>
+    </view>
+
+    <view class="nav_head"  wx:if="{{!myself.userAuth ||!myself.educationAuth ||!myself.carAuth ||!myself.houseAuth}}">
+      <text class="fl">未认证信息</text>
+      <navigator class="fr" url="/pages/myself/my_certification/my_certification">编辑</navigator>
+    </view>
+    <view class="list" wx:if="{{!myself.userAuth}}">
+      <text class="fl">身份证认证</text>
+      <text class="fr">{{myself.userAuth?'已认证':'未认证'}}</text>
+    </view>
+    <view class="list" wx:if="{{!myself.educationAuth}}">
+      <text class="fl">学历认证</text>
+      <text class="fr">{{myself.educationAuth?'已认证':'未认证'}}</text>
+    </view>
+    <view class="list" wx:if="{{!myself.houseAuth}}">
+      <text class="fl">资产认证-房</text>
+      <text class="fr">{{myself.houseAuth?'已认证':'未认证'}}</text>
+    </view>
+    <view class="list" wx:if="{{!myself.carAuth}}">
+      <text class="fl">资产认证-车</text>
+      <text class="fr">{{myself.carAuth?'已认证':'未认证'}}</text>
+    </view>
+
   </view>
   <view class="section">
     <view class="nav_head">
@@ -90,7 +224,18 @@
       <button class='toat_yes' form-type="submit">添加</button>
       <button class='toat_yes toat_no' bindtap="cancel">取消</button>
     </form>
-
   </view>
 </view>
+<view class='maskCode' wx:if="{{nickName_noCode}}">
+  <view class='toast_centerCode'>
+    <form bindsubmit="editNickName">
+      <view class='toat_mainCode'>
+        <textarea placeholder="修改昵称" name="nickName"></textarea>
+      </view>
+      <button class='toat_yes' form-type="submit">添加</button>
+      <button class='toat_yes toat_no' bindtap="cancel">取消</button>
+    </form>
+  </view>
+</view>
+
 

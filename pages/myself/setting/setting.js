@@ -62,6 +62,11 @@ Component({
         wx.hideLoading();
         if (res.data.code == 1) {
           config.mytoast('资料注销成功，正在跳转...', (res) => { })
+
+          // wx.setStorageSync('token', null)
+          // wx.navigateTo({
+          //   url: '/pages/login/index',
+          // })
           wx.navigateBack({})
         } else {
           config.mytoast(res.data.msg, (res) => { })

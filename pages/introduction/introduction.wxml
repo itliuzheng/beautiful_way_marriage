@@ -21,19 +21,19 @@
     <view class="card-content">
       <view class='move_title'>{{info.user.realName}} (ID：{{info.user.id}})
         <text class="lz-icon {{info.user.userAuth?'icon-certified':'icon-not-certified'}}"></text>
-        <view class='move_miniTitle'>期待两年内结婚</view>
+        <view class='move_miniTitle'>期待{{expectMarriedArray[info.user.expectMarried]}}结婚</view>
       </view>
       <view class='name_other'>
         <text>{{info.user.age}}岁</text>
         <text>|</text>
         <text>{{info.user.height}}cm</text>
         <text>|</text>
-        <text>{{educationArray[info.user.education]}}</text>
+        <text>{{educationArray[info.user.education - 1]}}</text>
         <text>|</text>
         <text>{{annualIncomeArray[info.user.annualIncome]}}</text>
         <view class="fr address">
           <image src="/images/introduction/address.png"></image>
-          <text class="address_desc">{{info.user.nowResidence}}</text>
+          <text class="address_desc">{{info.user.nativePlace}}</text>
         </view>
       </view>
     </view>
@@ -98,7 +98,7 @@
         </view>
       </view>
       <view class="ver_show" style="height:{{education_height}}rpx">
-        <view>{{educationArray[info.user.education]}}</view>
+        <view>{{educationArray[info.user.education - 1]}}</view>
       </view>
 
     </view>

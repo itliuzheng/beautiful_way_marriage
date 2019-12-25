@@ -188,8 +188,6 @@ Page({
   },
   bindPickerChange: function (e) {
 
-
-
     if (!this.data.STATUS.vipLevel) {
       config.mytoast('请购买会员后查看~', (res) => { });
       setTimeout(function () {
@@ -199,8 +197,6 @@ Page({
       }, 500)
       return false;
     }
-
-
     // console.log('picker发送选择改变，携带值为', e)
 
     let _index = e.detail.value;

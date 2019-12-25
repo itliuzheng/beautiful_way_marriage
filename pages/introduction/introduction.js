@@ -21,6 +21,7 @@ Page({
     car_height: 0,
     educationArray: ['初中', '高中', '大专', '本科', '研究生', '博士', '博士后'],
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
+    expectMarriedArray: ['半年内', '一年内', '两年内'],
     isShow_wx: false,
   },
   /**

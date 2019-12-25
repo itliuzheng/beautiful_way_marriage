@@ -86,9 +86,24 @@ Page({
     })
 
   },
+  validate(card){
+    const REGS = {
+      ID_CARD_REG: /^(\d{18}$|^\d{17}(\d|X|x))$/,
+    };
+
+    return REGS.ID_CARD_REG.test(card.trim())
+  },
   bindFormSubmit(e){
-    console.log(e.detail);
     let _this = this;
+
+    if (!this.validate(e.detail.value.identityCard)) {
+      config.mytoast('请填写正确的身份证号码', (res) => { });
+      return false;
+    }
+    if (!e.detail.value.name) {
+      config.mytoast('姓名不能为空', (res) => { });
+      return false;
+    }
 
     wx.showLoading({
       title: '数据加载中...',

@@ -52,7 +52,7 @@
   <view class="rc_news" wx:if="{{topList.data.length}}">
     <view class="news-title">我要置顶</view>
     <scroll-view scroll-x class="scroll-x">
-      <view wx:for="{{topList.data}}" wx:key="{{index}}" wx:key="unique" class="view-parent" wx:if="{{item.top == 1}}">
+      <view wx:for="{{topList.data}}" wx:key="{{index}}" wx:key="unique" class="view-parent" >
         <view bindtap="isVip" data-id="{{item.id}}">
           <view class="stick-card-list">
             <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
@@ -77,7 +77,7 @@
   <view class="title-box" wx:if="{{recommendUserList.data.length}}">
     <view class="title">每日推荐</view>
   </view>
-  <view class="recommend-list" wx:for="{{recommendUserList.data}}" wx:key="unique" wx:if="{{item.recommend == 1}}">
+  <view class="recommend-list" wx:for="{{recommendUserList.data}}" wx:key="unique" >
     <view >
       <view class="list-bj">
         <image src="{{item.imageUrl}}" mode="aspectFill"></image>
@@ -94,7 +94,7 @@
       <view class="card-content" bindtap="isVip" data-id="{{item.id}}">
         <view class='move_title'>{{item.realName}}
           <text class="lz-icon {{item.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
-          <view class='move_miniTitle'>期待两年内结婚</view>
+          <view class='move_miniTitle'>期待{{expectMarriedArray[item.expectMarried]}}结婚</view>
         </view>
         <view class='name_other'>
           <text>{{item.age}}岁</text>
@@ -110,6 +110,7 @@
       </view>
     </view>
   </view>
+  
 
 </view>
 

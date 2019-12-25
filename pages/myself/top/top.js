@@ -10,10 +10,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    type:1,
-    now_time:null,
-    next_time:null,
-    info:null
+    type: 1,
+    now_time: null,
+    next_time: null,
+    amount:30,
+    time:7,
+    info: null
   },
 
   /**
@@ -28,7 +30,7 @@ Page({
     })
 
   },
-  onShow(){
+  onShow() {
     this.getStatus();
   },
   getStatus() {
@@ -64,22 +66,23 @@ Page({
   not_open_yet() {
     config.mytoast('暂未开放，敬请期待...', (res) => { });
   },
-  buyMember(){
-
+  buyMember() {
+    let _this = this;
     config.ajax('POST', {
-      body:'会员支付',
-      totalFee: 49.9,
+      body: '会员支付',
+      totalFee: _this.data.amount,
       tradeType: 'JSAPI',
-      attach:'VIP'
+      attach: 'TOP',
+      dayNum: _this.data.time
     }, `/wx/pay/createOrder`, (resp) => {
       wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
-          
-        config.pay(res, function (res) {
-          console.log(res);
 
-        }, function (error) { 
+        config.pay(res, function (res) {
+          this.getStatus();
+
+        }, function (error) {
           console.log(error);
         })
       } else {
@@ -89,13 +92,16 @@ Page({
 
     })
   },
-  goBuy(e){
+  goBuy(e) {
     let now_day = new Date();
     let type = e.currentTarget.dataset.type;
     let next_time = util.addDate(now_day, e.currentTarget.dataset.time);
+
     this.setData({
       type: type,
-      next_time: next_time
+      next_time: next_time,
+      amount: e.currentTarget.dataset.amount,
+      time: e.currentTarget.dataset.time
     })
   }
 })

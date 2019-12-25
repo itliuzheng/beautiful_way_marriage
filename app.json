@@ -34,7 +34,9 @@
     "pages/music/audio/audio",
     "pages/friends/index",
     "pages/myself/introduction/cropper_img/cropper_img",
-    "pages/music/video/video"
+    "pages/music/video/video",
+    "pages/myself/top/top",
+    "pages/myself/introduction/avatar/avatar"
   ],
   "window": {
     "backgroundTextStyle": "light",

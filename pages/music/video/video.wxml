@@ -36,10 +36,10 @@
         <view class="content">{{item.content}}</view>
         <view class="time-box clearfix">
           <!-- 点赞 -->
-          <view class="fl icons" bindtap="clickPraise" data-id="{{item.id}}" data-is_praise="{{item.isPraise}}">
+          <!-- <view class="fl icons" bindtap="clickPraise" data-id="{{item.id}}" data-is_praise="{{item.isPraise}}">
             <text class="icon_dianzan {{item.isPraise?'icon_dianzan_ok':''}}"></text>
             <text>{{item.praise}}</text>
-          </view>
+          </view> -->
           <!-- 转发 -->
           <view class="fl icons">
             <text class="icon_share"></text>

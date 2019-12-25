@@ -128,6 +128,37 @@ Page({
 
 
   },
+  bindPickerChangeAddress: function (e) {
+    let address = e.detail.value.join('-');
+
+    console.log(address);
+    let type = e.currentTarget.dataset.value;
+    //获取数组下标
+    let mate_index = this.getArrayIndex(this.data.mate, type);
+
+    //获取已选择的参数
+    let _name = this.data.mate[mate_index].value
+    let _value = address
+    let _desc = address
+    let _ruleType = '='
+
+    let info = {};
+    info[type] = {
+      ruleNameZh: _name,
+      ruleName: type,
+      ruleValue: _value,
+      ruleDesc: _desc,
+      ruleType: _ruleType
+    };
+    let _info = Object.assign({}, this.data.info, info)
+
+    this.add(info[type]);
+
+    this.setData({
+      info: _info
+    })
+
+  },
   add(json) {
 
     let info = this.data.info;

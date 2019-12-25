@@ -17,7 +17,7 @@
       <view class="card-content">
         <view class='move_title'>{{item.realName}}
           <text class="lz-icon {{item.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
-          <view class='move_miniTitle'>期待两年内结婚</view>
+          <view class='move_miniTitle'>期待{{expectMarriedArray[item.expectMarried]}}结婚</view>
         </view>
         <view class='name_other'>
           <text>{{item.age}}岁</text>

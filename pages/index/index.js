@@ -17,6 +17,7 @@ Page({
     content: [],
     noCode: false,
     wrapContent: false,
+    expectMarriedArray: ['半年内', '一年内', '两年内'],
     is_match: true,
     hasUserInfo: false,
     STATUS:null

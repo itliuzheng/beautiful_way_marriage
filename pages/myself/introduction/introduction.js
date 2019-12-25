@@ -10,12 +10,21 @@ Page({
   data: {
     myself: null,
     annualIncomeArray: ['3-8万', '8-12万', '12-20万', '20-30万', '30-100万', '100万以上'],
+    educationArray: ['初中', '高中', '大专', '本科', '研究生', '博士', '博士后'],
+    maritalStatusArray: ['未婚', '丧偶', '离异'],
+    hasChildArray: ['无', '1个', '2个', '3个及以上'],
+    expectMarriedArray: ['半年内', '一年内', '两年内'],
+    ver_height: 130,
+    education_height: 0,
+    house_height: 0,
+    car_height: 0,
     myimg:{
       imgSrc:''
     },
     mateChoiseList:[],
     upload_list: [],
-    noCode:false
+    noCode:false,
+    nickName_noCode:false
   },
   previewImg(e){
     //预览图片
@@ -54,26 +63,25 @@ Page({
           url: `/pages/myself/introduction/cropper_img/cropper_img?src=${str}`,
         })
 
-        // let suffix = str.substring(str.lastIndexOf('.'));
+      },
+    })
+  },
+  edit_avatar() {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      // sizeType: 'original',
+      sizeType: 'compressed',
+      success: function (res) {
+        let str = res.tempFilePaths[0];
 
-        // wx.getFileSystemManager().readFile({
-        //   filePath: res.tempFilePaths[0], //选择图片返回的相对路径
-        //   encoding: 'base64', //编码格式
-        //   success: res => { //成功的回调
-        //     let json = {
-        //       "image": res.data,
-        //       "imageExt": suffix,
-
-        //     }
-        //     that.updateUserImage(json, str);
-
-
-        //   }
-        // })
+        console.log(str);
+        wx.redirectTo({
+          url: `/pages/myself/introduction/avatar/avatar?src=${str}`,
+        })
 
       },
     })
-
   },
   updateUserImage(json,src) {
     wx.showLoading({
@@ -124,6 +132,47 @@ Page({
   cancel() {
     this.setData({
       noCode: false
+    })
+  },
+  edit_nickName() {
+    this.setData({
+      nickName_noCode: true
+    })
+
+  },
+  cancel_nickName() {
+    this.setData({
+      nickName_noCode: false
+    })
+  },
+  editNickName(e) {
+
+    wx.showLoading({
+      title: '昵称修改中...',
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+
+    config.ajax('POST', {
+      nickName: e.detail.value.nickName
+    }, `/user/updateNickName`, (res) => {
+      wx.hideLoading();
+
+      if (res.data.code == 1) {
+
+        this.setData({
+          "myself.nickName": e.detail.value.nickName,
+          nickName_noCode: false
+        })
+
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
+
     })
   },
   onShow: function () {
@@ -355,5 +404,59 @@ Page({
     // 　　  }
     　　// 返回shareObj
     　　return shareObj;
+  },
+
+  clickShow(e) {
+    let type = e.currentTarget.dataset.type;
+
+    if (type == 'education') {
+
+      let height = this.data.education_height;
+      if (height == 80) {
+        this.setData({
+          education_height: 0
+        })
+      } else {
+        this.setData({
+          education_height: 80
+        })
+      }
+    } else if (type == 'house') {
+      let height = this.data.house_height;
+      if (height == 80) {
+        this.setData({
+          house_height: 0
+        })
+      } else {
+        this.setData({
+          house_height: 80
+        })
+      }
+    } else if (type == 'car') {
+      let height = this.data.car_height;
+      if (height == 80) {
+        this.setData({
+          car_height: 0
+        })
+      } else {
+        this.setData({
+          car_height: 80
+        })
+      }
+    } else {
+
+      let height = this.data.ver_height;
+      if (height == 130) {
+
+        this.setData({
+          ver_height: 0
+        })
+      } else {
+        this.setData({
+          ver_height: 130
+        })
+      }
+
+    }
   },
 })

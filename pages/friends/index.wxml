@@ -21,7 +21,7 @@
       <view class="desc">一直奋斗在事业上，只为爱情的基础更坚实</view>
     </view>
   </view> -->
-  <view class="friends" bindtap="goUrl" data-url="/pages/friends/friends/friends">
+  <view class="friends" bindtap="goUrl" data-url="/pages/friends/friends/friends?type=highEducation">
     <image src="/images/friends/icon_04.png"></image>
     <view class="content">
       <view class="title"><text>高学历专区</text></view>
