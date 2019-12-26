@@ -139,7 +139,7 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.myself.userAuth) {
+    if (this.data.myself.userAuth != 1) {
       config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({
@@ -232,6 +232,9 @@ Page({
 
       } else {
         config.mytoast(res.msg, (res) => { })
+        wx.navigateBack({
+          
+        })
       }
     }, (res) => {
 
@@ -336,7 +339,7 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.myself.userAuth) {
+    if (this.data.myself.userAuth != 1) {
       config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({

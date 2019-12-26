@@ -106,10 +106,10 @@
   </view>
   
   <view class="section">
-    <view class="nav_head"  wx:if="{{myself.userAuth ||myself.educationAuth ||myself.carAuth ||myself.houseAuth}}">
+    <view class="nav_head"  wx:if="{{myself.userAuth == 1 ||myself.educationAuth ||myself.carAuth ||myself.houseAuth}}">
       <text class="fl">已认证信息</text>
     </view>
-    <view wx:if="{{myself.userAuth}}">
+    <view wx:if="{{myself.userAuth == 1}}">
       <view class="list" bindtap="clickShow">
         <text class="fl">身份证认证</text>
         <view class="fr arrow-box">
@@ -161,13 +161,13 @@
       </view>
     </view>
 
-    <view class="nav_head"  wx:if="{{!myself.userAuth ||!myself.educationAuth ||!myself.carAuth ||!myself.houseAuth}}">
+    <view class="nav_head"  wx:if="{{myself.userAuth != 1 ||!myself.educationAuth ||!myself.carAuth ||!myself.houseAuth}}">
       <text class="fl">未认证信息</text>
       <navigator class="fr" url="/pages/myself/my_certification/my_certification">编辑</navigator>
     </view>
-    <view class="list" wx:if="{{!myself.userAuth}}">
+    <view class="list" wx:if="{{myself.userAuth != 1}}">
       <text class="fl">身份证认证</text>
-      <text class="fr">{{myself.userAuth?'已认证':'未认证'}}</text>
+      <text class="fr">{{myself.userAuth == 2?'认证失败':'未认证'}}</text>
     </view>
     <view class="list" wx:if="{{!myself.educationAuth}}">
       <text class="fl">学历认证</text>

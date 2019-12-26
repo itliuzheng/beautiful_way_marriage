@@ -13,7 +13,8 @@ Page({
     commentInfo: null,
     id: null,
     STATUS: null,
-    user_id: null
+    user_id: null,
+    show: true
   },
 
   /**
@@ -151,19 +152,14 @@ Page({
 
     let that = this;
 
-    wx.showLoading({
-      title: '数据加载中...',
-      mask: true,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+    this.setData({
+      show: true
     })
 
     config.ajax('POST', {
       userId:that.data.id,
       pageNum: page
     }, `/circle/single-circle/page`, (resp) => {
-      wx.hideLoading();
       let res = resp.data;
       if (page != 1) {
         this.data.list.data.push.apply(this.data.list.data, res.data.data);
@@ -178,8 +174,14 @@ Page({
         })
 
       }
-    }, (res) => {
 
+      that.setData({
+        show: false
+      })
+    }, (res) => {
+      that.setData({
+        show: false
+      })
     })
   },
 
@@ -280,7 +282,7 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.STATUS.userAuth) {
+    if (this.data.STATUS.userAuth != 1) {
       config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({
@@ -386,7 +388,7 @@ Page({
         })
 
       } else {
-        config.mytoast(res.msg, (res) => { });
+        // config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
 
@@ -456,15 +458,16 @@ Page({
 
     config.ajax('GET', {
     }, `/user/`, (resp) => {
-      wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
-        this.setData({
-          user_id: res.data.id
-        })
+        if (res.data) {
+          this.setData({
+            user_id: res.data.id
+          })
+        }
 
       } else {
-        config.mytoast(res.msg, (res) => { });
+        // config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
 

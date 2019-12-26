@@ -29,9 +29,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getInit()
+    this.getStatus()
   },
-  getInit(){
+  getStatus(){
 
     let _this = this;
 
@@ -51,6 +51,9 @@ Page({
         this.setData({
           info:res.data
         })
+        if (res.data.userAuth == 2){
+          config.mytoast('认证失败，请重新认证！', (res) => { });
+        }
       } else {
         config.mytoast(res.msg, (res) => { });
       }

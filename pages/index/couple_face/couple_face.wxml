@@ -12,6 +12,7 @@
   </view>
   <view class="upload-box">
     <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}">
+      <image src="{{item.url}}"></image>
       <view data-index="{{index}}" class="is_choose_not {{item.choose?'is_choose':''}}" bindtap="choose">{{item.choose?'已选择':'选择'}}</view>
     </view>
     <view class="add upload-list-m-b" bindtap="add_upload">

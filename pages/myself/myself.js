@@ -26,9 +26,17 @@ Page({
       wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
-        this.setData({
-          myself: res.data
-        })
+        if (res.data){
+
+          this.setData({
+            myself: res.data
+          })
+        }else{
+
+          wx.navigateTo({
+            url: '/pages/login/index',
+          })
+        }
 
       } else {
         config.mytoast(res.msg, (res) => { });
@@ -73,7 +81,7 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.myself.realName) {
+    if (this.data.myself.userAuth != 1) {
       config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({

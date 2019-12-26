@@ -80,7 +80,10 @@ page{
   width: 20rpx;
   height: 4rpx;
   background:rgba(255,255,255,0.5);
-  margin: 0 16rpx;
+  margin: 0 16rpx 0 0;
+}
+.dot:last-child{
+  margin: 0;
 }
 .active{
   width: 20rpx;

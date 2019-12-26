@@ -7,14 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    back_url:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(options.back_url){
+      this.setData({
+        back_url: options.back_url
+      })
+    }
   },
 
   formSubmit(e) {
@@ -38,9 +42,13 @@ Page({
 
       if (res.data.code == 1) {
         wx.setStorageSync('token', res.data.data)
-        wx.switchTab({
-          url: '/pages/home/index'
-        })
+        if (this.data.back_url){
+          wx.navigateBack({})
+        }else{
+          wx.switchTab({
+            url: '/pages/home/index'
+          })
+        }
       } else {
         config.mytoast(res.data.msg, (res) => { })
       }

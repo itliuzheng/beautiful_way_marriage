@@ -20,7 +20,7 @@
   <view class="section">
     <view class="card-content">
       <view class='move_title'>{{info.user.realName}} (ID：{{info.user.id}})
-        <text class="lz-icon {{info.user.userAuth?'icon-certified':'icon-not-certified'}}"></text>
+        <text class="lz-icon {{info.user.userAuth == 1?'icon-certified':'icon-not-certified'}}"></text>
         <view class='move_miniTitle'>期待{{expectMarriedArray[info.user.expectMarried]}}结婚</view>
       </view>
       <view class='name_other'>
@@ -71,10 +71,10 @@
     </view>
   </view>
   <view class="section">
-    <view class="nav_head"  wx:if="{{info.user.userAuth ||info.user.educationAuth ||info.user.carAuth ||info.user.houseAuth}}">
+    <view class="nav_head"  wx:if="{{info.user.userAuth == 1 ||info.user.educationAuth ||info.user.carAuth ||info.user.houseAuth}}">
       <text class="fl">已认证信息</text>
     </view>
-    <view wx:if="{{info.user.userAuth}}">
+    <view wx:if="{{info.user.userAuth == 1}}">
       <view class="list" bindtap="clickShow">
         <text class="fl">身份证认证</text>
         <view class="fr arrow-box">
@@ -128,12 +128,12 @@
       </view>
     </view>
 
-    <view class="nav_head"  wx:if="{{!info.user.userAuth ||!info.user.educationAuth ||!info.user.carAuth ||!info.user.houseAuth}}">
+    <view class="nav_head"  wx:if="{{info.user.userAuth != 1 ||!info.user.educationAuth ||!info.user.carAuth ||!info.user.houseAuth}}">
       <text class="fl">未认证信息</text>
     </view>
-    <view class="list" wx:if="{{!info.user.userAuth}}">
+    <view class="list" wx:if="{{info.user.userAuth != 1}}">
       <text class="fl">身份证认证</text>
-      <text class="fr">{{info.user.userAuth?'已认证':'未认证'}}</text>
+      <text class="fr">{{info.user.userAuth == 1?'已认证':'未认证'}}</text>
     </view>
     <view class="list" wx:if="{{!info.user.educationAuth}}">
       <text class="fl">学历认证</text>
@@ -150,7 +150,7 @@
 
   </view>
 
-  <view class="section">
+  <view class="section" wx:if="{{info.user.selfIntroduce}}">
     <view class="nav_head">
       <text class="fl">自我介绍</text>
     </view>

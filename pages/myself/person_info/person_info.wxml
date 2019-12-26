@@ -91,7 +91,7 @@
   </picker>
   <picker bindchange="bindPickerChangeZodiac" value="{{zodiac}}" range="{{zodiacArray}}">
     <view class="list-cell"> 
-      <text>星座</text>
+      <text>属相</text>
       <text class="fr_desc fr">{{zodiac == -1?'请选择':zodiacArray[zodiac]}}</text>
     </view>
   </picker>

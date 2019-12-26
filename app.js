@@ -46,3 +46,12 @@ App({
     }
   }
 })
+
+
+
+// {
+//   "selectedIconPath": "/images/tab/footer_icon_02_active.png",
+//     "pagePath": "pages/index/index",
+//       "text": "匹配",
+//         "iconPath": "/images/tab/footer_icon_02.png"
+// },

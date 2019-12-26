@@ -82,13 +82,6 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "注册",
-					"pathName": "pages/login/register/register",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": 5,
 					"name": "首页",
 					"pathName": "pages/home/index",
@@ -285,10 +278,10 @@
 					"scene": null
 				},
 				{
-					"id": 33,
-					"name": "修改头像",
-					"pathName": "pages/myself/introduction/avatar/avatar",
-					"query": "src= http://tmp/wx4da35c771f33c40d.o6zAJs538SKDTSH0ur9DVpfRhJhw.DwkzBCuZpOUY7dbc4b7c3282850f25ce64d639f819fa.png",
+					"id": -1,
+					"name": "匹配结果",
+					"pathName": "pages/index/list/list",
+					"query": "url=sysMatch",
 					"scene": null
 				}
 			]

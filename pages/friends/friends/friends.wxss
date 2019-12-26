@@ -1,6 +1,9 @@
 page{
   background: #F7F7F7;
 }
+.loading{
+  margin-top: 400rpx;
+}
 .no-data{
   line-height: 100rpx;
   text-align: center;

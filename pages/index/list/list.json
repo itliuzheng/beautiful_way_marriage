@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "匹配结果"
+  "usingComponents": {
+    "mp-loading": "/component/loading/loading"
+  },
+  "navigationBarTitleText": "匹配结果",
+  "enablePullDownRefresh": true
 }

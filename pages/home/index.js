@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentSwiper:0,
+    currentSwiper: 0,
+    currentSwiperNav: 0,
     background: [],
     topList: [],
     recommendUserList:[],
@@ -106,20 +107,20 @@ Page({
     }
 
 
-    timer = setTimeout(function () {
-      console.log('hasUserInfo-4--', _this.data.hasUserInfo);
+    // timer = setTimeout(function () {
+    //   console.log('hasUserInfo-4--', _this.data.hasUserInfo);
 
-      if (_this.data.hasUserInfo == false) {
-        wx.navigateTo({
-          url: '/pages/login/index'
-        })
-      }
-      if (!token) {
-        wx.navigateTo({
-          url: '/pages/login/login/login'
-        })
-      }
-    }, 2000)
+    //   if (_this.data.hasUserInfo == false) {
+    //     wx.navigateTo({
+    //       url: '/pages/login/index'
+    //     })
+    //   }
+    //   if (!token) {
+    //     wx.navigateTo({
+    //       url: '/pages/login/login/login'
+    //     })
+    //   }
+    // }, 2000)
 
 
   },
@@ -129,17 +130,17 @@ Page({
    */
   onReady: function () {
 
+    this.getInit();
+    this.getHome();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getInit();
     // this.getBanner();
     this.getTopList()
     this.getRecommendUser();
-    this.getHome();
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -167,35 +168,14 @@ Page({
 
     let _this = this;
 
-    wx.showLoading({
-      title: '数据加载中...',
-      mask: true,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-
     config.ajax('GET', {
     }, `/auth/status`, (resp) => {
-      wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
         this.setData({
           info: res.data
         })
-        if (!res.data.completeInfo || !res.data.userAuth) {
-          this.setData({
-            noCode: true
-          })
-        } else {
-          this.setData({
-            noCode: false
-          })
-
-        }
-
       } else {
-        config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
 
@@ -204,6 +184,29 @@ Page({
   },
   isVip(e){
     let id = e.currentTarget.dataset.id;
+
+    var token = wx.getStorageSync('token')
+    console.log(app.globalData.userInfo);
+    console.log(token);
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+
     if (this.data.info.vipLevel){
       let url = `/pages/introduction/introduction?id=${id}`
       wx.navigateTo({
@@ -303,6 +306,8 @@ Page({
   goUrl(e) {
     let url = e.currentTarget.dataset.url;
     var token = wx.getStorageSync('token')
+    console.log(app.globalData.userInfo);
+    console.log(token);
     if (!app.globalData.userInfo) {
       config.mytoast('您还未登录，请先登录', (res) => { });
       setTimeout(function(){
@@ -360,7 +365,7 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.info.userAuth) {
+    if (this.data.info.userAuth != 1) {
       config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({
@@ -387,11 +392,10 @@ Page({
     this.setData({
       isShow_wx: false
     })
-
   },
   swiperChange(e) {
     this.setData({
-      currentSwiper: e.detail.current
+      currentSwiperNav: e.detail.current
     })
   },
   onPageScroll(e){

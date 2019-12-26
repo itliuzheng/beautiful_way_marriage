@@ -2,6 +2,9 @@
   line-height: 200rpx;
   text-align: center;
 }
+.loading{
+  margin-top: 400rpx;
+}
 .no-data image{
   width: 200rpx;
   height: 220rpx;

@@ -2,17 +2,17 @@
   <view class="recommend-list" wx:for="{{list.data}}" wx:key="unique" >
     <view bindtap="isVip" data-id="{{item.id}}">
       <view class="list-bj">
-        <image src="{{item.imageUrl}}" mode="aspectFill"></image>
+        <image src="{{item.imageUrl}}" mode="aspectFill" lazy-load="{{true}}"></image>
         <view class="certification_tag">
           <!-- <text class="icon_ver "></text> -->
           <text class=" {{item.vipLevel == 1?'icon_ver':'icon_ver_not'}}"></text>
           <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
-          <text>{{item.userAuth?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
+          <text>{{item.userAuth == 1?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
         </view>
-        <!-- <view class="certification_tag exchange_wx">
+        <view class="certification_tag exchange_wx" catchtap="showWx">
           <text class="icon_wx"></text>
           <text>交换微信</text>
-        </view> -->
+        </view>
       </view>
       
       <view class="card-content">
@@ -34,5 +34,24 @@
       </view>
     </view>
   </view>
-  <view class="no-data" wx:if="{{!list.data.length}}">暂无数据</view>
+  <view class="loading" wx:if="{{show}}">
+    <mp-loading  type="circle" show="{{show}}" ></mp-loading>
+  </view>
+  <view wx:else>
+    <view class="no-data" wx:if="{{!list.data.length}}">
+      <image src="/images/no_data/no_list_data.png" lazy-load="{{true}}"></image>
+      <view>暂无数据</view>
+    </view>
+  </view>
+</view>
+
+
+<view class='maskCode' wx:if="{{isShow_wx}}">
+  <view class='toast_centerCode'>
+    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"  lazy-load="{{true}}"></image>
+    <view class='toat_mainCode'>
+      <text>微信号： pymt1818</text>
+      <image src="/images/home/wx.png"  lazy-load="{{true}}"></image>
+    </view>
+  </view>
 </view>

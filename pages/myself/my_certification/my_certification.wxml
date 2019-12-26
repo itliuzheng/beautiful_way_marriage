@@ -1,15 +1,15 @@
 <view class="list-box">
-  <navigator  url="/pages/myself/my_certification/verified/verified" wx:if="{{!info.userAuth}}">
-    <view class="list-cell"> 
+  <navigator  url="/pages/myself/my_certification/verified/verified" wx:if="{{info.userAuth != 1}}">
+    <view class="list-cell "> 
       <image class="icon fl" src="/images/myself/vertification/icon_01.png" ></image>
       <text class="fl">实名认证</text>
-      <text class="fr_desc fr {{!info.userAuth?'cert_end':''}}">{{!info.userAuth?"去认证":"已认证"}}</text>
+      <text class="fr_desc fr cert_end">去认证</text>
     </view>
   </navigator>
   <view class="list-cell list-cell-no_arrow" wx:else> 
-    <image class="icon fl" src="/images/myself/vertification/icon_02.png" ></image>
+    <image class="icon fl" src="/images/myself/vertification/icon_01.png" ></image>
     <text class="fl">实名认证</text>
-    <text class="fr_desc fr {{!info.userAuth?'cert_end':''}}">{{!info.userAuth?"去认证":"已认证"}}</text>
+    <text class="fr_desc fr ">已认证</text>
   </view>
 
   <navigator  url="/pages/myself/my_certification/education/education" wx:if="{{!info.educationAuth}}">

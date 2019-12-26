@@ -57,9 +57,9 @@
       },
       {
         "selectedIconPath": "/images/tab/footer_icon_02_active.png",
-        "pagePath": "pages/index/index",
-        "text": "匹配",
-        "iconPath": "/images/tab/footer_icon_02.png"
+          "pagePath": "pages/index/index",
+            "text": "匹配",
+              "iconPath": "/images/tab/footer_icon_02.png"
       },
       {
         "selectedIconPath": "/images/tab/footer_icon_03_active.png",
@@ -81,9 +81,6 @@
       }
     ]
   },
-  "requiredBackgroundModes": [
-    "audio"
-  ],
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"

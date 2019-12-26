@@ -13,14 +13,14 @@
         <block wx:for="{{home.banner}}" wx:key="unique">
           <swiper-item class="class-notes">
             <view class="swiper-item">
-              <image src="{{item.imgUrl}}" mode="aspectFill"></image>
+              <image src="{{item.imgUrl}}" mode="aspectFill" lazy-load="{{true}}"></image>
             </view>
           </swiper-item>
         </block>
       </swiper>
       <view class="dots"> 
         <block wx:for="{{home.banner}}" wx:key>
-          <view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>
+          <view class="dot{{index == currentSwiperNav ? ' active' : ''}}"></view>
         </block>
       </view>
     </view>
@@ -55,7 +55,7 @@
       <view wx:for="{{topList.data}}" wx:key="{{index}}" wx:key="unique" class="view-parent" >
         <view bindtap="isVip" data-id="{{item.id}}">
           <view class="stick-card-list">
-            <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
+            <image class="stick-img" src="{{item.imageUrl}}" mode="aspectFill"  lazy-load="{{true}}"></image>
             <view class="card-content">
               <view class="card-head">
                 <text class="name">{{item.realName}}</text>
@@ -78,20 +78,20 @@
     <view class="title">每日推荐</view>
   </view>
   <view class="recommend-list" wx:for="{{recommendUserList.data}}" wx:key="unique" >
-    <view >
-      <view class="list-bj">
-        <image src="{{item.imageUrl}}" mode="aspectFill"></image>
+    <view bindtap="isVip" data-id="{{item.id}}">
+      <view class="list-bj" >
+        <image src="{{item.imageUrl}}" mode="aspectFill"  lazy-load="{{true}}"></image>
         <view class="certification_tag">
           <text class=" {{item.vipLevel == 1?'icon_ver':'icon_ver_not'}}"></text>
           <text>{{item.userAuth == 1?'已认证':'未认证'}}</text>
-          <text>{{item.userAuth?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
+          <text>{{item.userAuth == 1?'身份':''}}{{item.educationAuth?'-学历':''}}{{item.houseAuth?'-房':''}}{{item.carAuth?'-车':''}}</text>
         </view>
-        <view class="certification_tag exchange_wx" bindtap="showWx">
+        <view class="certification_tag exchange_wx" catchtap="showWx">
           <text class="icon_wx"></text>
           <text>交换微信</text>
         </view>
       </view>
-      <view class="card-content" bindtap="isVip" data-id="{{item.id}}">
+      <view class="card-content" >
         <view class='move_title'>{{item.realName}}
           <text class="lz-icon {{item.vipLevel == 1?'icon-certified':'icon-not-certified'}}"></text>
           <view class='move_miniTitle'>期待{{expectMarriedArray[item.expectMarried]}}结婚</view>
@@ -119,12 +119,12 @@
 
 <view class='maskCode' wx:if="{{isShow_wx}}">
   <view class='toast_centerCode'>
-    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"></image>
+    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"  lazy-load="{{true}}"></image>
     <view class='toat_mainCode'>
       <text>微信号： pymt1818</text>
-      <image src="/images/home/wx.png"></image>
+      <image src="/images/home/wx.png"  lazy-load="{{true}}"></image>
     </view>
   </view>
 </view>
 
-<image class="backTop" bindtap="backTop" src="/images/home/backTop.png" wx:if="{{backTopValue}}"></image>
+<image class="backTop" bindtap="backTop" src="/images/home/backTop.png"  wx:if="{{backTopValue}}"></image>

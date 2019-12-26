@@ -45,7 +45,7 @@ Component({
         wx.navigateTo({
           url: '/pages/myself/person_info/person_info',
         })
-      } else if (!this.data.step.userAuth) {
+      } else if (this.data.step.userAuth != 1) {
         wx.navigateTo({
           url: '/pages/myself/my_certification/my_certification',
         })

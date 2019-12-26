@@ -1,4 +1,6 @@
-// pages/index/exact_match/exact_match.js
+
+const config = require('../../../utils/config.js');
+let app = getApp()
 Page({
 
   /**

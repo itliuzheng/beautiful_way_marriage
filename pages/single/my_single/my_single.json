@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "我的单身圈"
+  "usingComponents": {
+    "mp-loading": "/component/loading/loading"
+  },
+  "navigationBarTitleText": "我的单身圈",
+  "enablePullDownRefresh": true
 }

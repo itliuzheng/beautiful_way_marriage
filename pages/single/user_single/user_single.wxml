@@ -1,8 +1,8 @@
 
 <view class="single-list">
   <view class="list" wx:for="{{list.data}}" wx:key="{{index}}">
-    <view class="fl user_icon" bindtap="goUrl" data-url="/pages/introduction/introduction?id={{item.id}}">
-      <image src="{{item.avatarUrl}}"></image>
+    <view class="fl user_icon" bindtap="goUrl" data-url="/pages/introduction/introduction?id={{item.userId}}">
+      <image src="{{item.avatarUrl}}" lazy-load="{{true}}"></image>
     </view>
     <view class="fl single-content">
       <view class="name clearfix">{{item.nickName}}
@@ -13,7 +13,7 @@
       <view>
         <view class="single-img {{item.singleCircleImg.length != 1?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
           <!-- <image src="{{itemImg.url}}" mode="aspectFit"></image> -->
-          <image src="{{itemImg.url}}" mode="aspectFill" bindtap="previewImg" data-list="{{item.singleCircleImg}}" data-src="{{itemImg.url}}"></image>
+          <image lazy-load="{{true}}" src="{{itemImg.url}}" mode="aspectFill" bindtap="previewImg" data-list="{{item.singleCircleImg}}" data-src="{{itemImg.url}}"></image>
         </view>
       </view>
       <view class="address">{{item.address}}</view>
@@ -35,7 +35,7 @@
         <view class="fr icons">
           <text class="icon_share"></text>
           <text>{{item.forwardCount}}</text>
-          <button class="icons-button" open-type="share"  data-id="{{item.id}}" data-index="{{index}}" data-name="{{item.nickName}}"></button>
+          <button class="icons-button" open-type="share"  data-id="{{item.userId}}" data-index="{{index}}" data-name="{{item.nickName}}"></button>
         </view>
 
         
@@ -50,9 +50,14 @@
       </view>
     </view>
   </view>
-  <view class="no-data" wx:if="{{!list.data.length}}">
-    <image src="/images/no_data/no_list_data.png"></image>
-    <view>暂无数据</view>
+  <view class="loading" wx:if="{{show}}">
+    <mp-loading  type="circle" show="{{show}}" ></mp-loading>
+  </view>
+  <view wx:else>
+    <view class="no-data" wx:if="{{!list.data.length}}">
+      <image src="/images/no_data/no_list_data.png" lazy-load="{{true}}"></image>
+      <view>暂无数据</view>
+    </view>
   </view>
 </view>
 <view class="comment_input" wx:if="{{is_comment}}">

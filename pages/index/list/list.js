@@ -1,7 +1,5 @@
-
 const config = require('../../../utils/config.js');
 let app = getApp()
-let timer = null
 Page({
 
   /**
@@ -10,14 +8,25 @@ Page({
   data: {
     info: null,
     expectMarriedArray: ['半年内', '一年内', '两年内'],
-    list:null
+    list: null,
+    show: true,
+    isShow_wx: false,
+    url:'/user/page',
+    type:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options);
+    if (options.url == 'sysMatch'){
+      this.setData({
+        url:'/user/sysMatch',
+        type:options.url
+      })
+    }
+    this.getStatus();
   },
 
   /**
@@ -31,9 +40,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getStatus();
-    this.getInit();
-
+    if (this.data.type == 'sysMatch'){
+      this.getInitGet();
+    }else{
+      this.getInit();
+    }
   },
 
   /**
@@ -42,7 +53,11 @@ Page({
   onPullDownRefresh() {
     wx.showNavigationBarLoading();
 
-    this.getInit();
+    if (this.data.type == 'sysMatch') {
+      this.getInitGet();
+    } else {
+      this.getInit();
+    }
     wx.hideNavigationBarLoading();
     wx.stopPullDownRefresh();
 
@@ -54,7 +69,11 @@ Page({
 
     if (this.data.list.current < this.data.list.pages) {
       let page = this.data.list.current + 1;
-      this.getInit(page);
+      if (this.data.type == 'sysMatch') {
+        this.getInitGet(page);
+      } else {
+        this.getInit(page);
+      }
     }
   },
 
@@ -62,17 +81,8 @@ Page({
 
     let _this = this;
 
-    wx.showLoading({
-      title: '数据加载中...',
-      mask: true,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-
     config.ajax('GET', {
     }, `/auth/status`, (resp) => {
-      wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
         this.setData({
@@ -103,8 +113,12 @@ Page({
   getInit(page = 1) {
     let that = this;
 
+    this.setData({
+      show: true
+    })
     config.ajax('POST', {
-    }, `/user/page`, (resp) => {
+      pageNum: page
+    }, `${that.data.url}`, (resp) => {
       let res = resp.data;
 
       if (res.code == 1) {
@@ -124,8 +138,113 @@ Page({
       } else {
         config.mytoast(res.msg, (res) => { })
       }
+
+      that.setData({
+        show: false
+      })
     }, (res) => {
+      that.setData({
+        show: false
+      })
 
     })
+  },
+  getInitGet(page = 1) {
+    let that = this;
+
+    this.setData({
+      show: true
+    })
+    config.ajax('GET', {
+      pageNum: page
+    }, `${that.data.url}`, (resp) => {
+      let res = resp.data;
+
+      if (res.code == 1) {
+        if (page != 1) {
+          this.data.list.data.push.apply(this.data.list.data, res.data.data);
+          this.data.list.current = res.data.current;
+
+          that.setData({
+            list: that.data.list
+          })
+        } else {
+          that.setData({
+            list: res.data
+          })
+
+        }
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+
+      that.setData({
+        show: false
+      })
+    }, (res) => {
+      that.setData({
+        show: false
+      })
+
+    })
+  },
+  showWx() {
+
+    var token = wx.getStorageSync('token')
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.info.completeInfo) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/person_info/person_info',
+        })
+      }, 500)
+      return false;
+    }
+    if (this.data.info.userAuth != 1) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.info.vipLevel) {
+      config.mytoast('请购买会员后查看~', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/member/member',
+        })
+      }, 500)
+      return false;
+    }
+
+    this.setData({
+      isShow_wx: true
+    })
+  },
+  closeMask() {
+    this.setData({
+      isShow_wx: false
+    })
+
   },
 })

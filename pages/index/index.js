@@ -405,7 +405,6 @@ Page({
   onShow: function () {
     this.getStatus();
 
-    config.mytoast('暂未开放，敬请期待...', (res) => { });
     // wx.showLoading({
     //   title: '数据加载中...',
     //   mask: true,
@@ -512,7 +511,7 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.STATUS.userAuth) {
+    if (this.data.STATUS.userAuth != 1) {
       config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({

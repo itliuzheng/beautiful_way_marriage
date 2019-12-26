@@ -93,7 +93,7 @@ Component({
         }, 500)
         return false;
       }
-      if (!this.data.STATUS.userAuth) {
+      if (this.data.STATUS.userAuth != 1) {
         config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
         this.setData({
           switchChecked: !value

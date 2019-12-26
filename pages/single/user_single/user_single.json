@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-loading": "/component/loading/loading"
+  },
   "navigationBarTitleText": "动态",
   "enablePullDownRefresh": true
 }

@@ -12,15 +12,14 @@ Page({
     is_comment:false,
     commentInfo:null,
     STATUS:null,
-    user_id:null
+    user_id:null,
+    show:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('options');
-    console.log(options);
   },
 
   /**
@@ -30,7 +29,6 @@ Page({
     this.getBanner();
     this.getStatus();
     this.getUserId();
-    this.getInit();
   },
 
   previewImg(e) {
@@ -53,6 +51,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    this.getInit();
   },
 
   /**
@@ -131,18 +131,12 @@ Page({
 
     let that = this;
 
-    wx.showLoading({
-      title: '数据加载中...',
-      mask: true,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+    this.setData({
+      show:true
     })
-
     config.ajax('POST', {
       pageNum:page
     }, `/circle/single-circle/page`, (resp) => {
-      wx.hideLoading();
       let res = resp.data;
       if (page != 1) {
         this.data.list.data.push.apply(this.data.list.data, res.data.data);
@@ -156,21 +150,25 @@ Page({
           list: res.data
         })
       }
+      that.setData({
+        show: false
+      })
     }, (res) => {
-
+      that.setData({
+        show: false
+      })
     })
   },
   getBanner() {
     config.ajax('POST', {
       type: 2
     }, config.getBanner, (res) => {
-      console.log(res.data);
-      console.log(res.data.data.data);
-
       if (res.data.code == 1) {
-        this.setData({
-          background: res.data.data.data
-        });
+        if (res.data.data){
+          this.setData({
+            background: res.data.data.data
+          });
+        }
       } else {
         config.mytoast(res.data.msg, (res) => { })
       }
@@ -255,7 +253,6 @@ Page({
     config.ajax('POST', {
       singleCircleId: id
     }, url, (res) => {
-      console.log(res.data);
 
       if (res.data.code == 1) {
         this.getInit(1);
@@ -297,7 +294,7 @@ Page({
       }, 500)
       return false;
     }
-    if (!this.data.STATUS.userAuth) {
+    if (this.data.STATUS.userAuth != 1) {
       config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
       setTimeout(function () {
         wx.navigateTo({
@@ -319,7 +316,6 @@ Page({
 
     let id = e.currentTarget.dataset.id;
     let nickName = app.globalData.userInfo.nickName;
-    // is_comment
     this.setData({
       is_comment:true,
       commentInfo:{
@@ -345,7 +341,6 @@ Page({
     }
   
     config.ajax('GET', {}, `/comment/comment/all/${id}`, (res) => {
-      console.log(res.data);
 
       if (res.data.code == 1) {
         let commentList = res.data.data;
@@ -404,7 +399,7 @@ Page({
         })
 
       } else {
-        config.mytoast(res.msg, (res) => { });
+        // config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
 
@@ -415,6 +410,7 @@ Page({
     let url = e.currentTarget.dataset.url;
     var token = wx.getStorageSync('token')
 
+    console.log(app.globalData.userInfo);
     if (!app.globalData.userInfo) {
       config.mytoast('您还未登录，请先登录', (res) => { });
       setTimeout(function () {
@@ -428,7 +424,7 @@ Page({
       config.mytoast('您还未登录，请先登录', (res) => { });
       setTimeout(function () {
         wx.navigateTo({
-          url: '/pages/login/login/login',
+          url: '/pages/login/login/login?back_url=single',
         })
       }, 500)
       return false;
@@ -474,15 +470,15 @@ Page({
 
     config.ajax('GET', {
     }, `/user/`, (resp) => {
-      wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
-        this.setData({
-          user_id: res.data.id
-        })
-
+        if (res.data){
+          this.setData({
+            user_id: res.data.id
+          })
+        }
       } else {
-        config.mytoast(res.msg, (res) => { });
+        // config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
 
