@@ -14,7 +14,7 @@
   <text>我心动的</text>
   <mp-badge content="{{info.likeOtherCount}}" wx:if="{{info.likeOtherCount}}" style="margin-left: 5px;"/>
 </view>
-<view class="list-cell" bindtap="not_open_yet"> 
+<!-- <view class="list-cell" bindtap="not_open_yet"> 
   <image class="icon" src="/images/message/icon_04.png"></image>
   <text>我喜欢的音频</text>
 </view>
@@ -29,4 +29,4 @@
 <view class="list-cell" bindtap="not_open_yet"> 
   <image class="icon" src="/images/message/icon_07.png"></image>
   <text>系统消息</text>
-</view>
+</view> -->

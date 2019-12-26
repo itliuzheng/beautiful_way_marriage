@@ -18,7 +18,17 @@
       </view>
       <button class="phone-btn" size="default" formType="submit">登录</button>
     </form>
-    <view class="desc"><navigator class="go_register" url="/pages/login/register/register">立即注册</navigator>    |  <text class="go_forget">找回密码</text> </view>
+    <view class="desc"><navigator class="go_register" url="/pages/login/register/register">立即注册</navigator>    |  <text class="go_forget" bindtap="showWx">找回密码</text> </view>
 
+  </view>
+</view>
+
+
+<view class='maskCode' wx:if="{{isShow_wx}}">
+  <view class='toast_centerCode'>
+    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"  lazy-load="{{true}}"></image>
+    <view class='toat_mainCode'>
+      <text>联系客服： 03932277520</text>
+    </view>
   </view>
 </view>

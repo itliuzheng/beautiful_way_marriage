@@ -83,7 +83,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log(this.data.list.current);
+    console.log(this.data.list.pages);
     if (this.data.list.current < this.data.list.pages) {
       let page = this.data.list.current + 1;
       this.getInit(page);

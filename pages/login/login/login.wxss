@@ -101,3 +101,45 @@ page{
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAgCAYAAAABtRhCAAADlElEQVRIS8WXXWgcVRTH/2c2Y0j8QC0WFRHZ+oGBCoUIRa0+xAd9kYKQgpVStA0igrKbnXuyedhdfZhzZ9VgFKQUlZZiFe2j9s0gpAq2YGkRpKgg1ar4AS00U5PuPXLDRkLI7s7ooudtZs79/865955z7xAyWrPZ3NhqtZ4EsJWINqrqZSI6B2AuDMP3SqVSmkWKsjiJyPMAXgJwNYAfAJwBcAWAEQDXE9FZInomiqKPe+n1BFprX1fV5wDMFwqFqFKpfL4iWqvVBoaHhx9T1QTAbUS01xjzTjdoV2AcxxNEtA/A28VicWJ8fLy1ntjMzMy1i4uLH6nqKBFtM8Z80QnaETg7O3vNwsLCdwC+SdP0gUajcblb5O01/spPNzPfnxuYJMlTzrm3VHVsamrqk15r479ba42qCoB7mPn0emM6ZigihwGMpWl6Y6PRcFmAcRwXiehbAGVmfjUv8Jgf0G161hEkEbkE4E1mfiEv8BSAc8z8SJbsVnystftU9VNmfvc/AfYKrtsa/qMMMwObzebDzrk9qnpnu4tsarev73uJdPm+AOAkgNeY2ZcMljO01oqq+i19gYh8Zkv/ArJ66DCALf5FEAS7oyg6THEcP05EHwI4AuBpZj7fJ9iyTJIkm5xzXv/upaWlzR44HwTBLWmajtTrdT8FfbckSe5wzvkpfcUDLxLRAWZ+tu+kVYIicty3PV+oSkRNY0zUCygit/olB/Bo2/doGIZRuVw+m2HsHIDfMgOttTer6nEiugnAaVX1G24zgB9brda909PTP3WDikhu4H6/qVR1FzMf8uIisgvAAQD7mXmir0AR+ZmIzhhjHlwtLCK+5xaZ2Wfe0XJnKCJ/EtERY8wTa4DvA9jOzIN9BVprv1TVGwqFwl2VSuWiF6/ValcNDQ35+80vzLxc4J0sd4bW2p2qeoiI5pxzL7a7R11VHwKws9PpsBJAbqBvg9bapqqW12TxMjP7ktK+Zrgq0vsA+HXztoOZP+tVg+0dna8s1myUE/6ZmUezwP5fYBzH54noA2bekzVaa+1B72uM8YWfyUTkFBGd9M37KBGNOudGqtXqr5lG53Sy1m5V1WNEVKckSbap6pyqnnDO7a5Wq1/n1Ovqbq0dA+Cv/1cODg6OLJ/4IrIXwBsAQt/RASz2CepP/OsA/D4wMLB9cnJy/u9LVBzHtwdBsENVN/gbQZ+ALf9nFYbhwVKp9IfX/AvJZtI3M5XKfAAAAABJRU5ErkJggg==') no-repeat center;
   background-size: 100% 32rpx;
 }
+
+
+.maskCode{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.toast_centerCode{
+  position: relative;
+  width: 686rpx;
+  border-radius:10rpx;
+  background-color: rgba(255, 255, 255, 1);
+  box-sizing: border-box;
+  padding:60rpx 40rpx 40rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.toat_mainCode{
+    width: 100%;
+  font-size:28rpx;
+  color: RGBA(153, 153, 153, 1);
+  text-align: center;
+}
+.toat_mainCode text{
+  display: block;
+  margin: 0 auto;
+}
+.mask_close{
+  position: absolute;
+  width: 48rpx;
+  height: 48rpx;
+  right: -24rpx;
+  top: -24rpx;
+  z-index: 99;
+}

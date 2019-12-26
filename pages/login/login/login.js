@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    back_url:null
+    back_url:null,
+    isShow_wx:false
   },
 
   /**
@@ -56,5 +57,15 @@ Page({
 
     })
 
+  },
+  showWx() {
+    this.setData({
+      isShow_wx: true
+    })
+  },
+  closeMask() {
+    this.setData({
+      isShow_wx: false
+    })
   },
 })
