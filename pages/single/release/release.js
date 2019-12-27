@@ -24,6 +24,29 @@ Page({
   onLoad: function (options) {
     
   },
+  previewImg(e) {
+    //预览图片
+    var src = e.currentTarget.dataset.src;//获取data-src
+    var imgList = e.currentTarget.dataset.list;//获取data-list
+
+    let urls = []
+
+    imgList.forEach((value) => {
+      urls.push(value.src);
+    })
+    console.log(urls);
+
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: urls, // 需要预览的图片http链接列表
+      success: function (resp) {
+        console.log('success===', resp);
+      },
+      fail: function (resp) {
+        console.log('fail===', resp);
+      }
+    })
+  },
   bindFormSubmit(e){
     console.log(e.detail);
     let type = e.detail.target.dataset.type;

@@ -47,7 +47,7 @@ page{
 }
 .mask_icon_transform{
   transition: 1s all ease;
-  animation: love 2s 1;
+  animation: love 2s;
 } 
 
 @keyframes love{
@@ -306,6 +306,7 @@ page{
   height: 200rpx;
   position: relative;
   display: inline-block;
+  vertical-align: top;
 }
 .upload-list image{
   display: block;

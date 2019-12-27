@@ -12,7 +12,10 @@ Page({
     config.mytoast('暂未开放，敬请期待...', (res) => { });
   },
   onLoad: function () {
+  },
+  onShow: function () {
     this.getInit();
+
     this.getStatus();
   },
   getStatus() {
@@ -36,7 +39,7 @@ Page({
           STATUS: res.data
         })
       } else {
-        config.mytoast(res.msg, (res) => { });
+        // config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
 
@@ -107,7 +110,7 @@ Page({
           })
         
       } else {
-        config.mytoast(res.msg, (res) => { })
+        // config.mytoast(res.msg, (res) => { })
       }
     }, (res) => {
 

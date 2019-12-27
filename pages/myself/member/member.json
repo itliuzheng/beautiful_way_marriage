@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "会员服务"
+  "navigationBarTitleText": "会员服务",
+  "enablePullDownRefresh": true
 }

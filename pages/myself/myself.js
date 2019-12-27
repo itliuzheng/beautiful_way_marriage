@@ -4,11 +4,49 @@ const app = getApp()
 
 Page({
   data: {
-    myself:null
+    myself:null,
+    back_url:null
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    if (options.url){
+      this.setData({
+        back_url: options.url
+      })
+    }
   },
-  onShow: function () {
+  onShow: function (e) {
+    let pages = getCurrentPages();
+    let currPage = null;
+    if (pages.length) {
+      currPage = pages[pages.length - 1];
+    }
+    let url = currPage.options.url;
+    // console.log('onshwo---');
+    // console.log(pages);
+    // console.log(currPage.__displayReporter.showReferpagepath);
+    if (currPage.__displayReporter.showReferpagepath == 'pages/login/index.html') {
+      wx.reLaunch({
+        url: '/pages/home/index',
+      })
+      return false;
+    } else {
+      var token = wx.getStorageSync('token')
+
+      console.log(token);
+      if (!app.globalData.userInfo) {
+        wx.navigateTo({
+          url: '/pages/login/index?url=back_home',
+        })
+        return false;
+      }
+      if (!token) {
+        wx.navigateTo({
+          url: '/pages/login/login/login?url=back_home',
+        })
+        return false;
+      }
+    }
+
     this.getInit()
   },
   getInit() {
@@ -27,22 +65,13 @@ Page({
       let res = resp.data;
       if (res.code == 1) {
         if (res.data){
-
           this.setData({
             myself: res.data
           })
-        }else{
-
-          wx.navigateTo({
-            url: '/pages/login/index',
-          })
         }
 
-      } else {
-        config.mytoast(res.msg, (res) => { });
-      }
+      } 
     }, (res) => {
-
     })
 
   },

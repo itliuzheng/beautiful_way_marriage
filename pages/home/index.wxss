@@ -171,7 +171,6 @@ page{
 .stick-card-list .stick-img{
   width: 208rpx;
   height: 200rpx;
-  background: #000; 
   display: block;
 }
 .stick-card-list .card-content{

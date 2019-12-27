@@ -9,7 +9,9 @@ Page({
     url: '',
     info: null,
     expectMarriedArray: ['半年内', '一年内', '两年内'],
-    list: null,
+    list: {
+      data:[]
+    },
     show: true,
     isShow_wx: false,
   },
@@ -51,7 +53,7 @@ Page({
    */
   onShow: function () {
     this.getStatus();
-    this.getInit();
+    // this.getInit();
 
   },
 

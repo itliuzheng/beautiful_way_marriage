@@ -4,40 +4,30 @@
   </view>
   <view class="content">
     <view class="buy-box">
-      <view class="title">购买线上VIP会员</view>
-      <view class="buy-list {{type == 1?'active':''}}" data-type="1" data-time="365"
+      <view class="title">{{info.vipLevel != 1?'购买线上VIP会员':'线上VIP会员'}}</view>
+      
+      <view wx:if="{{info.vipLevel != 1}}" class="buy-list {{type == index?'active':''}}" data-type="{{index}}" 
+      wx:for="{{vipList.data}}" data-time="{{item.payNumber}}" data-id="{{item.id}}" wx:key="unqint" data-unit="{{item.payNumberUnit}}"
+       bindtap="goBuy">
+        <view class="fl">
+          <text class="name">{{item.name}}</text>
+          <text class="day">{{item.payNumber}}{{item.payNumberUnit}}</text>
+          <text class="day_amount">日均{{item.day_price}}元</text>
+        </view>
+        <view class="fr">
+          <text class="amount">¥{{item.price}}</text>
+          <text class="active_icon"></text>
+        </view>
+      </view>
+      <!-- <view class="buy-list {{type == 1?'active':''}}" data-type="1" data-time="365"
        bindtap="goBuy">
         <view class="fl">
           <text class="name">会员</text>
-          <text class="day">365天</text>
+          <text class="day">一年</text>
           <text class="day_amount">日均0.14元</text>
         </view>
         <view class="fr">
           <text class="amount">¥49.9</text>
-          <text class="active_icon"></text>
-        </view>
-      </view>
-      <!-- <view class="buy-list {{type == 2?'active':''}}" data-type="2" data-time="180"
-       bindtap="goBuy">
-        <view class="fl">
-          <text class="name">金卡</text>
-          <text class="day">180天  </text>
-          <text class="day_amount">日均0.27元</text>
-        </view>
-        <view class="fr">
-          <text class="amount">¥49.9</text>
-          <text class="active_icon"></text>
-        </view>
-      </view>
-      <view class="buy-list {{type == 3?'active':''}}" data-type="3" data-time="90"
-      bindtap="goBuy">
-        <view class="fl">
-          <text class="name">银卡</text>
-          <text class="day">90天  </text>
-          <text class="day_amount">日均0.33元</text>
-        </view>
-        <view class="fr">
-          <text class="amount">¥29.9</text>
           <text class="active_icon"></text>
         </view>
       </view> -->

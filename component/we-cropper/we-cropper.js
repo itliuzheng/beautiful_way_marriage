@@ -773,6 +773,7 @@ function methods () {
   };
 
   self.pushOrign = function (src) {
+
     self.src = src;
 
     tools_7(self.onBeforeImageLoad) && self.onBeforeImageLoad(self.ctx, self);

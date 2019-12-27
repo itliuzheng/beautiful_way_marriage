@@ -61,5 +61,17 @@ Page({
 
     })
 
+  },
+  goUrl(e) {
+    let url = e.currentTarget.dataset.url;
+    let status = e.currentTarget.dataset.status;
+
+    if (status == 1 || status == 3){
+      return false;
+    }
+
+    wx.navigateTo({
+      url: url,
+    })
   }
 })

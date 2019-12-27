@@ -1,12 +1,23 @@
-<import src="../../../../component/we-cropper/we-cropper.wxml" />
-<view class="cropper-wrapper">
-  <template is="we-cropper" data="{{...cropperOpt}}" />
-  <view class="cropper-buttons">
-    <view class="upload" bindtap="uploadTap">
-      重新选择
-    </view>
-    <view class="getCropperImage" bindtap="getCropperImage">
-      确定
-    </view>
+<image-cropper id="image-cropper" 
+limit_move="{{true}}" 
+disable_rotate="{{true}}" 
+width="{{width}}" 
+height="{{height}}" 
+imgSrc="{{src}}" 
+bindload="cropperload"
+ bindimageload="loadimage" bindtapcut="clickcut"></image-cropper>
+ 
+<view class="cropper-buttons">
+  <view class="upload" bindtap="uploadTap">
+    重新选择
+  </view>
+  <view class="upload" bindtap="rotateImg">
+    旋转
+  </view>
+  <view class="upload" bindtap="imgResets">
+    重置
+  </view>
+  <view class="getCropperImage" bindtap="getCropperImage">
+    确定
   </view>
 </view>

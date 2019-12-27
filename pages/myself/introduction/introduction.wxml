@@ -167,19 +167,27 @@
     </view>
     <view class="list" wx:if="{{myself.userAuth != 1}}">
       <text class="fl">身份证认证</text>
-      <text class="fr">{{myself.userAuth == 2?'认证失败':'未认证'}}</text>
+      <text class="fr" wx:if="{{myself.userAuth == 0}}">未认证</text>
+      <text class="fr" wx:elif="{{myself.userAuth == 2}}">认证失败</text>
+      <text class="fr" wx:else>认证中</text>
     </view>
     <view class="list" wx:if="{{!myself.educationAuth}}">
       <text class="fl">学历认证</text>
-      <text class="fr">{{myself.educationAuth?'已认证':'未认证'}}</text>
+      <text class="fr" wx:if="{{myself.educationAuth == 0}}">未认证</text>
+      <text class="fr" wx:elif="{{myself.educationAuth == 2}}">认证失败</text>
+      <text class="fr" wx:else>认证中</text>
     </view>
     <view class="list" wx:if="{{!myself.houseAuth}}">
       <text class="fl">资产认证-房</text>
-      <text class="fr">{{myself.houseAuth?'已认证':'未认证'}}</text>
+      <text class="fr" wx:if="{{myself.houseAuth == 0}}">未认证</text>
+      <text class="fr" wx:elif="{{myself.houseAuth == 2}}">认证失败</text>
+      <text class="fr" wx:else>认证中</text>
     </view>
     <view class="list" wx:if="{{!myself.carAuth}}">
       <text class="fl">资产认证-车</text>
-      <text class="fr">{{myself.carAuth?'已认证':'未认证'}}</text>
+      <text class="fr" wx:if="{{myself.carAuth == 0}}">未认证</text>
+      <text class="fr" wx:elif="{{myself.carAuth == 2}}">认证失败</text>
+      <text class="fr" wx:else>认证中</text>
     </view>
 
   </view>
@@ -230,10 +238,10 @@
   <view class='toast_centerCode'>
     <form bindsubmit="editNickName">
       <view class='toat_mainCode'>
-        <textarea placeholder="修改昵称" name="nickName"></textarea>
+        <input placeholder="请输入您要修改的昵称" name="nickName"></input>
       </view>
       <button class='toat_yes' form-type="submit">添加</button>
-      <button class='toat_yes toat_no' bindtap="cancel">取消</button>
+      <button class='toat_yes toat_no' bindtap="cancel_nickName">取消</button>
     </form>
   </view>
 </view>

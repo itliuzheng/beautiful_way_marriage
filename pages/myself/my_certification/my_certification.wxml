@@ -1,53 +1,31 @@
 <view class="list-box">
-  <navigator  url="/pages/myself/my_certification/verified/verified" wx:if="{{info.userAuth != 1}}">
-    <view class="list-cell "> 
-      <image class="icon fl" src="/images/myself/vertification/icon_01.png" ></image>
-      <text class="fl">实名认证</text>
-      <text class="fr_desc fr cert_end">去认证</text>
-    </view>
-  </navigator>
-  <view class="list-cell list-cell-no_arrow" wx:else> 
+  <view class="list-cell {{info.userAuth == 1 || info.userAuth == 3?'list-cell-no_arrow':''}}"  bindtap="goUrl" data-status="{{info.userAuth}}" data-url="/pages/myself/my_certification/verified/verified"> 
     <image class="icon fl" src="/images/myself/vertification/icon_01.png" ></image>
     <text class="fl">实名认证</text>
-    <text class="fr_desc fr ">已认证</text>
+    <text class="fr_desc fr " wx:if="{{info.userAuth == 1}}">已认证</text>
+    <text class="fr_desc fr cert_end" wx:elif="{{info.userAuth == 3}}">认证中</text>
+    <text class="fr_desc fr cert_end" wx:else>去认证</text>
   </view>
 
-  <navigator  url="/pages/myself/my_certification/education/education" wx:if="{{!info.educationAuth}}">
-    <view class="list-cell"> 
-      <image class="icon fl" src="/images/myself/vertification/icon_02.png" ></image>
-      <text class="fl">学历认证</text>
-      <text class="fr_desc fr {{!info.educationAuth?'cert_end':''}}">{{!info.educationAuth?"去认证":"已认证"}}</text>
-    </view>
-  </navigator>
-  <view class="list-cell list-cell-no_arrow" wx:else> 
+  <view class="list-cell {{info.educationAuth == 1 || info.educationAuth == 3?'list-cell-no_arrow':''}}"  bindtap="goUrl" data-status="{{info.educationAuth}}" data-url="/pages/myself/my_certification/education/education"> 
     <image class="icon fl" src="/images/myself/vertification/icon_02.png" ></image>
     <text class="fl">学历认证</text>
-    <text class="fr_desc fr {{!info.educationAuth?'cert_end':''}}">{{!info.educationAuth?"去认证":"已认证"}}</text>
+    <text class="fr_desc fr " wx:if="{{info.educationAuth == 1}}">已认证</text>
+    <text class="fr_desc fr cert_end" wx:elif="{{info.educationAuth == 3}}">认证中</text>
+    <text class="fr_desc fr cert_end" wx:else>去认证</text>
   </view>
-
-  <navigator  url="/pages/myself/my_certification/house/house" wx:if="{{!info.houseAuth}}">
-    <view class="list-cell"> 
-      <image class="icon fl" src="/images/myself/vertification/icon_03.png" ></image>
-      <text class="fl">资产认证-房认证</text>
-      <text class="fr_desc fr {{!info.houseAuth?'cert_end':''}}">{{!info.houseAuth?"去认证":"已认证"}}</text>
-    </view>
-  </navigator>
-  <view class="list-cell list-cell-no_arrow" wx:else> 
+  <view class="list-cell {{info.houseAuth == 1 || info.houseAuth == 3?'list-cell-no_arrow':''}}"  bindtap="goUrl" data-status="{{info.houseAuth}}" data-url="/pages/myself/my_certification/house/house"> 
     <image class="icon fl" src="/images/myself/vertification/icon_03.png" ></image>
     <text class="fl">资产认证-房认证</text>
-    <text class="fr_desc fr {{!info.houseAuth?'cert_end':''}}">{{!info.houseAuth?"去认证":"已认证"}}</text>
+    <text class="fr_desc fr " wx:if="{{info.houseAuth == 1}}">已认证</text>
+    <text class="fr_desc fr cert_end" wx:elif="{{info.houseAuth == 3}}">认证中</text>
+    <text class="fr_desc fr cert_end" wx:else>去认证</text>
   </view>
-
-  <navigator  url="/pages/myself/my_certification/car/car"  wx:if="{{!info.carAuth}}">
-    <view class="list-cell"> 
-      <image class="icon fl" src="/images/myself/vertification/icon_04.png" ></image>
-      <text class="fl">资产认证-车认证</text>
-      <text class="fr_desc fr {{!info.carAuth?'cert_end':''}}">{{!info.carAuth?"去认证":"已认证"}}</text>
-    </view>
-  </navigator>
-  <view class="list-cell list-cell-no_arrow" wx:else> 
+  <view class="list-cell {{info.carAuth == 1 || info.carAuth == 3?'list-cell-no_arrow':''}}"  bindtap="goUrl" data-status="{{info.carAuth}}" data-url="/pages/myself/my_certification/car/car"> 
     <image class="icon fl" src="/images/myself/vertification/icon_04.png" ></image>
-    <text class="fl">资产认证-车认证</text>
-    <text class="fr_desc fr {{!info.carAuth?'cert_end':''}}">{{!info.carAuth?"去认证":"已认证"}}</text>
+    <text class="fl">资产认证-房认证</text>
+    <text class="fr_desc fr " wx:if="{{info.carAuth == 1}}">已认证</text>
+    <text class="fr_desc fr cert_end" wx:elif="{{info.carAuth == 3}}">认证中</text>
+    <text class="fr_desc fr cert_end" wx:else>去认证</text>
   </view>
 </view>

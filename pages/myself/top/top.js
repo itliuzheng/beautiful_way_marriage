@@ -10,12 +10,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    type: 1,
+    type: 0,
+    pay_id: null,
     now_time: null,
     next_time: null,
-    amount:30,
     time:7,
-    info: null
+    info: null,
+    vipList: {
+      "current": 0,  //当前",
+      "pageSize": 0, //页大小",
+      "pages": 0,   //总页数",
+      "total": 0,    //总数据量",
+      "data": []
+    }
   },
 
   /**
@@ -31,9 +38,37 @@ Page({
 
   },
   onShow() {
+    this.getInit();
     this.getStatus();
   },
+  /**
+   * 页面下拉刷新
+   */
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading();
+    this.getStatus();
+    wx.hideNavigationBarLoading();
+    wx.stopPullDownRefresh();
+
+  },
   getStatus() {
+    let _this = this;
+    config.ajax('GET', {
+    }, `/auth/status`, (resp) => {
+      let res = resp.data;
+      if (res.code == 1) {
+        let vipExpireDate = res.data.vipExpireDate.substring(0, 10);
+        res.data.vipExpireDate = vipExpireDate;
+        this.setData({
+          info: res.data
+        })
+      }
+    }, (res) => {
+
+    })
+
+  },
+  getInit() {
 
     let _this = this;
 
@@ -45,18 +80,35 @@ Page({
       complete: function (res) { },
     })
 
-    config.ajax('GET', {
-    }, `/auth/status`, (resp) => {
+    config.ajax('POST', {
+    }, `/payment/payment-manage/getTop`, (resp) => {
       wx.hideLoading();
       let res = resp.data;
       if (res.code == 1) {
-        let vipExpireDate = res.data.vipExpireDate.substring(0, 10);
-        res.data.vipExpireDate = vipExpireDate;
-        this.setData({
-          info: res.data
+        let now_day = new Date();
+        var pay_id, next_time, time;
+
+        res.data.data.forEach((value,index)=>{
+          if (index == _this.data.type) {
+            if (value.payNumberUnit == '月') {
+              time = value.payNumber * 30
+            } else if (value.payNumberUnit == '年') {
+              time = value.payNumber * 365
+            }else{
+              time = value.payNumber
+            }
+            pay_id = value.id;
+            next_time = util.addDate(now_day, time);
+          }
         })
-      } else {
-        config.mytoast(res.msg, (res) => { });
+        
+        this.setData({
+          vipList: res.data,
+          pay_id: pay_id,
+          next_time: next_time
+        })
+
+
       }
     }, (res) => {
 
@@ -69,11 +121,8 @@ Page({
   buyMember() {
     let _this = this;
     config.ajax('POST', {
-      body: '会员支付',
-      totalFee: _this.data.amount,
-      tradeType: 'JSAPI',
-      attach: 'TOP',
-      dayNum: _this.data.time
+      paymentId: _this.data.pay_id,
+      tradeType: 'JSAPI'
     }, `/wx/pay/createOrder`, (resp) => {
       wx.hideLoading();
       let res = resp.data;
@@ -95,12 +144,20 @@ Page({
   goBuy(e) {
     let now_day = new Date();
     let type = e.currentTarget.dataset.type;
-    let next_time = util.addDate(now_day, e.currentTarget.dataset.time);
+    let id = e.currentTarget.dataset.id;
+    let payNumber = e.currentTarget.dataset.time;
+    let payNumberUnit = e.currentTarget.dataset.unit;
+    if (payNumberUnit == '月'){
+      payNumber = payNumber*30
+    } else if (payNumberUnit == '年') {
+      payNumber = payNumber * 365
+    }
+    let next_time = util.addDate(now_day, payNumber);
 
     this.setData({
       type: type,
+      pay_id: id,
       next_time: next_time,
-      amount: e.currentTarget.dataset.amount,
       time: e.currentTarget.dataset.time
     })
   }

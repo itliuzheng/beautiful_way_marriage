@@ -5,47 +5,26 @@
   <view class="content">
     <view class="buy-box">
       <view class="title">选择置顶天数</view>
-      <view wx:if="{{info.top != 1}}" class="buy-list {{type == 1?'active':''}}" data-type="1" data-time="7" data-amount="30"
+      <!-- wx:if="{{info.top != 1}}" -->
+      <view  class="buy-list {{type == index?'active':''}}" data-type="{{index}}" data-time="{{item.payNumber}}" data-amount="{{item.price}}"
+      wx:for="{{vipList.data}}"  data-id="{{item.id}}" wx:key="unqint" data-unit="{{item.payNumberUnit}}"
        bindtap="goBuy">
         <view class="fl">
           <text class="name">顶</text>
-          <text class="day">7天</text>
-          <!-- <text class="day_amount">日均0.14元</text> -->
+          <text class="day">{{item.payNumber}}{{item.payNumberUnit}}</text>
         </view>
         <view class="fr">
-          <text class="amount">¥30</text>
+          <text class="amount">¥{{item.price}}</text>
           <text class="active_icon"></text>
         </view>
       </view>
-      <view wx:if="{{info.top != 1}}" class="buy-list {{type == 2?'active':''}}" data-type="2" data-time="14" data-amount="50"
-       bindtap="goBuy">
-        <view class="fl">
-          <text class="name">顶</text>
-          <text class="day">14天</text>
-          <!-- <text class="day_amount">日均0.27元</text> -->
-        </view>
-        <view class="fr">
-          <text class="amount">¥50</text>
-          <text class="active_icon"></text>
-        </view>
-      </view>
-      <view wx:if="{{info.top != 1}}" class="buy-list {{type == 3?'active':''}}" data-type="3" data-time="30" data-amount="80"
-      bindtap="goBuy">
-        <view class="fl">
-          <text class="name">顶</text>
-          <text class="day">30天</text>
-          <!-- <text class="day_amount">日均0.33元</text> -->
-        </view>
-        <view class="fr">
-          <text class="amount">¥80</text>
-          <text class="active_icon"></text>
-        </view>
-      </view>
+
       <view class="buy-list">
         <view class="fl">
           <text class="name">有效期</text>
         </view>
         <view class="fr">
+        
           <text class="time_end" wx:if="{{info.top != 1}}">{{now_time}}至{{next_time}}</text>
           <text class="time_end" wx:else>{{now_time}}至{{info.vipExpireDate}}</text>
         </view>

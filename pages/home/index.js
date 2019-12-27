@@ -37,11 +37,6 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-
-      console.log('hasUserInfo-1--', this.data.hasUserInfo);
-
-      console.log('token=1==', token);
-
       if (!token) {
         wx.navigateTo({
           url: '/pages/login/login/login'
@@ -56,11 +51,6 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
-
-        console.log('hasUserInfo-2--', this.data.hasUserInfo);
-
-        console.log('token=2==', token);
-
         if (this.data.hasUserInfo == false) {
           clearTimeout(timer);
           wx.navigateTo({
@@ -87,9 +77,6 @@ Page({
           })
         },
       })
-      console.log('hasUserInfo-3--', this.data.hasUserInfo);
-
-      console.log('token=3==', token);
 
       if (this.data.hasUserInfo == false) {
         wx.navigateTo({
@@ -130,7 +117,6 @@ Page({
    */
   onReady: function () {
 
-    this.getInit();
     this.getHome();
   },
 
@@ -138,6 +124,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getInit();
     // this.getBanner();
     this.getTopList()
     this.getRecommendUser();

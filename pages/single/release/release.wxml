@@ -16,9 +16,10 @@
     <view class="push_imgs">
       
       <view class="upload-box">
-        <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}" bindtap="closeImg" data-index="{{index}}">  
-          <text class="close">x</text>
-          <image src="{{item.src}}"></image>
+        <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}"  data-index="{{index}}">  
+          <!-- <text class="close" bindtap="closeImg">x</text> -->
+          <image class="close" src="/images/delete/delete.png" bindtap="closeImg" data-id="{{item.id}}"></image>
+          <image src="{{item.src}}" bindtap="previewImg" data-list="{{upload_list}}" data-src="{{item.src}}"></image>
         </view>
         <view class="add upload-list-m-b" bindtap="chooseImage">
           <view class="horizontal"></view>

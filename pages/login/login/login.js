@@ -46,7 +46,7 @@ Page({
         if (this.data.back_url){
           wx.navigateBack({})
         }else{
-          wx.switchTab({
+          wx.reLaunch({
             url: '/pages/home/index'
           })
         }

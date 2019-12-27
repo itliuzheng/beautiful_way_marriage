@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "置顶服务"
+  "navigationBarTitleText": "置顶服务",
+  "enablePullDownRefresh": true
 }

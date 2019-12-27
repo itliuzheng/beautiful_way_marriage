@@ -24,7 +24,9 @@ Page({
     mateChoiseList:[],
     upload_list: [],
     noCode:false,
-    nickName_noCode:false
+    nickName_noCode:false,
+    nickName:'',
+    buttons: [{ text: '取消' }, { text: '确定' }],
   },
   previewImg(e){
     //预览图片
@@ -145,8 +147,13 @@ Page({
       nickName_noCode: false
     })
   },
+  inputName(e){
+    this.setData({
+      nickName: e.detail.value
+    })
+  },
   editNickName(e) {
-
+    let _this = this;
     wx.showLoading({
       title: '昵称修改中...',
       mask: true,
@@ -155,16 +162,17 @@ Page({
       complete: function (res) { },
     })
 
+    console.log(this.data.nickName);
 
     config.ajax('POST', {
-      nickName: e.detail.value.nickName
+      nickName: _this.data.nickName
     }, `/user/updateNickName`, (res) => {
       wx.hideLoading();
 
       if (res.data.code == 1) {
 
         this.setData({
-          "myself.nickName": e.detail.value.nickName,
+          "myself.nickName": _this.data.nickName,
           nickName_noCode: false
         })
 

@@ -8,7 +8,7 @@
     <view class="header_mask">
       <view class="mask_list" bindtap="clickLike" data-is_like="{{info.isLike}}">
         <image class="mask_icon" src="/images/introduction/love.png" wx:if="{{!info.isLike}}"></image>
-        <image class="mask_icon mask_icon_transform" src="/images/introduction/love_active.png" wx:else></image>
+        <image class="mask_icon mask_icon_transform" src="/images/introduction/love_active.png" wx:else="{{info.isLike}}"></image>
         <text>心动</text>
       </view>
       <view class="mask_list" bindtap="not_open_yet">
@@ -53,7 +53,7 @@
       </view>
     </view>
   </view>
-  <view class="section">
+  <view class="section" wx:if="{{info.photos.length}}">
     <view class="nav_head">
       <text class="fl">个人相册</text>
     </view>
@@ -62,7 +62,6 @@
         <image src="{{item.imgUrl}}" bindtap="previewImg" data-list="{{info.photos}}" data-src="{{item.imgUrl}}"></image>
       </view>
       <view class="upload-list upload-list-m-b " wx:if="{{info.residuePhotoCount}}">
-        <!-- <image src="/images/introduction/photo.png"></image> -->
         <view class="upload-list-more" bindtap="goMorePhoto">
           <view class="number">+{{info.residuePhotoCount}}</view>
           <view class="more">查看更多></view>
@@ -191,6 +190,7 @@
     <view class='toat_mainCode'>
       <text>微信号： pymt1818</text>
       <image src="/images/home/wx.png"></image>
+      <text>电话： 03932277520</text>
     </view>
   </view>
 </view>

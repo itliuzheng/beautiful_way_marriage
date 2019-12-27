@@ -20,7 +20,8 @@ Page({
     expectMarriedArray: ['半年内', '一年内', '两年内'],
     is_match: true,
     hasUserInfo: false,
-    STATUS:null
+    STATUS: null,
+    isShow_wx: false,
   },
   onLoad: function () {
 
@@ -36,9 +37,8 @@ Page({
         this.setData({
           STATUS: res.data
         })
-
       } else {
-        config.mytoast(res.msg, (res) => { });
+        // config.mytoast(res.msg, (res) => { });
       }
     }, (res) => {
 
@@ -539,5 +539,64 @@ Page({
     } else {
       config.mytoast('暂未开放，敬请期待...', (res) => { });
     }
-  }
+  },
+
+  showWx() {
+
+    var token = wx.getStorageSync('token')
+    if (!app.globalData.userInfo) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
+      }, 500)
+      return false;
+    }
+    if (!token) {
+      config.mytoast('您还未登录，请先登录', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/login/login/login',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.info.completeInfo) {
+      config.mytoast('您尚未完善个人资料，请前往填写！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/person_info/person_info',
+        })
+      }, 500)
+      return false;
+    }
+    if (this.data.info.userAuth != 1) {
+      config.mytoast('您尚未实名认证，请前往认证！', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/my_certification/my_certification',
+        })
+      }, 500)
+      return false;
+    }
+    if (!this.data.info.vipLevel) {
+      config.mytoast('请购买会员后查看~', (res) => { });
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '/pages/myself/member/member',
+        })
+      }, 500)
+      return false;
+    }
+
+    this.setData({
+      isShow_wx: true
+    })
+  },
+  closeMask() {
+    this.setData({
+      isShow_wx: false
+    })
+  },
 })

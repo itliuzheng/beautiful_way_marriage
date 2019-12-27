@@ -1,44 +1,77 @@
-import WeCropper from '../../../../component/we-cropper/we-cropper.js'
 const config = require('../../../../utils/config.js');
 let app = getApp()
 
-
-const device = wx.getSystemInfoSync()
-const width = device.windowWidth
-const height = device.windowHeight - 50
-
 Page({
   data: {
-    cropperOpt: {
-      id: 'cropper',
-      width,
-      height,
-      scale: 2.5,
-      zoom: 8,
-      cut: {
-        x: (width - 300) / 2,
-        y: (height - 168) / 2,
-        width: 300,
-        height: 168
-      }
-    }
+    src: '',
+    width: 300,//宽度
+    height: 168,//高度,
+    angle:0
   },
-  touchStart(e) {
-    this.wecropper.touchStart(e)
+  onLoad: function (options) {
+    //获取到image-cropper实例
+    this.cropper = this.selectComponent("#image-cropper");
+    //开始裁剪
+    this.setData({
+      src: options.src
+    });
+    wx.showLoading({
+      title: '加载中'
+    })
   },
-  touchMove(e) {
-    this.wecropper.touchMove(e)
+  cropperload(e) {
+    console.log("cropper初始化完成");
   },
-  touchEnd(e) {
-    this.wecropper.touchEnd(e)
+  loadimage(e) {
+    console.log("图片加载完成", e.detail);
+
+    wx.hideLoading();
+    //重置图片角度、缩放、位置
+    this.cropper.imgReset();
+  },
+  imgResets(e) {
+    this.setData({
+      angle: 0
+    })
+    //重置图片角度、缩放、位置
+    this.cropper.imgReset();
+  },
+  clickcut(e) {
+    console.log(e.detail);
+    //点击裁剪框阅览图片
+    wx.previewImage({
+      current: e.detail.url, // 当前显示图片的http链接
+      urls: [e.detail.url] // 需要预览的图片http链接列表
+    })
+  },
+  uploadTap() {
+    this.cropper.upload()
+  },
+  rotateImg(){
+    let angle = this.data.angle;
+    console.log(angle);
+
+    // if (angle > 270){
+    //   angle = 0;
+    // }
+
+    angle += 90
+
+    this.cropper.setAngle(angle)
+
+    this.setData({
+      angle: angle
+    })
+
   },
   //这个是保存上传裁剪后的图片的方法
   getCropperImage() {
     var that = this
-    this.wecropper.getCropperImage((avatar) => {
+    this.cropper.getImg((avatar) => {
       if (avatar) {
         uploadImage(avatar, function (res) { })
-        function uploadImage(filePath, cb) {
+        function uploadImage(filePathJson, cb) {
+          let filePath = filePathJson.url;
           console.log(filePath);
           let suffix = filePath.substring(filePath.lastIndexOf('.'));
 
@@ -89,51 +122,4 @@ Page({
       }
     })
   },
-  uploadTap() {
-    const self = this
-
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success(res) {
-        const src = res.tempFilePaths[0]
-        // 获取裁剪图片资源后，给data添加src属性及其值
-
-        self.wecropper.pushOrign(src)
-      }
-    })
-  },
-  onLoad(option) {
-    const { cropperOpt } = this.data
-    if (option.src) {
-      cropperOpt.src = option.src
-
-      console.log(cropperOpt);
-
-      new WeCropper(cropperOpt)
-        .on('ready', (ctx) => {
-          console.log(`wecropper is ready for work!`)
-        })
-        .on('beforeImageLoad', (ctx) => {
-          console.log(`before picture loaded, i can do something`)
-          console.log(`current canvas context:`, ctx)
-          wx.showToast({
-            title: '上传中',
-            icon: 'loading',
-            duration: 20000
-          })
-        })
-        .on('imageLoad', (ctx) => {
-          console.log(`picture loaded`)
-          console.log(`current canvas context:`, ctx)
-          wx.hideToast()
-        })
-        .on('beforeDraw', (ctx, instance) => {
-          console.log(`before canvas draw,i can do something`)
-          console.log(`current canvas context:`, ctx)
-        })
-        .updateCanvas()
-    }
-  }
 })

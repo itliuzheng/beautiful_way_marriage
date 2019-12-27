@@ -76,9 +76,9 @@
 
 </view>
 
-<navigator class="add-single" url="/pages/single/release/release">
+<view class="add-single" data-url="/pages/single/release/release" bindtap="goUrl">
   <image src="/images/single/add.png"></image>
-</navigator>
+</view>
 
 <view class="comment_input" wx:if="{{is_comment}}">
   <form bindsubmit="formSubmitComment" class='form'>

@@ -64,7 +64,8 @@
 
         <view class="contact">
           <!-- <text>常见问题</text><text class="sunstring">|</text> -->
-          <button class="contact_btn" open-type="contact">联系客服</button>
+          <!-- <button class="contact_btn" open-type="contact">联系客服</button> -->
+          <text catchtap="showWx">联系客服</text>
         </view>
       </view>
     </view>
@@ -82,5 +83,19 @@
     </view>
 
     <myToast noCode="{{noCode}}" step="{{step}}"></myToast>
+  </view>
+</view>
+
+
+
+
+<view class='maskCode' wx:if="{{isShow_wx}}">
+  <view class='toast_centerCode'>
+    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"  lazy-load="{{true}}"></image>
+    <view class='toat_mainCode'>
+      <text>微信号： pymt1818</text>
+      <image src="/images/home/wx.png"  lazy-load="{{true}}"></image>
+      <text>电话： 03932277520</text>
+    </view>
   </view>
 </view>

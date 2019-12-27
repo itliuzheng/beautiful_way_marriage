@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-dialog": "/component/dialog/dialog"
+  },
   "navigationBarTitleText": "个人介绍"
 }

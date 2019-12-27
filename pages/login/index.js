@@ -8,14 +8,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    type:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(options.url){
+      this.setData({
+        type: options.url
+      })
+    }
+  },
+  onUnload:function(){
+    // if (this.data.type == 'back_home') {
+    //   wx.reLaunch({
+    //     url: '/pages/myself/myself?url=back_home'
+    //   }) 
+    // }
   },
   /**
    * 保存用户头像
@@ -30,10 +41,7 @@ Page({
       city: app.globalData.userInfo.city,
       country: app.globalData.userInfo.country
     }, config.saveInfo, (res) => {
-      console.log('config.saveInfo---', res);
-      console.log(res.data.msg);
       if (res.data.msg == "成功") {
-
         wx.redirectTo({
           url: '/pages/login/login/login'
         })

@@ -159,7 +159,8 @@ Page({
     })
   },
   bindPickerChangeWeight: function (e) {
-    let value = this.data.heightArray[e.detail.value];
+    let value = this.data.weightArray[e.detail.value];
+    console.log(value);
     this.setData({
       "weight": e.detail.value,
       "info.weight": value

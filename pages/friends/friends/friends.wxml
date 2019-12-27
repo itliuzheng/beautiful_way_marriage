@@ -52,6 +52,7 @@
     <view class='toat_mainCode'>
       <text>微信号： pymt1818</text>
       <image src="/images/home/wx.png"  lazy-load="{{true}}"></image>
+      <text>电话： 03932277520</text>
     </view>
   </view>
 </view>

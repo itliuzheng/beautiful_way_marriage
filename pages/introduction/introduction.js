@@ -241,19 +241,34 @@ Page({
     })
   },
   goMorePhoto() {
-    let dom = {
-      img: 1,
-      choose: false
-    };
     let _this = this;
-    let arr = _this.data.upload_list;
 
-    arr.push(dom);
-    arr.push(dom);
-    arr.push(dom);
-    this.setData({
-      upload_list: arr
+    config.ajax('POST', {
+      userId: _this.data.other_id,
+      pageSize:100,
+      pageNum:1
+    }, `/personal/photo-album/page`, (resp) => {
+      let res = resp.data;
+
+      if (res.code == 1) {
+        if (res.data) {
+          this.setData({
+            "info.photos": res.data.data,
+            "info.residuePhotoCount":0
+          })
+        }else{
+          config.mytoast(res.msg, (res) => { })
+        }
+
+      } else {
+        config.mytoast(res.msg, (res) => { })
+      }
+    }, (res) => {
+
     })
+
+
+
   },
   clickShow(e){
     let type = e.currentTarget.dataset.type;
