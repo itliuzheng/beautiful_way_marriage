@@ -5,8 +5,7 @@
   <view class="content">
     <view class="buy-box">
       <view class="title">选择置顶天数</view>
-      <!-- wx:if="{{info.top != 1}}" -->
-      <view  class="buy-list {{type == index?'active':''}}" data-type="{{index}}" data-time="{{item.payNumber}}" data-amount="{{item.price}}"
+      <view wx:if="{{info.top != 1}}"  class="buy-list {{type == index?'active':''}}" data-type="{{index}}" data-time="{{item.payNumber}}" data-amount="{{item.price}}"
       wx:for="{{vipList.data}}"  data-id="{{item.id}}" wx:key="unqint" data-unit="{{item.payNumberUnit}}"
        bindtap="goBuy">
         <view class="fl">
