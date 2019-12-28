@@ -310,4 +310,33 @@ Page({
       is_comment: false,
     })
   },
+  video_play(e){
+    console.log(e);
+    let that = this;
+
+    if (!that.data.current) {//判断是否有播放的视频
+
+      // that.data.videoList.data.forEach((value)=>{
+      //   let video = wx.createVideoContext('myVideo_' + value.id)
+      //   video.stop()
+      // })
+
+      this.setData({//没有视频播放时
+        current: e.currentTarget.id
+      })
+
+      this.videoContext = wx.createVideoContext(e.currentTarget.id)
+      this.videoContext.play()
+
+    } else {
+      this.videoContext.stop()
+
+      this.setData({
+        current: e.currentTarget.id
+      })
+
+      this.videoContext = wx.createVideoContext(e.currentTarget.id)
+      this.videoContext.play()
+    }
+  }
 })
