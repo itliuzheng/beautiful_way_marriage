@@ -23,7 +23,7 @@
   </view>
   <view class="list-cell {{info.carAuth == 1 || info.carAuth == 3?'list-cell-no_arrow':''}}"  bindtap="goUrl" data-status="{{info.carAuth}}" data-url="/pages/myself/my_certification/car/car"> 
     <image class="icon fl" src="/images/myself/vertification/icon_04.png" ></image>
-    <text class="fl">资产认证-房认证</text>
+    <text class="fl">资产认证-车认证</text>
     <text class="fr_desc fr " wx:if="{{info.carAuth == 1}}">已认证</text>
     <text class="fr_desc fr cert_end" wx:elif="{{info.carAuth == 3}}">认证中</text>
     <text class="fr_desc fr cert_end" wx:else>去认证</text>

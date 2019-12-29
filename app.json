@@ -36,7 +36,8 @@
     "pages/myself/introduction/cropper_img/cropper_img",
     "pages/music/video/video",
     "pages/myself/top/top",
-    "pages/myself/introduction/avatar/avatar"
+    "pages/myself/introduction/avatar/avatar",
+    "pages/words/agreement"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,9 +58,9 @@
       },
       {
         "selectedIconPath": "/images/tab/footer_icon_02_active.png",
-          "pagePath": "pages/index/index",
-            "text": "匹配",
-              "iconPath": "/images/tab/footer_icon_02.png"
+        "pagePath": "pages/index/index",
+        "text": "匹配",
+        "iconPath": "/images/tab/footer_icon_02.png"
       },
       {
         "selectedIconPath": "/images/tab/footer_icon_03_active.png",

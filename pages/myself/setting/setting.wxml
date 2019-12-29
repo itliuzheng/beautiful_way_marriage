@@ -22,6 +22,5 @@
       <button class='toat_yes' form-type="submit">确定</button>
       <button class='toat_yes toat_no' bindtap="cancel">取消</button>
     </form>
-
   </view>
 </view>

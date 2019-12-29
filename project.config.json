@@ -284,6 +284,13 @@
 					"pathName": "pages/message/list/list",
 					"query": "name=liked",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "协议",
+					"pathName": "pages/words/agreement",
+					"query": "id=4",
+					"scene": null
 				}
 			]
 		}

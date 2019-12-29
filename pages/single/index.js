@@ -27,8 +27,6 @@ Page({
    */
   onReady: function () {
     this.getBanner();
-    this.getStatus();
-    this.getUserId();
   },
 
   previewImg(e) {
@@ -51,6 +49,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    this.getStatus();
+    this.getUserId();
 
     this.getInit();
   },
@@ -136,6 +137,7 @@ Page({
       show:true
     })
     config.ajax('POST', {
+      pageSize:3,
       pageNum:page
     }, `/circle/single-circle/page`, (resp) => {
       let res = resp.data;

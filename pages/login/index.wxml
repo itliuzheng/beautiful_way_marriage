@@ -11,7 +11,7 @@
 
     <!-- <navigator url="/pages/login/login/login" class="go_login">其他方式登录/注册</navigator> -->
     <view class="login_desc">点击一键登录/注册默认您已经同意</view>
-    <view class="login_link">《美途婚恋服务协议》</view>
+    <navigator class="login_link" url="/pages/words/agreement">《美途婚恋服务协议》</navigator> 
 
   </view>
 </view>
