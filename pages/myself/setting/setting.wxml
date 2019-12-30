@@ -8,8 +8,8 @@
   </view>
   <view class="list-cell" bindtap="edit"> <text>注销资料</text></view>
   <!-- <view class="list-cell" bindtap="not_open_yet"> <text>常见问题</text></view> -->
-  <!-- <view class="list-cell" bindtap="not_open_yet"> <text>意见反馈</text></view> -->
-  <!-- <view class="list-cell" bindtap="not_open_yet"> <text>联系我们</text></view> -->
+  <navigator  class="list-cell" url="/pages/words/feedback">意见反馈</navigator>
+  <view class="list-cell" bindtap="showWx"> <text>联系我们</text></view>
 </view>
 
 
@@ -22,5 +22,18 @@
       <button class='toat_yes' form-type="submit">确定</button>
       <button class='toat_yes toat_no' bindtap="cancel">取消</button>
     </form>
+  </view>
+</view>
+
+
+
+<view class='maskCode' wx:if="{{isShow_wx}}">
+  <view class='maskCode_centerCode'>
+    <image class="mask_close" bindtap="closeMask" src="/images/delete/delete.png"  lazy-load="{{true}}"></image>
+    <view class='maskCode_mainCode'>
+      <text>微信号： pymt1818</text>
+      <image src="/images/home/wx.png"  lazy-load="{{true}}" show-menu-by-longpress="{{true}}"></image>
+      <text>电话： 03932277520</text>
+    </view>
   </view>
 </view>

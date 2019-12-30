@@ -1,0 +1,27 @@
+
+<form bindsubmit="addSelfIntroduce">
+  <view class='textarea_box'>
+    <textarea placeholder="请描述详细意见" name="remark" value="{{desc}}" bindinput="changeLength" maxlength="120"></textarea>
+    <view class="textarea_length">{{desc.length}}/120</view>
+  </view>
+  
+  <view class="push_imgs">
+    
+    <view class="upload-box">
+      <view class="upload-list upload-list-m-b" wx:for="{{upload_list}}" wx:key="{{index}}"  data-index="{{index}}">  
+        <!-- <text class="close" bindtap="closeImg">x</text> -->
+        <image class="close" src="/images/delete/delete.png" bindtap="closeImg" data-id="{{item.id}}"></image>
+        <image src="{{item.src}}" bindtap="previewImg" data-list="{{upload_list}}" data-src="{{item.src}}"></image>
+      </view>
+      <view class="add upload-list-m-b" bindtap="chooseImage">
+        <view class="horizontal"></view>
+        <view class="vertical"></view>
+      </view>
+    </view>
+  </view>
+  <view class="textarea_box">
+    <view class="label">联系方式</view>
+    <input type="number" name="phone"  placeholder="请输入联系方式"></input>
+  </view>
+  <button class='btn' form-type="submit">确定</button>
+</form>

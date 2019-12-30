@@ -1,0 +1,15 @@
+
+<view class="logo-box">
+  <view class="english">MITU</view>
+  <view class="chinese">美途婚恋</view>
+</view>
+<view class="list-cell list-cell-no_arrow"> 
+  <image class="icon fl" src="/images/myself/version.png"></image>
+  <text class="fl">版本</text>
+  <text class="fr">1.0.0</text>
+</view>
+<view class="list-cell list-cell-no_arrow"> 
+  <image class="icon fl" src="/images/myself/qr_code.png"></image>
+  <text class="fl">客服电话</text>
+  <text class="fr">03932277520</text>
+</view>

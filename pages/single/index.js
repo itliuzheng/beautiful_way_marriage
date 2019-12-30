@@ -1,4 +1,4 @@
-// pages/single/my_single/my_single.js
+
 const config = require('../../utils/config.js');
 let app = getApp()
 Page({

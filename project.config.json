@@ -291,6 +291,20 @@
 					"pathName": "pages/words/agreement",
 					"query": "id=4",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "意见反馈",
+					"pathName": "pages/words/feedback",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "安全交友提示",
+					"pathName": "pages/words/safe_friend",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

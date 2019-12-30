@@ -37,9 +37,12 @@
       <navigator class="list-cell" url="/pages/myself/setting/setting" hover-class="none">
         <text>设置</text>
       </navigator>
-      <!-- <view class="list-cell"  bindtap="not_open_yet"> <text>关于美途婚恋</text></view> -->
-      <!-- <view class="list-cell"  bindtap="not_open_yet"> <text>安全交友提示</text></view> -->
+      <navigator class="list-cell" url="/pages/myself/about/about" hover-class="none">
+        <text>关于美途婚恋</text>
+      </navigator>
+      <navigator class="list-cell" url="/pages/words/safe_friend" hover-class="none">
+        <text>安全交友提示</text>
+      </navigator>
     </view>
-
   </view>
 </view>

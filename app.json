@@ -37,7 +37,10 @@
     "pages/music/video/video",
     "pages/myself/top/top",
     "pages/myself/introduction/avatar/avatar",
-    "pages/words/agreement"
+    "pages/words/agreement",
+    "pages/myself/about/about",
+    "pages/words/feedback",
+    "pages/words/safe_friend"
   ],
   "window": {
     "backgroundTextStyle": "light",

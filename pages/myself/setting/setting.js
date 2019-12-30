@@ -15,7 +15,8 @@ Component({
   data: {
     switchChecked:true,
     STATUS: null,
-    noCode: false
+    noCode: false,
+    isShow_wx:false,
   },
   ready:function(){
     this.getStatus();
@@ -24,6 +25,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    showWx(){
+      
+      this.setData({
+        isShow_wx:true
+      })
+    },
+    closeMask() {
+      this.setData({
+        isShow_wx: false
+      })
+    },
     not_open_yet() {
 
       config.mytoast('暂未开放，敬请期待...', (res) => { });

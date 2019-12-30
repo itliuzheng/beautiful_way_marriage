@@ -1,0 +1,27 @@
+
+.title{
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:bold;
+  color:rgba(196,171,91,1);
+  line-height:44rpx;
+  margin-bottom: 40rpx;
+}
+.buy-box{
+  width: 100%;
+  /* height:726rpx; */
+  padding: 40rpx 30rpx 0;
+  background:rgba(255,255,255,1);
+  border-radius:20px;
+  margin-bottom: 20rpx;
+  padding-bottom: 60rpx;
+}
+
+.vip-box .desc{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(43,43,43,1);
+  line-height:40rpx;
+  text-align: justify;
+}
