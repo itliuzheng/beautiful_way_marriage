@@ -157,8 +157,10 @@
   margin-top: 20rpx;
 }
 
-.single-img{
+.single_img_box{
   margin-top: 20rpx;
+}
+.single-img{
   display: inline-block;
   margin-right: 10rpx;
 }

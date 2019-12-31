@@ -12,7 +12,7 @@
       </view>
       <view class="time">{{item.createDate}}</view>
       <view class="content">{{item.description}}</view>
-      <view>
+      <view class="single_img_box">
         <view class="single-img {{item.singleCircleImg.length != 1?'':'single-img-one'}}" wx:for="{{item.singleCircleImg}}" wx:key="" wx:for-item="itemImg">
           <!-- <image src="{{itemImg.url}}" mode="aspectFit"></image> -->
           <image src="{{itemImg.url}}" lazy-load="{{true}}" mode="aspectFill" bindtap="previewImg" data-list="{{item.singleCircleImg}}" data-src="{{itemImg.url}}"></image>

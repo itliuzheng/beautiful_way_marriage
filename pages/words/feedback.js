@@ -97,8 +97,8 @@ Page({
 
               arrList.push({
                 src: value,
-                singleCircleImg: res.data,
-                singleCircleImgExt: suffix
+                img: res.data,
+                imgExt: suffix
               });
 
               _this.setData({
@@ -116,7 +116,7 @@ Page({
     })
   },
   addSelfIntroduce(e) {
-
+    let _this = this;
     console.log(e.detail);
     if (!e.detail.value.remark){
       config.mytoast('描述信息不能为空', (res) => { })
@@ -139,24 +139,20 @@ Page({
       complete: function (res) { },
     })
 
-    setTimeout(function(){
-      
-      config.mytoast('提交成功，正在跳转...', (res) => { })
-      wx.navigateBack({})
-    },1000)
+    config.ajax('POST', {
+      remark: e.detail.value.remark,
+      phone: e.detail.value.phone,
+      imgList:_this.data.upload_list
+    }, `/feedback/add`, (res) => {
+      wx.hideLoading();
+      if (res.data.code == 1) {
+        config.mytoast('提交成功，正在跳转...', (res) => { })
+        wx.navigateBack({})
+      } else {
+        config.mytoast(res.data.msg, (res) => { })
+      }
+    }, (res) => {
 
-    // config.ajax('POST', {
-    //   remark: e.detail.value.remark
-    // }, `/user/unsubscribe`, (res) => {
-    //   wx.hideLoading();
-    //   if (res.data.code == 1) {
-        // config.mytoast('提交成功，正在跳转...', (res) => { })
-        // wx.navigateBack({})
-    //   } else {
-    //     config.mytoast(res.data.msg, (res) => { })
-    //   }
-    // }, (res) => {
-
-    // })
+    })
   },
 })

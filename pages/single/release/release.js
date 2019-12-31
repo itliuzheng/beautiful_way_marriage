@@ -112,14 +112,14 @@ Page({
 
     let arr = _this.data.upload_list;
 
-    if (arr.length >= 9) {
+    if (arr.length >= 6) {
 
-      config.mytoast('图片不能大于9张', (res) => { });
+      config.mytoast('图片不能大于6张', (res) => { });
       return false;
     }
 
     wx.chooseImage({
-      count: 9,
+      count: 6,
       // sizeType: 'original',
       sizeType: 'compressed',
       success: function (res) {
