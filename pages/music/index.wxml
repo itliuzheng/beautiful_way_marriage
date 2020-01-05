@@ -30,7 +30,7 @@
 </view>
 <view wx:else>
   <view class="content">
-    <view class="video_list" wx:for="{{videoList.data}}" wx:key="{{index}}">
+    <view class="video_list" wx:for="{{videoList.data}}" wx:key="ubqye">
       <video id="myVideo_{{item.id}}" src="{{item.videoUrl}}"  bindplay="video_play" data-current="{{item.id}}"
       danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
         <view class="type-icon">

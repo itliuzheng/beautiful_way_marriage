@@ -21,9 +21,6 @@ Page({
       currPage = pages[pages.length - 1];
     }
     let url = currPage.options.url;
-    // console.log('onshwo---');
-    // console.log(pages);
-    // console.log(currPage.__displayReporter.showReferpagepath);
     if (currPage.__displayReporter.showReferpagepath == 'pages/login/index.html') {
       wx.reLaunch({
         url: '/pages/home/index',

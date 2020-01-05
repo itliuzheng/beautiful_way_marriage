@@ -29,6 +29,13 @@ Page({
    */
   onLoad: function (options) {
     
+    if (this.is_match){
+      //音频
+      this.getAudio();
+    }else{
+      //视频
+      this.getVideo();
+    }
   },
 
   /**
@@ -63,13 +70,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.is_match){
-      //音频
-      this.getAudio();
-    }else{
-      //视频
-      this.getVideo();
-    }
+    
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -311,9 +312,9 @@ Page({
     })
   },
   video_play(e){
-    console.log(e);
     let that = this;
 
+    console.log(that.data.current);
     if (!that.data.current) {//判断是否有播放的视频
 
       // that.data.videoList.data.forEach((value)=>{
@@ -329,7 +330,9 @@ Page({
       this.videoContext.play()
 
     } else {
-      this.videoContext.stop()
+      if(e.currentTarget.id != this.data.current){
+        this.videoContext.stop()
+      }
 
       this.setData({
         current: e.currentTarget.id
